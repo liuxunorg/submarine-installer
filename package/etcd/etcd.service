@@ -1,0 +1,24 @@
+[Unit]
+Description=etcd
+Documentation=https://github.com/coreos/etcd
+
+[Service]
+Type=notify
+Restart=always
+RestartSec=5s
+LimitNOFILE=40000
+TimeoutStartSec=0
+
+ExecStart=/usr/bin/etcd \   
+   --name=ETCD_NODE_NAME_REPLACE \
+   --data-dir=/var/lib/etcd \
+   --listen-client-urls=http://LOCAL_HOST_REPLACE:2379,http://127.0.0.1:2379 \
+   --listen-peer-urls=http://LOCAL_HOST_REPLACE:2380 \
+   --advertise-client-urls=http://LOCAL_HOST_REPLACE:2379 \
+   --initial-advertise-peer-urls=http://LOCAL_HOST_REPLACE:2380 \
+   --initial-cluster=INITIAL_CLUSTER_REPLACE \
+   --initial-cluster-token=etcd-token \
+   --initial-cluster-state=new
+
+[Install]
+WantedBy=multi-user.target

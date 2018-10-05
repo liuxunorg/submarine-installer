@@ -1,0 +1,723 @@
+hadoop@ml2:~/hadoop-current$ ./bin/yarn logs -applicationId application_1537440644556_0005
+WARNING: YARN_CONF_DIR has been replaced by HADOOP_CONF_DIR. Using value of YARN_CONF_DIR.
+WARNING: YARN_LOG_DIR has been replaced by HADOOP_LOG_DIR. Using value of YARN_LOG_DIR.
+WARNING: YARN_LOGFILE has been replaced by HADOOP_LOGFILE. Using value of YARN_LOGFILE.
+WARNING: YARN_PID_DIR has been replaced by HADOOP_PID_DIR. Using value of YARN_PID_DIR.
+WARNING: YARN_ROOT_LOGGER has been replaced by HADOOP_ROOT_LOGGER. Using value of YARN_ROOT_LOGGER.
+WARNING: YARN_OPTS has been replaced by HADOOP_OPTS. Using value of YARN_OPTS.
+Container: container_e28_1537440644556_0005_01_000002 on ml2.jd.163.org_35044
+LogAggregationType: AGGREGATED
+=============================================================================
+LogType:container-localizer-syslog
+LogLastModifiedTime:Fri Sep 21 15:21:32 +0800 2018
+LogLength:691
+LogContents:
+2018-09-21 15:20:15,475 WARN [ContainerLocalizer Downloader] org.apache.hadoop.hdfs.DFSUtilClient: Namenode for mycluster3 remains unresolved for ID nn3. Check your hdfs-site.xml file to ensure namenodes are configured properly.
+2018-09-21 15:20:15,490 WARN [ContainerLocalizer Downloader] org.apache.hadoop.hdfs.DFSUtilClient: Namenode for hz-cluster2 remains unresolved for ID nn13. Check your hdfs-site.xml file to ensure namenodes are configured properly.
+2018-09-21 15:20:15,495 WARN [ContainerLocalizer Downloader] org.apache.hadoop.hdfs.DFSUtilClient: Namenode for hz-cluster2 remains unresolved for ID nn14. Check your hdfs-site.xml file to ensure namenodes are configured properly.
+
+End of LogType:container-localizer-syslog
+*******************************************************************************************
+
+
+End of LogType:stderr.txt
+***************************************************************************
+
+
+End of LogType:stdout.txt
+***************************************************************************
+
+Container: container_e28_1537440644556_0005_01_000001 on ml4.jd.163.org_42505
+LogAggregationType: AGGREGATED
+=============================================================================
+LogType:container-localizer-syslog
+LogLastModifiedTime:Fri Sep 21 15:21:33 +0800 2018
+LogLength:691
+LogContents:
+2018-09-21 15:20:07,059 WARN [ContainerLocalizer Downloader] org.apache.hadoop.hdfs.DFSUtilClient: Namenode for mycluster3 remains unresolved for ID nn3. Check your hdfs-site.xml file to ensure namenodes are configured properly.
+2018-09-21 15:20:07,074 WARN [ContainerLocalizer Downloader] org.apache.hadoop.hdfs.DFSUtilClient: Namenode for hz-cluster2 remains unresolved for ID nn13. Check your hdfs-site.xml file to ensure namenodes are configured properly.
+2018-09-21 15:20:07,080 WARN [ContainerLocalizer Downloader] org.apache.hadoop.hdfs.DFSUtilClient: Namenode for hz-cluster2 remains unresolved for ID nn14. Check your hdfs-site.xml file to ensure namenodes are configured properly.
+
+End of LogType:container-localizer-syslog
+*******************************************************************************************
+
+Container: container_e28_1537440644556_0005_01_000001 on ml4.jd.163.org_42505
+LogAggregationType: AGGREGATED
+=============================================================================
+LogType:directory.info
+LogLastModifiedTime:Fri Sep 21 15:21:33 +0800 2018
+LogLength:17075
+LogContents:
+ls -l:
+total 24
+-rw------- 1 hadoop yarn  296 Sep 21 15:20 container_tokens
+-rwx------ 1 hadoop yarn 5185 Sep 21 15:20 launch_container.sh
+drwxr-s--- 2 hadoop yarn 4096 Sep 21 15:20 lib
+lrwxrwxrwx 1 hadoop yarn  119 Sep 21 15:20 service_dep -> /home/hadoop/disk/1/yarn/local/usercache/hadoop/appcache/application_1537440644556_0005/filecache/10/service-dep.tar.gz
+drwxr-s--- 2 hadoop yarn 4096 Sep 21 15:20 tmp
+find -L . -maxdepth 5 -ls:
+10355748    4 drwxr-s---   4 hadoop   yarn         4096 Sep 21 15:20 .
+10355755    4 drwxr-s---   2 hadoop   yarn         4096 Sep 21 15:20 ./lib
+10355736  556 -r-x------   1 hadoop   netease    566348 Sep 21 15:20 ./lib/yarn-service-core.jar
+10355750    4 drwxr-s---   2 hadoop   yarn         4096 Sep 21 15:20 ./tmp
+10355751    8 -rwx------   1 hadoop   yarn         5185 Sep 21 15:20 ./launch_container.sh
+10355752    4 -rw-------   1 hadoop   yarn          296 Sep 21 15:20 ./container_tokens
+10355590   12 drwx------   2 hadoop   netease     12288 Sep 21 15:20 ./service_dep
+10355611   56 -r-x------   1 hadoop   netease     55236 Aug 30 10:16 ./service_dep/geronimo-jcache_1.0_spec-1.0-alpha-1.jar
+10355667  524 -r-x------   1 hadoop   netease    533455 Aug 30 10:16 ./service_dep/protobuf-java-2.5.0.jar
+10355608 2152 -r-x------   1 hadoop   netease   2201349 Aug 30 10:16 ./service_dep/hadoop-yarn-server-resourcemanager-3.2.0-SNAPSHOT.jar
+10355659   96 -r-x------   1 hadoop   netease     95806 Aug 30 10:16 ./service_dep/javax.servlet-api-3.1.0.jar
+10355632  252 -r-x------   1 hadoop   netease    256626 Aug 30 10:16 ./service_dep/hadoop-hdfs-httpfs-3.2.0-SNAPSHOT.jar
+10355622  132 -r-x------   1 hadoop   netease    134021 Aug 30 10:16 ./service_dep/jersey-client-1.19.jar
+10355680 1224 -r-x------   1 hadoop   netease   1251514 Aug 30 10:16 ./service_dep/snappy-java-1.0.5.jar
+10355661  136 -r-x------   1 hadoop   netease    138576 Aug 30 10:16 ./service_dep/hadoop-auth-3.2.0-SNAPSHOT.jar
+10355732   12 -r-x------   1 hadoop   netease     12244 Aug 30 10:16 ./service_dep/slf4j-log4j12-1.7.25.jar
+10355595  104 -r-x------   1 hadoop   netease    102866 Aug 30 10:16 ./service_dep/hadoop-yarn-services-api-3.2.0-SNAPSHOT.jar
+10355713   96 -r-x------   1 hadoop   netease     94672 Aug 30 10:16 ./service_dep/xz-1.0.jar
+10355733   44 -r-x------   1 hadoop   netease     41203 Aug 30 10:16 ./service_dep/slf4j-api-1.7.25.jar
+10355591   92 -r-x------   1 hadoop   netease     93358 Aug 30 10:16 ./service_dep/hadoop-yarn-server-timeline-pluginstorage-3.2.0-SNAPSHOT.jar
+10355645 2368 -r-x------   1 hadoop   netease   2423138 Aug 30 10:16 ./service_dep/curator-client-2.12.0.jar
+10355657   68 -r-x------   1 hadoop   netease     65928 Aug 30 10:16 ./service_dep/okio-1.6.0.jar
+10355643  100 -r-x------   1 hadoop   netease    102174 Aug 30 10:16 ./service_dep/kerby-asn1-1.0.1.jar
+10355612  264 -r-x------   1 hadoop   netease    269579 Aug 30 10:16 ./service_dep/snakeyaml-1.16.jar
+10355651  872 -r-x------   1 hadoop   netease    890168 Aug 30 10:16 ./service_dep/jaxb-impl-2.2.3-1.jar
+10355706   20 -r-x------   1 hadoop   netease     20046 Aug 30 10:16 ./service_dep/kerb-identity-1.0.1.jar
+10355720  120 -r-x------   1 hadoop   netease    120316 Aug 30 10:16 ./service_dep/json-smart-2.3.jar
+10355682  244 -r-x------   1 hadoop   netease    246174 Aug 30 10:16 ./service_dep/commons-beanutils-1.9.3.jar
+10355698  204 -r-x------   1 hadoop   netease    208700 Aug 30 10:16 ./service_dep/commons-io-2.5.jar
+10355699  120 -r-x------   1 hadoop   netease    122558 Aug 30 10:16 ./service_dep/jetty-io-9.3.19.v20170502.jar
+10355735    8 -r-x------   1 hadoop   netease      4596 Aug 30 10:16 ./service_dep/jul-to-slf4j-1.7.25.jar
+10355627   16 -r-x------   1 hadoop   netease     16045 Aug 30 10:16 ./service_dep/swagger-annotations-1.5.4.jar
+10355635 4880 -r-x------   1 hadoop   netease   4993965 Aug 30 10:16 ./service_dep/hadoop-hdfs-client-3.2.0-SNAPSHOT.jar
+10355603 1284 -r-x------   1 hadoop   netease   1311600 Aug 30 10:16 ./service_dep/hadoop-yarn-server-nodemanager-3.2.0-SNAPSHOT.jar
+10355609   16 -r-x------   1 hadoop   netease     16151 Aug 30 10:16 ./service_dep/jersey-guice-1.19.jar
+10355694  764 -r-x------   1 hadoop   netease    780664 Aug 30 10:16 ./service_dep/jackson-mapper-asl-1.9.13.jar
+10355725   36 -r-x------   1 hadoop   netease     36708 Aug 30 10:16 ./service_dep/kerb-util-1.0.1.jar
+10355687 1612 -r-x------   1 hadoop   netease   1648200 Aug 30 10:16 ./service_dep/guava-11.0.2.jar
+10355620   76 -r-x------   1 hadoop   netease     76983 Aug 30 10:16 ./service_dep/guice-servlet-4.0.jar
+10355660   68 -r-x------   1 hadoop   netease     66983 Aug 30 10:16 ./service_dep/jackson-annotations-2.9.5.jar
+10355708  236 -r-x------   1 hadoop   netease    241367 Aug 30 10:16 ./service_dep/commons-compress-1.4.1.jar
+10355596  296 -r-x------   1 hadoop   netease    299782 Aug 30 10:16 ./service_dep/hadoop-yarn-client-3.2.0-SNAPSHOT.jar
+10355679  688 -r-x------   1 hadoop   netease    702882 Aug 30 10:16 ./service_dep/jersey-server-1.19.jar
+10355728  200 -r-x------   1 hadoop   netease    201942 Aug 30 10:16 ./service_dep/hadoop-nfs-3.2.0-SNAPSHOT.jar
+10355719  128 -r-x------   1 hadoop   netease    128414 Aug 30 10:16 ./service_dep/re2j-1.1.jar
+10355731 2796 -r-x------   1 hadoop   netease   2860172 Aug 30 10:16 ./service_dep/hadoop-common-3.2.0-SNAPSHOT-tests.jar
+10355710  328 -r-x------   1 hadoop   netease    335042 Aug 30 10:16 ./service_dep/commons-codec-1.11.jar
+10355613  188 -r-x------   1 hadoop   netease    188542 Aug 30 10:16 ./service_dep/hadoop-lzo-0.4.20.jar
+10355641 5616 -r-x------   1 hadoop   netease   5746713 Aug 30 10:16 ./service_dep/hadoop-hdfs-3.2.0-SNAPSHOT.jar
+10355658 1300 -r-x------   1 hadoop   netease   1330394 Aug 30 10:16 ./service_dep/netty-3.10.5.Final.jar
+10355629  132 -r-x------   1 hadoop   netease    134308 Aug 30 10:16 ./service_dep/HikariCP-java7-2.4.12.jar
+10355705  200 -r-x------   1 hadoop   netease    201953 Aug 30 10:16 ./service_dep/curator-framework-2.12.0.jar
+10355606   56 -r-x------   1 hadoop   netease     55672 Aug 30 10:16 ./service_dep/hadoop-yarn-applications-unmanaged-am-launcher-3.2.0-SNAPSHOT.jar
+10355707    8 -r-x------   1 hadoop   netease      4722 Aug 30 10:16 ./service_dep/jcip-annotations-1.0-1.jar
+10355730 3972 -r-x------   1 hadoop   netease   4064133 Aug 30 10:16 ./service_dep/hadoop-common-3.2.0-SNAPSHOT.jar
+10355650 1312 -r-x------   1 hadoop   netease   1342410 Aug 30 10:16 ./service_dep/jackson-databind-2.9.5.jar
+10355693  224 -r-x------   1 hadoop   netease    226672 Aug 30 10:16 ./service_dep/kerb-core-1.0.1.jar
+10355686   32 -r-x------   1 hadoop   netease     29134 Aug 30 10:16 ./service_dep/kerby-xdr-1.0.1.jar
+10355668   32 -r-x------   1 hadoop   netease     30035 Aug 30 10:16 ./service_dep/accessors-smart-1.2.jar
+10355662   44 -r-x------   1 hadoop   netease     41123 Aug 30 10:16 ./service_dep/commons-cli-1.2.jar
+10355715  188 -r-x------   1 hadoop   netease    190432 Aug 30 10:16 ./service_dep/gson-2.2.4.jar
+10355614   32 -r-x------   1 hadoop   netease     32373 Aug 30 10:16 ./service_dep/jackson-jaxrs-base-2.9.5.jar
+10355709  228 -r-x------   1 hadoop   netease    232248 Aug 30 10:16 ./service_dep/jackson-core-asl-1.9.13.jar
+10355646  296 -r-x------   1 hadoop   netease    299508 Aug 30 10:16 ./service_dep/nimbus-jose-jwt-4.41.1.jar
+10355677  100 -r-x------   1 hadoop   netease    102244 Aug 30 10:16 ./service_dep/jaxb-api-2.2.11.jar
+10355640   48 -r-x------   1 hadoop   netease     45158 Aug 30 10:16 ./service_dep/hadoop-hdfs-native-client-3.2.0-SNAPSHOT.jar
+10355692 2224 -r-x------   1 hadoop   netease   2275047 Aug 30 10:16 ./service_dep/netty-all-4.0.52.Final.jar
+10355602  112 -r-x------   1 hadoop   netease    110674 Aug 30 10:16 ./service_dep/hadoop-yarn-applications-distributedshell-3.2.0-SNAPSHOT.jar
+10355714   24 -r-x------   1 hadoop   netease     24239 Aug 30 10:16 ./service_dep/commons-daemon-1.0.13.jar
+10355683   60 -r-x------   1 hadoop   netease     60114 Aug 30 10:16 ./service_dep/hadoop-annotations-3.2.0-SNAPSHOT.jar
+10355619  304 -r-x------   1 hadoop   netease    307637 Aug 30 10:16 ./service_dep/dnsjava-2.1.7.jar
+10355669   40 -r-x------   1 hadoop   netease     40554 Aug 30 10:16 ./service_dep/kerby-util-1.0.1.jar
+10355592 3032 -r-x------   1 hadoop   netease   3101783 Aug 30 10:16 ./service_dep/hadoop-yarn-api-3.2.0-SNAPSHOT.jar
+10355604  556 -r-x------   1 hadoop   netease    566348 Aug 30 10:16 ./service_dep/hadoop-yarn-services-core-3.2.0-SNAPSHOT.jar
+10355664  324 -r-x------   1 hadoop   netease    331034 Aug 30 10:16 ./service_dep/okhttp-2.7.5.jar
+10355726 1468 -r-x------   1 hadoop   netease   1502280 Aug 30 10:16 ./service_dep/htrace-core4-4.1.0-incubating.jar
+10355701   84 -r-x------   1 hadoop   netease     82756 Aug 30 10:16 ./service_dep/kerb-server-1.0.1.jar
+10355597  220 -r-x------   1 hadoop   netease    224945 Aug 30 10:16 ./service_dep/hadoop-yarn-registry-3.2.0-SNAPSHOT.jar
+10355610  776 -r-x------   1 hadoop   netease    792442 Aug 30 10:16 ./service_dep/mssql-jdbc-6.2.1.jre7.jar
+10355600  292 -r-x------   1 hadoop   netease    295107 Aug 30 10:16 ./service_dep/hadoop-yarn-server-applicationhistoryservice-3.2.0-SNAPSHOT.jar
+10355690   40 -r-x------   1 hadoop   netease     38707 Aug 30 10:16 ./service_dep/jetty-util-ajax-9.3.19.v20170502.jar
+10355630    8 -r-x------   1 hadoop   netease      4467 Aug 30 10:16 ./service_dep/aopalliance-1.0.jar
+10355637   48 -r-x------   1 hadoop   netease     45158 Aug 30 10:16 ./service_dep/hadoop-hdfs-native-client-3.2.0-SNAPSHOT-tests.jar
+10355648  180 -r-x------   1 hadoop   netease    183760 Aug 30 10:16 ./service_dep/commons-text-1.4.jar
+10355734  100 -r-x------   1 hadoop   netease    100636 Aug 30 10:16 ./service_dep/jsp-api-2.1.jar
+10355633  928 -r-x------   1 hadoop   netease    946643 Aug 30 10:16 ./service_dep/hadoop-hdfs-rbf-3.2.0-SNAPSHOT.jar
+10355711  444 -r-x------   1 hadoop   netease    450846 Aug 30 10:16 ./service_dep/jetty-util-9.3.19.v20170502.jar
+10355681  320 -r-x------   1 hadoop   netease    326724 Aug 30 10:16 ./service_dep/httpcore-4.4.4.jar
+10355598  148 -r-x------   1 hadoop   netease    149777 Aug 30 10:16 ./service_dep/hadoop-yarn-server-router-3.2.0-SNAPSHOT.jar
+10355700  480 -r-x------   1 hadoop   netease    489884 Aug 30 10:16 ./service_dep/log4j-1.2.17.jar
+10355649   20 -r-x------   1 hadoop   netease     18763 Aug 30 10:16 ./service_dep/token-provider-1.0.1.jar
+10355727   64 -r-x------   1 hadoop   netease     62050 Aug 30 10:16 ./service_dep/commons-logging-1.1.3.jar
+10355674  160 -r-x------   1 hadoop   netease    161867 Aug 30 10:16 ./service_dep/stax2-api-3.1.4.jar
+10355599   96 -r-x------   1 hadoop   netease     94618 Aug 30 10:16 ./service_dep/hadoop-yarn-server-sharedcachemanager-3.2.0-SNAPSHOT.jar
+10355697  720 -r-x------   1 hadoop   netease    736658 Aug 30 10:16 ./service_dep/httpclient-4.5.2.jar
+10355724   20 -r-x------   1 hadoop   netease     20409 Aug 30 10:16 ./service_dep/kerb-simplekdc-1.0.1.jar
+10355656  116 -r-x------   1 hadoop   netease    116120 Aug 30 10:16 ./service_dep/kerb-crypto-1.0.1.jar
+10355594 2760 -r-x------   1 hadoop   netease   2822681 Aug 30 10:16 ./service_dep/hadoop-yarn-common-3.2.0-SNAPSHOT.jar
+10355663  604 -r-x------   1 hadoop   netease    616888 Aug 30 10:16 ./service_dep/commons-configuration2-2.1.1.jar
+10355593   80 -r-x------   1 hadoop   netease     80786 Aug 30 10:16 ./service_dep/hadoop-yarn-server-web-proxy-3.2.0-SNAPSHOT.jar
+10355695 1024 -r-x------   1 hadoop   netease   1045744 Aug 30 10:16 ./service_dep/leveldbjni-all-1.8.jar
+10355684   48 -r-x------   1 hadoop   netease     46367 Aug 30 10:16 ./service_dep/jsr311-api-1.1.1.jar
+10355636  156 -r-x------   1 hadoop   netease    156803 Aug 30 10:16 ./service_dep/hadoop-hdfs-client-3.2.0-SNAPSHOT-tests.jar
+10355702   52 -r-x------   1 hadoop   netease     50633 Aug 30 10:16 ./service_dep/jetty-xml-9.3.19.v20170502.jar
+10355642   64 -r-x------   1 hadoop   netease     65464 Aug 30 10:16 ./service_dep/kerb-common-1.0.1.jar
+10355688   80 -r-x------   1 hadoop   netease     80980 Aug 30 10:16 ./service_dep/kerb-admin-1.0.1.jar
+10355616  656 -r-x------   1 hadoop   netease    668235 Aug 30 10:16 ./service_dep/guice-4.0.jar
+10355665  428 -r-x------   1 hadoop   netease    436689 Aug 30 10:16 ./service_dep/jersey-core-1.19.jar
+10355617   28 -r-x------   1 hadoop   netease     28569 Aug 30 10:16 ./service_dep/objenesis-1.0.jar
+10355623   32 -r-x------   1 hadoop   netease     32618 Aug 30 10:16 ./service_dep/jackson-module-jaxb-annotations-2.9.5.jar
+10355666   68 -r-x------   1 hadoop   netease     67758 Aug 30 10:16 ./service_dep/jettison-1.1.jar
+10355644  276 -r-x------   1 hadoop   netease    280515 Aug 30 10:16 ./service_dep/jsch-0.1.54.jar
+10355685  148 -r-x------   1 hadoop   netease    150844 Aug 30 10:16 ./service_dep/jetty-http-9.3.19.v20170502.jar
+10355689   96 -r-x------   1 hadoop   netease     95838 Aug 30 10:16 ./service_dep/jetty-security-9.3.19.v20170502.jar
+10355607  100 -r-x------   1 hadoop   netease    102142 Aug 30 10:16 ./service_dep/hadoop-yarn-submarine-3.2.0-SNAPSHOT.jar
+10355712  512 -r-x------   1 hadoop   netease    523266 Aug 30 10:16 ./service_dep/jetty-server-9.3.19.v20170502.jar
+10355634  280 -r-x------   1 hadoop   netease    285181 Aug 30 10:16 ./service_dep/hadoop-hdfs-rbf-3.2.0-SNAPSHOT-tests.jar
+10355676  428 -r-x------   1 hadoop   netease    436303 Aug 30 10:16 ./service_dep/avro-1.7.7.jar
+10355672   56 -r-x------   1 hadoop   netease     53297 Aug 30 10:16 ./service_dep/asm-5.0.4.jar
+10355618   16 -r-x------   1 hadoop   netease     15864 Aug 30 10:16 ./service_dep/jackson-jaxrs-json-provider-2.9.5.jar
+10355673   24 -r-x------   1 hadoop   netease     23931 Aug 30 10:16 ./service_dep/json-simple-1.1.1.jar
+10355653  164 -r-x------   1 hadoop   netease    165345 Aug 30 10:16 ./service_dep/jersey-json-1.19.jar
+10355717  112 -r-x------   1 hadoop   netease    113017 Aug 30 10:16 ./service_dep/kerb-client-1.0.1.jar
+10355621  380 -r-x------   1 hadoop   netease    387689 Aug 30 10:16 ./service_dep/fst-2.50.jar
+10355696  792 -r-x------   1 hadoop   netease    807277 Aug 30 10:16 ./service_dep/zookeeper-3.4.9.jar
+10355654   32 -r-x------   1 hadoop   netease     30674 Aug 30 10:16 ./service_dep/kerby-config-1.0.1.jar
+10355628 1688 -r-x------   1 hadoop   netease   1726527 Aug 30 10:16 ./service_dep/ehcache-3.3.1.jar
+10355718 1564 -r-x------   1 hadoop   netease   1599627 Aug 30 10:16 ./service_dep/commons-math3-3.1.1.jar
+10355671  488 -r-x------   1 hadoop   netease    499634 Aug 30 10:16 ./service_dep/commons-lang3-3.7.jar
+10355729  128 -r-x------   1 hadoop   netease    130490 Aug 30 10:16 ./service_dep/hadoop-kms-3.2.0-SNAPSHOT.jar
+10355723  112 -r-x------   1 hadoop   netease    113395 Aug 30 10:16 ./service_dep/jetty-webapp-9.3.19.v20170502.jar
+10355624    4 -r-x------   1 hadoop   netease      2497 Aug 30 10:16 ./service_dep/javax.inject-1.jar
+10355716  504 -r-x------   1 hadoop   netease    512742 Aug 30 10:16 ./service_dep/woodstox-core-5.0.3.jar
+10355703   20 -r-x------   1 hadoop   netease     18336 Aug 30 10:16 ./service_dep/jackson-jaxrs-1.9.13.jar
+10355670   36 -r-x------   1 hadoop   netease     33031 Aug 30 10:16 ./service_dep/jsr305-3.0.0.jar
+10355638  148 -r-x------   1 hadoop   netease    150951 Aug 30 10:16 ./service_dep/hadoop-hdfs-nfs-3.2.0-SNAPSHOT.jar
+10355655  576 -r-x------   1 hadoop   netease    588337 Aug 30 10:16 ./service_dep/commons-collections-3.2.2.jar
+10355631   60 -r-x------   1 hadoop   netease     58487 Aug 30 10:16 ./service_dep/java-util-1.9.0.jar
+10355675  120 -r-x------   1 hadoop   netease    119119 Aug 30 10:16 ./service_dep/jetty-servlet-9.3.19.v20170502.jar
+10355704  316 -r-x------   1 hadoop   netease    321590 Aug 30 10:16 ./service_dep/jackson-core-2.9.5.jar
+10355625  136 -r-x------   1 hadoop   netease    136314 Aug 30 10:16 ./service_dep/metrics-core-3.2.4.jar
+10355601   44 -r-x------   1 hadoop   netease     44141 Aug 30 10:16 ./service_dep/hadoop-yarn-server-tests-3.2.0-SNAPSHOT.jar
+10355691   32 -r-x------   1 hadoop   netease     29555 Aug 30 10:16 ./service_dep/paranamer-2.3.jar
+10355639 5368 -r-x------   1 hadoop   netease   5494296 Aug 30 10:16 ./service_dep/hadoop-hdfs-3.2.0-SNAPSHOT-tests.jar
+10355605 1316 -r-x------   1 hadoop   netease   1344254 Aug 30 10:16 ./service_dep/hadoop-yarn-server-common-3.2.0-SNAPSHOT.jar
+10355626   76 -r-x------   1 hadoop   netease     75232 Aug 30 10:16 ./service_dep/json-io-2.5.1.jar
+10355722  304 -r-x------   1 hadoop   netease    307410 Aug 30 10:16 ./service_dep/commons-net-3.6.jar
+10355647   28 -r-x------   1 hadoop   netease     27084 Aug 30 10:16 ./service_dep/jackson-xc-1.9.13.jar
+10355721  200 -r-x------   1 hadoop   netease    204650 Aug 30 10:16 ./service_dep/kerby-pkix-1.0.1.jar
+10355652  280 -r-x------   1 hadoop   netease    283598 Aug 30 10:16 ./service_dep/curator-recipes-2.12.0.jar
+10355678  128 -r-x------   1 hadoop   netease    128719 Aug 30 10:16 ./service_dep/jersey-servlet-1.19.jar
+broken symlinks(find -L . -maxdepth 5 -type l -ls):
+
+End of LogType:directory.info
+*******************************************************************************
+
+Container: container_e28_1537440644556_0005_01_000001 on ml4.jd.163.org_42505
+LogAggregationType: AGGREGATED
+=============================================================================
+LogType:launch_container.sh
+LogLastModifiedTime:Fri Sep 21 15:21:33 +0800 2018
+LogLength:5185
+LogContents:
+#!/bin/bash
+
+set -o pipefail -e
+export PRELAUNCH_OUT="/home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/prelaunch.out"
+exec >"${PRELAUNCH_OUT}"
+export PRELAUNCH_ERR="/home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/prelaunch.err"
+exec 2>"${PRELAUNCH_ERR}"
+echo "Setting up env variables"
+export JAVA_HOME=${JAVA_HOME:-"/home/hadoop/java-current"}
+export HADOOP_COMMON_HOME=${HADOOP_COMMON_HOME:-"/home/hadoop/hadoop-current"}
+export HADOOP_HDFS_HOME=${HADOOP_HDFS_HOME:-"/home/hadoop/hadoop-current"}
+export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-"/home/hadoop/hadoop-current/conf"}
+export HADOOP_YARN_HOME=${HADOOP_YARN_HOME:-"/home/hadoop/hadoop-current"}
+export HADOOP_HOME=${HADOOP_HOME:-"/home/hadoop/hadoop-current"}
+export PATH=${PATH:-"/home/hadoop/java-current/bin:/home/hadoop/java-current/jre/bin:/home/hadoop/hadoop-current/bin:/home/hadoop/apache-maven-3.5.4/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/home/hadoop/.local/bin:/home/hadoop/bin"}
+export HADOOP_TOKEN_FILE_LOCATION="/home/hadoop/disk/2/yarn/local/usercache/hadoop/appcache/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/container_tokens"
+export CONTAINER_ID="container_e28_1537440644556_0005_01_000001"
+export NM_PORT="42505"
+export NM_HOST="ml4.jd.163.org"
+export NM_HTTP_PORT="8042"
+export LOCAL_DIRS="/home/hadoop/disk/1/yarn/local/usercache/hadoop/appcache/application_1537440644556_0005,/home/hadoop/disk/2/yarn/local/usercache/hadoop/appcache/application_1537440644556_0005,/home/hadoop/disk/3/yarn/local/usercache/hadoop/appcache/application_1537440644556_0005"
+export LOCAL_USER_DIRS="/home/hadoop/disk/1/yarn/local/usercache/hadoop/,/home/hadoop/disk/2/yarn/local/usercache/hadoop/,/home/hadoop/disk/3/yarn/local/usercache/hadoop/"
+export LOG_DIRS="/home/hadoop/disk/1/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001,/home/hadoop/disk/2/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001,/home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001"
+export USER="hadoop"
+export LOGNAME="hadoop"
+export HOME="/home/"
+export PWD="/home/hadoop/disk/2/yarn/local/usercache/hadoop/appcache/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001"
+export JVM_PID="$$"
+export MALLOC_ARENA_MAX="4"
+export NM_AUX_SERVICE_mapreduce_shuffle="AAA0+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+export LANGUAGE="en_US.UTF-8"
+export APPLICATION_WEB_PROXY_BASE="/proxy/application_1537440644556_0005"
+export CLASSPATH="yarnservice-log4j.properties:conf/:lib/*:service_dep/*:$CLASSPATH:$HADOOP_CONF_DIR"
+export LANG="en_US.UTF-8"
+export APP_SUBMIT_TIME_ENV="1537514405210"
+export LC_ALL="en_US.UTF-8"
+echo "Setting up job resources"
+mkdir -p lib
+ln -sf "/home/hadoop/disk/3/yarn/local/usercache/hadoop/appcache/application_1537440644556_0005/filecache/11/yarn-service-core.jar" "lib/yarn-service-core.jar"
+ln -sf "/home/hadoop/disk/1/yarn/local/usercache/hadoop/appcache/application_1537440644556_0005/filecache/10/service-dep.tar.gz" "service_dep"
+echo "Copying debugging information"
+# Creating copy of launch script
+cp "launch_container.sh" "/home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/launch_container.sh"
+chmod 640 "/home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/launch_container.sh"
+# Determining directory contents
+echo "ls -l:" 1>"/home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/directory.info"
+ls -l 1>>"/home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/directory.info"
+echo "find -L . -maxdepth 5 -ls:" 1>>"/home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/directory.info"
+find -L . -maxdepth 5 -ls 1>>"/home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/directory.info"
+echo "broken symlinks(find -L . -maxdepth 5 -type l -ls):" 1>>"/home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/directory.info"
+find -L . -maxdepth 5 -type l -ls 1>>"/home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/directory.info"
+echo "Launching container"
+exec /bin/bash -c "$JAVA_HOME/bin/java -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true  -Xmx768m  org.apache.hadoop.yarn.service.ServiceMaster -yarnfile hdfs://mldev/user/hadoop/.yarn/services/standlone-tf/standlone-tf.json -service_name standlone-tf -D hadoop.registry.zk.root=/registry -D hadoop.registry.zk.quorum=ml2.jd.163.org:2181,ml3.jd.163.org:2181,ml4.jd.163.org:2181 1>/home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/serviceam-out.txt 2>/home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/serviceam-err.txt "
+
+End of LogType:launch_container.sh
+************************************************************************************
+
+
+End of LogType:prelaunch.err
+******************************************************************************
+
+Container: container_e28_1537440644556_0005_01_000001 on ml4.jd.163.org_42505
+LogAggregationType: AGGREGATED
+=============================================================================
+LogType:prelaunch.out
+LogLastModifiedTime:Fri Sep 21 15:21:33 +0800 2018
+LogLength:100
+LogContents:
+Setting up env variables
+Setting up job resources
+Copying debugging information
+Launching container
+
+End of LogType:prelaunch.out
+******************************************************************************
+
+Container: container_e28_1537440644556_0005_01_000001 on ml4.jd.163.org_42505
+LogAggregationType: AGGREGATED
+=============================================================================
+LogType:serviceam-err.txt
+LogLastModifiedTime:Fri Sep 21 15:21:33 +0800 2018
+LogLength:50033
+LogContents:
+18/09/21 15:20:09 INFO service.ServiceMaster: STARTUP_MSG: 
+/************************************************************
+STARTUP_MSG: Starting ServiceMaster
+STARTUP_MSG:   host = ml4.jd.163.org/10.196.69.175
+STARTUP_MSG:   args = [-yarnfile, hdfs://mldev/user/hadoop/.yarn/services/standlone-tf/standlone-tf.json, -service_name, standlone-tf, -D, hadoop.registry.zk.root=/registry, -D, hadoop.registry.zk.quorum=ml2.jd.163.org:2181,ml3.jd.163.org:2181,ml4.jd.163.org:2181]
+STARTUP_MSG:   version = 3.2.0-SNAPSHOT
+STARTUP_MSG:   classpath = yarnservice-log4j.properties:conf/:lib/yarn-service-core.jar:service_dep/geronimo-jcache_1.0_spec-1.0-alpha-1.jar:service_dep/protobuf-java-2.5.0.jar:service_dep/hadoop-yarn-server-resourcemanager-3.2.0-SNAPSHOT.jar:service_dep/javax.servlet-api-3.1.0.jar:service_dep/hadoop-hdfs-httpfs-3.2.0-SNAPSHOT.jar:service_dep/jersey-client-1.19.jar:service_dep/snappy-java-1.0.5.jar:service_dep/hadoop-auth-3.2.0-SNAPSHOT.jar:service_dep/slf4j-log4j12-1.7.25.jar:service_dep/hadoop-yarn-services-api-3.2.0-SNAPSHOT.jar:service_dep/xz-1.0.jar:service_dep/slf4j-api-1.7.25.jar:service_dep/hadoop-yarn-server-timeline-pluginstorage-3.2.0-SNAPSHOT.jar:service_dep/curator-client-2.12.0.jar:service_dep/okio-1.6.0.jar:service_dep/kerby-asn1-1.0.1.jar:service_dep/snakeyaml-1.16.jar:service_dep/jaxb-impl-2.2.3-1.jar:service_dep/kerb-identity-1.0.1.jar:service_dep/json-smart-2.3.jar:service_dep/commons-beanutils-1.9.3.jar:service_dep/commons-io-2.5.jar:service_dep/jetty-io-9.3.19.v20170502.jar:service_dep/jul-to-slf4j-1.7.25.jar:service_dep/swagger-annotations-1.5.4.jar:service_dep/hadoop-hdfs-client-3.2.0-SNAPSHOT.jar:service_dep/hadoop-yarn-server-nodemanager-3.2.0-SNAPSHOT.jar:service_dep/jersey-guice-1.19.jar:service_dep/jackson-mapper-asl-1.9.13.jar:service_dep/kerb-util-1.0.1.jar:service_dep/guava-11.0.2.jar:service_dep/guice-servlet-4.0.jar:service_dep/jackson-annotations-2.9.5.jar:service_dep/commons-compress-1.4.1.jar:service_dep/hadoop-yarn-client-3.2.0-SNAPSHOT.jar:service_dep/jersey-server-1.19.jar:service_dep/hadoop-nfs-3.2.0-SNAPSHOT.jar:service_dep/re2j-1.1.jar:service_dep/hadoop-common-3.2.0-SNAPSHOT-tests.jar:service_dep/commons-codec-1.11.jar:service_dep/hadoop-lzo-0.4.20.jar:service_dep/hadoop-hdfs-3.2.0-SNAPSHOT.jar:service_dep/netty-3.10.5.Final.jar:service_dep/HikariCP-java7-2.4.12.jar:service_dep/curator-framework-2.12.0.jar:service_dep/hadoop-yarn-applications-unmanaged-am-launcher-3.2.0-SNAPSHOT.jar:service_dep/jcip-annotations-1.0-1.jar:service_dep/hadoop-common-3.2.0-SNAPSHOT.jar:service_dep/jackson-databind-2.9.5.jar:service_dep/kerb-core-1.0.1.jar:service_dep/kerby-xdr-1.0.1.jar:service_dep/accessors-smart-1.2.jar:service_dep/commons-cli-1.2.jar:service_dep/gson-2.2.4.jar:service_dep/jackson-jaxrs-base-2.9.5.jar:service_dep/jackson-core-asl-1.9.13.jar:service_dep/nimbus-jose-jwt-4.41.1.jar:service_dep/jaxb-api-2.2.11.jar:service_dep/hadoop-hdfs-native-client-3.2.0-SNAPSHOT.jar:service_dep/netty-all-4.0.52.Final.jar:service_dep/hadoop-yarn-applications-distributedshell-3.2.0-SNAPSHOT.jar:service_dep/commons-daemon-1.0.13.jar:service_dep/hadoop-annotations-3.2.0-SNAPSHOT.jar:service_dep/dnsjava-2.1.7.jar:service_dep/kerby-util-1.0.1.jar:service_dep/hadoop-yarn-api-3.2.0-SNAPSHOT.jar:service_dep/hadoop-yarn-services-core-3.2.0-SNAPSHOT.jar:service_dep/okhttp-2.7.5.jar:service_dep/htrace-core4-4.1.0-incubating.jar:service_dep/kerb-server-1.0.1.jar:service_dep/hadoop-yarn-registry-3.2.0-SNAPSHOT.jar:service_dep/mssql-jdbc-6.2.1.jre7.jar:service_dep/hadoop-yarn-server-applicationhistoryservice-3.2.0-SNAPSHOT.jar:service_dep/jetty-util-ajax-9.3.19.v20170502.jar:service_dep/aopalliance-1.0.jar:service_dep/hadoop-hdfs-native-client-3.2.0-SNAPSHOT-tests.jar:service_dep/commons-text-1.4.jar:service_dep/jsp-api-2.1.jar:service_dep/hadoop-hdfs-rbf-3.2.0-SNAPSHOT.jar:service_dep/jetty-util-9.3.19.v20170502.jar:service_dep/httpcore-4.4.4.jar:service_dep/hadoop-yarn-server-router-3.2.0-SNAPSHOT.jar:service_dep/log4j-1.2.17.jar:service_dep/token-provider-1.0.1.jar:service_dep/commons-logging-1.1.3.jar:service_dep/stax2-api-3.1.4.jar:service_dep/hadoop-yarn-server-sharedcachemanager-3.2.0-SNAPSHOT.jar:service_dep/httpclient-4.5.2.jar:service_dep/kerb-simplekdc-1.0.1.jar:service_dep/kerb-crypto-1.0.1.jar:service_dep/hadoop-yarn-common-3.2.0-SNAPSHOT.jar:service_dep/commons-configuration2-2.1.1.jar:service_dep/hadoop-yarn-server-web-proxy-3.2.0-SNAPSHOT.jar:service_dep/leveldbjni-all-1.8.jar:service_dep/jsr311-api-1.1.1.jar:service_dep/hadoop-hdfs-client-3.2.0-SNAPSHOT-tests.jar:service_dep/jetty-xml-9.3.19.v20170502.jar:service_dep/kerb-common-1.0.1.jar:service_dep/kerb-admin-1.0.1.jar:service_dep/guice-4.0.jar:service_dep/jersey-core-1.19.jar:service_dep/objenesis-1.0.jar:service_dep/jackson-module-jaxb-annotations-2.9.5.jar:service_dep/jettison-1.1.jar:service_dep/jsch-0.1.54.jar:service_dep/jetty-http-9.3.19.v20170502.jar:service_dep/jetty-security-9.3.19.v20170502.jar:service_dep/hadoop-yarn-submarine-3.2.0-SNAPSHOT.jar:service_dep/jetty-server-9.3.19.v20170502.jar:service_dep/hadoop-hdfs-rbf-3.2.0-SNAPSHOT-tests.jar:service_dep/avro-1.7.7.jar:service_dep/asm-5.0.4.jar:service_dep/jackson-jaxrs-json-provider-2.9.5.jar:service_dep/json-simple-1.1.1.jar:service_dep/jersey-json-1.19.jar:service_dep/kerb-client-1.0.1.jar:service_dep/fst-2.50.jar:service_dep/zookeeper-3.4.9.jar:service_dep/kerby-config-1.0.1.jar:service_dep/ehcache-3.3.1.jar:service_dep/commons-math3-3.1.1.jar:service_dep/commons-lang3-3.7.jar:service_dep/hadoop-kms-3.2.0-SNAPSHOT.jar:service_dep/jetty-webapp-9.3.19.v20170502.jar:service_dep/javax.inject-1.jar:service_dep/woodstox-core-5.0.3.jar:service_dep/jackson-jaxrs-1.9.13.jar:service_dep/jsr305-3.0.0.jar:service_dep/hadoop-hdfs-nfs-3.2.0-SNAPSHOT.jar:service_dep/commons-collections-3.2.2.jar:service_dep/java-util-1.9.0.jar:service_dep/jetty-servlet-9.3.19.v20170502.jar:service_dep/jackson-core-2.9.5.jar:service_dep/metrics-core-3.2.4.jar:service_dep/hadoop-yarn-server-tests-3.2.0-SNAPSHOT.jar:service_dep/paranamer-2.3.jar:service_dep/hadoop-hdfs-3.2.0-SNAPSHOT-tests.jar:service_dep/hadoop-yarn-server-common-3.2.0-SNAPSHOT.jar:service_dep/json-io-2.5.1.jar:service_dep/commons-net-3.6.jar:service_dep/jackson-xc-1.9.13.jar:service_dep/kerby-pkix-1.0.1.jar:service_dep/curator-recipes-2.12.0.jar:service_dep/jersey-servlet-1.19.jar::/home/hadoop/hadoop-current/conf
+STARTUP_MSG:   build = https://g.hz.netease.com/hadoop/hadoop-submarine.git -r 9cc8bedab17be3fda78671fe9ccd7c71391cdca1; compiled by 'hadoop' on 2018-08-22T03:52Z
+STARTUP_MSG:   java = 1.8.0_77
+************************************************************/
+18/09/21 15:20:09 INFO service.ServiceMaster: registered UNIX signal handlers for [TERM, HUP, INT]
+18/09/21 15:20:09 INFO service.ServiceMaster: PATH = /usr/local/bin:/usr/bin
+18/09/21 15:20:09 INFO service.ServiceMaster: HADOOP_CONF_DIR = /home/hadoop/hadoop-current/conf
+18/09/21 15:20:09 INFO service.ServiceMaster: JAVA_HOME = /home/hadoop/java-current
+18/09/21 15:20:09 INFO service.ServiceMaster: XFILESEARCHPATH = /usr/dt/app-defaults/%L/Dt
+18/09/21 15:20:09 INFO service.ServiceMaster: LANG = en_US.UTF-8
+18/09/21 15:20:09 INFO service.ServiceMaster: APP_SUBMIT_TIME_ENV = 1537514405210
+18/09/21 15:20:09 INFO service.ServiceMaster: NM_HOST = ml4.jd.163.org
+18/09/21 15:20:09 INFO service.ServiceMaster: HADOOP_HDFS_HOME = /home/hadoop/hadoop-current
+18/09/21 15:20:09 INFO service.ServiceMaster: LOGNAME = hadoop
+18/09/21 15:20:09 INFO service.ServiceMaster: JVM_PID = 149103
+18/09/21 15:20:09 INFO service.ServiceMaster: PWD = /home/hadoop/disk/2/yarn/local/usercache/hadoop/appcache/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001
+18/09/21 15:20:09 INFO service.ServiceMaster: HADOOP_COMMON_HOME = /home/hadoop/hadoop-current
+18/09/21 15:20:09 INFO service.ServiceMaster: _ = /home/hadoop/java-current/bin/java
+18/09/21 15:20:09 INFO service.ServiceMaster: LANGUAGE = en_US.UTF-8
+18/09/21 15:20:09 INFO service.ServiceMaster: LOCAL_DIRS = /home/hadoop/disk/1/yarn/local/usercache/hadoop/appcache/application_1537440644556_0005,/home/hadoop/disk/2/yarn/local/usercache/hadoop/appcache/application_1537440644556_0005,/home/hadoop/disk/3/yarn/local/usercache/hadoop/appcache/application_1537440644556_0005
+18/09/21 15:20:09 INFO service.ServiceMaster: APPLICATION_WEB_PROXY_BASE = /proxy/application_1537440644556_0005
+18/09/21 15:20:09 INFO service.ServiceMaster: NM_HTTP_PORT = 8042
+18/09/21 15:20:09 INFO service.ServiceMaster: LOG_DIRS = /home/hadoop/disk/1/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001,/home/hadoop/disk/2/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001,/home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001
+18/09/21 15:20:09 INFO service.ServiceMaster: PRELAUNCH_OUT = /home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/prelaunch.out
+18/09/21 15:20:09 INFO service.ServiceMaster: NM_AUX_SERVICE_mapreduce_shuffle = AAA0+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+18/09/21 15:20:09 INFO service.ServiceMaster: NM_PORT = 42505
+18/09/21 15:20:09 INFO service.ServiceMaster: HADOOP_YARN_HOME = /home/hadoop/hadoop-current
+18/09/21 15:20:09 INFO service.ServiceMaster: USER = hadoop
+18/09/21 15:20:09 INFO service.ServiceMaster: CLASSPATH = yarnservice-log4j.properties:conf/:lib/*:service_dep/*::/home/hadoop/hadoop-current/conf
+18/09/21 15:20:09 INFO service.ServiceMaster: PRELAUNCH_ERR = /home/hadoop/disk/3/yarn/logs/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/prelaunch.err
+18/09/21 15:20:09 INFO service.ServiceMaster: HADOOP_TOKEN_FILE_LOCATION = /home/hadoop/disk/2/yarn/local/usercache/hadoop/appcache/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001/container_tokens
+18/09/21 15:20:09 INFO service.ServiceMaster: LC_ALL = en_US.UTF-8
+18/09/21 15:20:09 INFO service.ServiceMaster: NLSPATH = /usr/dt/lib/nls/msg/%L/%N.cat
+18/09/21 15:20:09 INFO service.ServiceMaster: LOCAL_USER_DIRS = /home/hadoop/disk/1/yarn/local/usercache/hadoop/,/home/hadoop/disk/2/yarn/local/usercache/hadoop/,/home/hadoop/disk/3/yarn/local/usercache/hadoop/
+18/09/21 15:20:09 INFO service.ServiceMaster: HADOOP_HOME = /home/hadoop/hadoop-current
+18/09/21 15:20:09 INFO service.ServiceMaster: HOME = /home/
+18/09/21 15:20:09 INFO service.ServiceMaster: SHLVL = 1
+18/09/21 15:20:09 INFO service.ServiceMaster: CONTAINER_ID = container_e28_1537440644556_0005_01_000001
+18/09/21 15:20:09 INFO service.ServiceMaster: MALLOC_ARENA_MAX = 4
+18/09/21 15:20:09 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+18/09/21 15:20:09 INFO service.ServiceMaster: Kind: YARN_AM_RM_TOKEN, Service: , Ident: (appAttemptId { application_id { id: 5 cluster_timestamp: 1537440644556 } attemptId: 1 } keyId: 543648845)
+18/09/21 15:20:09 INFO service.ServiceMaster: Kind: HDFS_DELEGATION_TOKEN, Service: ha-hdfs:mldev, Ident: (token for hadoop: HDFS_DELEGATION_TOKEN owner=hadoop/admin@BDMS.163.COM, renewer=yarn, realUser=, issueDate=1537514404723, maxDate=1538119204723, sequenceNumber=79, masterKeyId=38)
+18/09/21 15:20:09 INFO service.ServiceMaster: Kind: TIMELINE_DELEGATION_TOKEN, Service: 0.0.0.0:8188, Ident: (TIMELINE_DELEGATION_TOKEN owner=hadoop, renewer=yarn, realUser=, issueDate=1537514405060, maxDate=1538119205060, sequenceNumber=5, masterKeyId=2)
+18/09/21 15:20:09 INFO service.ServiceMaster: No keytab localized at keytabs/standlone-tf.keytab
+18/09/21 15:20:09 INFO service.ServiceMaster: No keytab exists: keytabs/standlone-tf.keytab
+18/09/21 15:20:10 WARN hdfs.DFSUtilClient: Namenode for mycluster3 remains unresolved for ID nn3. Check your hdfs-site.xml file to ensure namenodes are configured properly.
+18/09/21 15:20:10 WARN hdfs.DFSUtilClient: Namenode for hz-cluster2 remains unresolved for ID nn13. Check your hdfs-site.xml file to ensure namenodes are configured properly.
+18/09/21 15:20:10 WARN hdfs.DFSUtilClient: Namenode for hz-cluster2 remains unresolved for ID nn14. Check your hdfs-site.xml file to ensure namenodes are configured properly.
+18/09/21 15:20:10 WARN shortcircuit.DomainSocketFactory: The short-circuit local reads feature cannot be used because libhadoop cannot be loaded.
+18/09/21 15:20:10 INFO utils.ServiceApiUtil: Loading service definition from hdfs://mldev/user/hadoop/.yarn/services/standlone-tf/standlone-tf.json
+18/09/21 15:20:11 INFO service.ServiceMaster: class Service {
+    name: standlone-tf
+    id: application_1537440644556_0005
+    version: 1537514403915
+    description: null
+    artifact: class Artifact {
+        id: tf1.8.0-with-models/cpu:latest
+        type: DOCKER
+        uri: null
+    }
+    resource: null
+    launchTime: null
+    numberOfRunningContainers: null
+    lifetime: -1
+    components: [class Component {
+        name: master
+        state: FLEXING
+        dependencies: []
+        readinessCheck: null
+        artifact: class Artifact {
+            id: tf1.8.0-with-models/cpu:latest
+            type: DOCKER
+            uri: null
+        }
+        launchCommand: ./run-PRIMARY_WORKER.sh
+        resource: class Resource {
+            profile: null
+            cpus: 2
+            memory: 4096
+            additional: {memory-mb=class ResourceInformation {
+                value: 4096
+                unit: Mi
+            }, vcores=class ResourceInformation {
+                value: 2
+                unit: 
+            }}
+        }
+        numberOfContainers: 1
+        containers: []
+        runPrivilegedContainer: false
+        placementPolicy: null
+        configuration: class Configuration {
+            properties: {}
+            env: {_TASK_TYPE=PRIMARY_WORKER, _TASK_INDEX=${COMPONENT_ID}, DOCKER_JAVA_HOME=/opt/java, DOCKER_HADOOP_HDFS_HOME=/hadoop-3.1.0, YARN_CONTAINER_RUNTIME_DOCKER_MOUNTS=/etc/passwd:/etc/passwd:ro,/etc/krb5.conf:/etc/krb5.conf:ro}
+            files: [class ConfigFile {
+                type: STATIC
+                destFile: core-site.xml
+                srcFile: hdfs://mldev/user/hadoop/submarine/jobs/standlone-tf/staging/core-site.xml
+                properties: {}
+            }, class ConfigFile {
+                type: STATIC
+                destFile: hdfs-site.xml
+                srcFile: hdfs://mldev/user/hadoop/submarine/jobs/standlone-tf/staging/hdfs-site.xml
+                properties: {}
+            }, class ConfigFile {
+                type: STATIC
+                destFile: run-PRIMARY_WORKER.sh
+                srcFile: hdfs://mldev/user/hadoop/submarine/jobs/standlone-tf/staging/PRIMARY_WORKER-launch-script2369048851127288287.sh
+                properties: {}
+            }]
+        }
+        quicklinks: []
+    }]
+    configuration: class Configuration {
+        properties: {}
+        env: {DOCKER_JAVA_HOME=/opt/java, DOCKER_HADOOP_HDFS_HOME=/hadoop-3.1.0, YARN_CONTAINER_RUNTIME_DOCKER_MOUNTS=/etc/passwd:/etc/passwd:ro,/etc/krb5.conf:/etc/krb5.conf:ro}
+        files: []
+    }
+    state: ACCEPTED
+    quicklinks: {}
+    queue: null
+    kerberosPrincipal: class KerberosPrincipal {
+        principalName: null
+        keytab: null
+    }
+    dockerClientConfig: null
+}
+18/09/21 15:20:11 ERROR service.ServiceMaster: AM is not holding on a keytab in a secure deployment: service will fail when tokens expire
+18/09/21 15:20:11 INFO service.ServiceMaster: Remove HDFS delegation token Kind: HDFS_DELEGATION_TOKEN, Service: ha-hdfs:mldev, Ident: (token for hadoop: HDFS_DELEGATION_TOKEN owner=hadoop/admin@BDMS.163.COM, renewer=yarn, realUser=, issueDate=1537514404723, maxDate=1538119204723, sequenceNumber=79, masterKeyId=38).
+18/09/21 15:20:11 INFO service.ServiceMaster: Service AppAttemptId: appattempt_1537440644556_0005_000001
+18/09/21 15:20:11 INFO impl.MetricsConfig: Loaded properties from hadoop-metrics2.properties
+18/09/21 15:20:11 INFO impl.MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+18/09/21 15:20:11 INFO impl.MetricsSystemImpl: ServiceAppMaster metrics system started
+18/09/21 15:20:11 INFO event.AsyncDispatcher: Registering class org.apache.hadoop.yarn.service.ServiceEventType for class org.apache.hadoop.yarn.service.ServiceScheduler$ServiceEventHandler
+18/09/21 15:20:11 INFO event.AsyncDispatcher: Registering class org.apache.hadoop.yarn.service.component.ComponentEventType for class org.apache.hadoop.yarn.service.ServiceScheduler$ComponentEventHandler
+18/09/21 15:20:11 INFO event.AsyncDispatcher: Registering class org.apache.hadoop.yarn.service.component.instance.ComponentInstanceEventType for class org.apache.hadoop.yarn.service.ServiceScheduler$ComponentInstanceEventHandler
+18/09/21 15:20:11 INFO component.Component: No health threshold monitor enabled for component master
+18/09/21 15:20:11 INFO impl.NMClientAsyncImpl: Upper bound of the thread pool size is 500
+18/09/21 15:20:11 INFO service.ServiceMaster: Starting service as user hadoop (auth:SIMPLE)
+18/09/21 15:20:11 INFO ipc.CallQueueManager: Using callQueue: class java.util.concurrent.LinkedBlockingQueue queueCapacity: 100 scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler
+18/09/21 15:20:11 INFO ipc.Server: Starting Socket Reader #1 for port 41566
+18/09/21 15:20:11 INFO pb.RpcServerFactoryPBImpl: Adding protocol org.apache.hadoop.yarn.service.impl.pb.service.ClientAMProtocolPB to the server
+18/09/21 15:20:11 INFO ipc.Server: IPC Server Responder: starting
+18/09/21 15:20:11 INFO ipc.Server: IPC Server listener on 41566: starting
+18/09/21 15:20:11 INFO service.ClientAMService: Instantiated ClientAMService at ml4.jd.163.org/10.196.69.175:41566
+18/09/21 15:20:11 INFO zk.CuratorService: Creating CuratorService with connection fixed ZK quorum "ml2.jd.163.org:2181,ml3.jd.163.org:2181,ml4.jd.163.org:2181" 
+18/09/21 15:20:11 INFO imps.CuratorFrameworkImpl: Starting
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Client environment:zookeeper.version=3.4.9-1757313, built on 08/23/2016 06:50 GMT
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Client environment:host.name=ml4.jd.163.org
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Client environment:java.version=1.8.0_77
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Client environment:java.vendor=Oracle Corporation
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Client environment:java.home=/home/hadoop/jdk1.8.0_77/jre
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Client environment:java.class.path=yarnservice-log4j.properties:conf/:lib/yarn-service-core.jar:service_dep/geronimo-jcache_1.0_spec-1.0-alpha-1.jar:service_dep/protobuf-java-2.5.0.jar:service_dep/hadoop-yarn-server-resourcemanager-3.2.0-SNAPSHOT.jar:service_dep/javax.servlet-api-3.1.0.jar:service_dep/hadoop-hdfs-httpfs-3.2.0-SNAPSHOT.jar:service_dep/jersey-client-1.19.jar:service_dep/snappy-java-1.0.5.jar:service_dep/hadoop-auth-3.2.0-SNAPSHOT.jar:service_dep/slf4j-log4j12-1.7.25.jar:service_dep/hadoop-yarn-services-api-3.2.0-SNAPSHOT.jar:service_dep/xz-1.0.jar:service_dep/slf4j-api-1.7.25.jar:service_dep/hadoop-yarn-server-timeline-pluginstorage-3.2.0-SNAPSHOT.jar:service_dep/curator-client-2.12.0.jar:service_dep/okio-1.6.0.jar:service_dep/kerby-asn1-1.0.1.jar:service_dep/snakeyaml-1.16.jar:service_dep/jaxb-impl-2.2.3-1.jar:service_dep/kerb-identity-1.0.1.jar:service_dep/json-smart-2.3.jar:service_dep/commons-beanutils-1.9.3.jar:service_dep/commons-io-2.5.jar:service_dep/jetty-io-9.3.19.v20170502.jar:service_dep/jul-to-slf4j-1.7.25.jar:service_dep/swagger-annotations-1.5.4.jar:service_dep/hadoop-hdfs-client-3.2.0-SNAPSHOT.jar:service_dep/hadoop-yarn-server-nodemanager-3.2.0-SNAPSHOT.jar:service_dep/jersey-guice-1.19.jar:service_dep/jackson-mapper-asl-1.9.13.jar:service_dep/kerb-util-1.0.1.jar:service_dep/guava-11.0.2.jar:service_dep/guice-servlet-4.0.jar:service_dep/jackson-annotations-2.9.5.jar:service_dep/commons-compress-1.4.1.jar:service_dep/hadoop-yarn-client-3.2.0-SNAPSHOT.jar:service_dep/jersey-server-1.19.jar:service_dep/hadoop-nfs-3.2.0-SNAPSHOT.jar:service_dep/re2j-1.1.jar:service_dep/hadoop-common-3.2.0-SNAPSHOT-tests.jar:service_dep/commons-codec-1.11.jar:service_dep/hadoop-lzo-0.4.20.jar:service_dep/hadoop-hdfs-3.2.0-SNAPSHOT.jar:service_dep/netty-3.10.5.Final.jar:service_dep/HikariCP-java7-2.4.12.jar:service_dep/curator-framework-2.12.0.jar:service_dep/hadoop-yarn-applications-unmanaged-am-launcher-3.2.0-SNAPSHOT.jar:service_dep/jcip-annotations-1.0-1.jar:service_dep/hadoop-common-3.2.0-SNAPSHOT.jar:service_dep/jackson-databind-2.9.5.jar:service_dep/kerb-core-1.0.1.jar:service_dep/kerby-xdr-1.0.1.jar:service_dep/accessors-smart-1.2.jar:service_dep/commons-cli-1.2.jar:service_dep/gson-2.2.4.jar:service_dep/jackson-jaxrs-base-2.9.5.jar:service_dep/jackson-core-asl-1.9.13.jar:service_dep/nimbus-jose-jwt-4.41.1.jar:service_dep/jaxb-api-2.2.11.jar:service_dep/hadoop-hdfs-native-client-3.2.0-SNAPSHOT.jar:service_dep/netty-all-4.0.52.Final.jar:service_dep/hadoop-yarn-applications-distributedshell-3.2.0-SNAPSHOT.jar:service_dep/commons-daemon-1.0.13.jar:service_dep/hadoop-annotations-3.2.0-SNAPSHOT.jar:service_dep/dnsjava-2.1.7.jar:service_dep/kerby-util-1.0.1.jar:service_dep/hadoop-yarn-api-3.2.0-SNAPSHOT.jar:service_dep/hadoop-yarn-services-core-3.2.0-SNAPSHOT.jar:service_dep/okhttp-2.7.5.jar:service_dep/htrace-core4-4.1.0-incubating.jar:service_dep/kerb-server-1.0.1.jar:service_dep/hadoop-yarn-registry-3.2.0-SNAPSHOT.jar:service_dep/mssql-jdbc-6.2.1.jre7.jar:service_dep/hadoop-yarn-server-applicationhistoryservice-3.2.0-SNAPSHOT.jar:service_dep/jetty-util-ajax-9.3.19.v20170502.jar:service_dep/aopalliance-1.0.jar:service_dep/hadoop-hdfs-native-client-3.2.0-SNAPSHOT-tests.jar:service_dep/commons-text-1.4.jar:service_dep/jsp-api-2.1.jar:service_dep/hadoop-hdfs-rbf-3.2.0-SNAPSHOT.jar:service_dep/jetty-util-9.3.19.v20170502.jar:service_dep/httpcore-4.4.4.jar:service_dep/hadoop-yarn-server-router-3.2.0-SNAPSHOT.jar:service_dep/log4j-1.2.17.jar:service_dep/token-provider-1.0.1.jar:service_dep/commons-logging-1.1.3.jar:service_dep/stax2-api-3.1.4.jar:service_dep/hadoop-yarn-server-sharedcachemanager-3.2.0-SNAPSHOT.jar:service_dep/httpclient-4.5.2.jar:service_dep/kerb-simplekdc-1.0.1.jar:service_dep/kerb-crypto-1.0.1.jar:service_dep/hadoop-yarn-common-3.2.0-SNAPSHOT.jar:service_dep/commons-configuration2-2.1.1.jar:service_dep/hadoop-yarn-server-web-proxy-3.2.0-SNAPSHOT.jar:service_dep/leveldbjni-all-1.8.jar:service_dep/jsr311-api-1.1.1.jar:service_dep/hadoop-hdfs-client-3.2.0-SNAPSHOT-tests.jar:service_dep/jetty-xml-9.3.19.v20170502.jar:service_dep/kerb-common-1.0.1.jar:service_dep/kerb-admin-1.0.1.jar:service_dep/guice-4.0.jar:service_dep/jersey-core-1.19.jar:service_dep/objenesis-1.0.jar:service_dep/jackson-module-jaxb-annotations-2.9.5.jar:service_dep/jettison-1.1.jar:service_dep/jsch-0.1.54.jar:service_dep/jetty-http-9.3.19.v20170502.jar:service_dep/jetty-security-9.3.19.v20170502.jar:service_dep/hadoop-yarn-submarine-3.2.0-SNAPSHOT.jar:service_dep/jetty-server-9.3.19.v20170502.jar:service_dep/hadoop-hdfs-rbf-3.2.0-SNAPSHOT-tests.jar:service_dep/avro-1.7.7.jar:service_dep/asm-5.0.4.jar:service_dep/jackson-jaxrs-json-provider-2.9.5.jar:service_dep/json-simple-1.1.1.jar:service_dep/jersey-json-1.19.jar:service_dep/kerb-client-1.0.1.jar:service_dep/fst-2.50.jar:service_dep/zookeeper-3.4.9.jar:service_dep/kerby-config-1.0.1.jar:service_dep/ehcache-3.3.1.jar:service_dep/commons-math3-3.1.1.jar:service_dep/commons-lang3-3.7.jar:service_dep/hadoop-kms-3.2.0-SNAPSHOT.jar:service_dep/jetty-webapp-9.3.19.v20170502.jar:service_dep/javax.inject-1.jar:service_dep/woodstox-core-5.0.3.jar:service_dep/jackson-jaxrs-1.9.13.jar:service_dep/jsr305-3.0.0.jar:service_dep/hadoop-hdfs-nfs-3.2.0-SNAPSHOT.jar:service_dep/commons-collections-3.2.2.jar:service_dep/java-util-1.9.0.jar:service_dep/jetty-servlet-9.3.19.v20170502.jar:service_dep/jackson-core-2.9.5.jar:service_dep/metrics-core-3.2.4.jar:service_dep/hadoop-yarn-server-tests-3.2.0-SNAPSHOT.jar:service_dep/paranamer-2.3.jar:service_dep/hadoop-hdfs-3.2.0-SNAPSHOT-tests.jar:service_dep/hadoop-yarn-server-common-3.2.0-SNAPSHOT.jar:service_dep/json-io-2.5.1.jar:service_dep/commons-net-3.6.jar:service_dep/jackson-xc-1.9.13.jar:service_dep/kerby-pkix-1.0.1.jar:service_dep/curator-recipes-2.12.0.jar:service_dep/jersey-servlet-1.19.jar::/home/hadoop/hadoop-current/conf
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Client environment:java.library.path=/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Client environment:java.io.tmpdir=/tmp
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Client environment:java.compiler=<NA>
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Client environment:os.name=Linux
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Client environment:os.arch=amd64
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Client environment:os.version=3.10.0-514.el7.x86_64
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Client environment:user.name=hadoop
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Client environment:user.home=/home/hadoop
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Client environment:user.dir=/home/hadoop/disk/2/yarn/local/usercache/hadoop/appcache/application_1537440644556_0005/container_e28_1537440644556_0005_01_000001
+18/09/21 15:20:11 INFO zookeeper.ZooKeeper: Initiating client connection, connectString=ml2.jd.163.org:2181,ml3.jd.163.org:2181,ml4.jd.163.org:2181 sessionTimeout=60000 watcher=org.apache.curator.ConnectionState@67dba613
+18/09/21 15:20:11 INFO zookeeper.ClientCnxn: Opening socket connection to server ml2.jd.163.org/10.196.69.173:2181. Will not attempt to authenticate using SASL (unknown error)
+18/09/21 15:20:11 INFO zookeeper.ClientCnxn: Socket connection established to ml2.jd.163.org/10.196.69.173:2181, initiating session
+18/09/21 15:20:11 INFO zookeeper.ClientCnxn: Session establishment complete on server ml2.jd.163.org/10.196.69.173:2181, sessionid = 0x165f62561540021, negotiated timeout = 40000
+18/09/21 15:20:11 INFO state.ConnectionStateManager: State change: CONNECTED
+18/09/21 15:20:11 INFO service.ServiceScheduler: Registering appattempt_1537440644556_0005_000001, standlone-tf into registry
+18/09/21 15:20:11 INFO service.ServiceScheduler: Received 0 containers from previous attempt.
+18/09/21 15:20:11 INFO service.ServiceScheduler: Could not read component paths: '/users/hadoop/services/yarn-service/standlone-tf/components': No such file or directory: KeeperErrorCode = NoNode for /registry/users/hadoop/services/yarn-service/standlone-tf/components
+18/09/21 15:20:11 INFO service.ServiceScheduler: Triggering initial evaluation of component master
+18/09/21 15:20:11 INFO component.Component: [INIT COMPONENT master]: 1 instances.
+18/09/21 15:20:11 INFO component.Component: [COMPONENT master] Requesting for 1 container(s)
+18/09/21 15:20:11 WARN component.Component: Please set memory/vcore in the main section of resource, ignoring this entry=memory-mb
+18/09/21 15:20:11 WARN component.Component: Please set memory/vcore in the main section of resource, ignoring this entry=vcores
+18/09/21 15:20:11 INFO component.Component: [COMPONENT master] Submitting container request : Capability[<memory:4096, vCores:2>]Priority[0]AllocationRequestId[0]ExecutionTypeRequest[{Execution Type: GUARANTEED, Enforce Execution Type: false}]Resource Profile[null]
+18/09/21 15:20:11 INFO component.Component: [COMPONENT master] Transitioned from INIT to FLEXING on FLEX event.
+18/09/21 15:20:11 INFO service.ServiceScheduler: Registered service under /users/hadoop/services/yarn-service/standlone-tf; absolute path /registry/users/hadoop/services/yarn-service/standlone-tf
+18/09/21 15:20:13 INFO service.ServiceScheduler: 1 containers allocated. 
+18/09/21 15:20:13 INFO component.Component: [COMPONENT master]: container_e28_1537440644556_0005_01_000002 allocated, num pending component instances reduced to 0
+18/09/21 15:20:13 INFO component.Component: [COMPONENT master]: Assigned container_e28_1537440644556_0005_01_000002 to component instance master-0 and launch on host ml2.jd.163.org:35044 
+18/09/21 15:20:13 INFO service.ServiceScheduler: [COMPONENT master]: remove 1 outstanding container requests for allocateId 0
+18/09/21 15:20:13 INFO provider.ProviderUtils: [COMPINSTANCE master-0 : container_e28_1537440644556_0005_01_000002]: Creating dir on hdfs: hdfs://mldev/user/hadoop/.yarn/services/standlone-tf/components/1537514403915/master/master-0
+18/09/21 15:20:14 INFO provider.ProviderUtils: Added file for localization: core-site.xml -> /user/hadoop/submarine/jobs/standlone-tf/staging/core-site.xml
+18/09/21 15:20:14 INFO provider.ProviderUtils: Added file for localization: hdfs-site.xml -> /user/hadoop/submarine/jobs/standlone-tf/staging/hdfs-site.xml
+18/09/21 15:20:14 INFO provider.ProviderUtils: Added file for localization: run-PRIMARY_WORKER.sh -> /user/hadoop/submarine/jobs/standlone-tf/staging/PRIMARY_WORKER-launch-script2369048851127288287.sh
+18/09/21 15:20:14 INFO containerlaunch.ContainerLaunchService: launching container container_e28_1537440644556_0005_01_000002
+18/09/21 15:20:14 INFO containerlaunch.AbstractLauncher: yarn docker env var has been set {LANGUAGE=en_US.UTF-8, YARN_CONTAINER_RUNTIME_DOCKER_CONTAINER_HOSTNAME=master-0.standlone-tf.hadoop.submarinecluster, _TASK_INDEX=0, DOCKER_JAVA_HOME=/opt/java, YARN_CONTAINER_RUNTIME_TYPE=docker, YARN_CONTAINER_RUNTIME_DOCKER_IMAGE=tf1.8.0-with-models/cpu:latest, LANG=en_US.UTF-8, DOCKER_HADOOP_HDFS_HOME=/hadoop-3.1.0, YARN_CONTAINER_RUNTIME_DOCKER_MOUNTS=/etc/passwd:/etc/passwd:ro,/etc/krb5.conf:/etc/krb5.conf:ro, LOG_DIR=<LOG_DIR>, _TASK_TYPE=PRIMARY_WORKER, WORK_DIR=$PWD, LC_ALL=en_US.UTF-8}
+18/09/21 15:20:14 INFO impl.NMClientAsyncImpl: Processing Event EventType: START_CONTAINER for Container container_e28_1537440644556_0005_01_000002
+18/09/21 15:20:14 INFO instance.ComponentInstance: [COMPINSTANCE master-0 : container_e28_1537440644556_0005_01_000002] Transitioned from INIT to STARTED on START event
+18/09/21 15:20:41 INFO monitor.ServiceMonitor: Readiness check failed for master-0: Probe Status, time="Fri Sep 21 15:20:41 CST 2018", outcome="failure", message="Failure in Default probe: IP presence", exception="java.io.IOException: master-0: IP is not available yet"
+18/09/21 15:20:47 INFO registry.YarnRegistryViewForProviders: [COMPINSTANCE master-0 : container_e28_1537440644556_0005_01_000002]: Deleting registry path /users/hadoop/services/yarn-service/standlone-tf/components/ctr-e28-1537440644556-0005-01-000002
+18/09/21 15:20:47 INFO instance.ComponentInstance: [COMPINSTANCE master-0 : container_e28_1537440644556_0005_01_000002] failed without retry, exitStatus=ContainerStatus: [ContainerId: container_e28_1537440644556_0005_01_000002, ExecutionType: GUARANTEED, State: COMPLETE, Capability: <memory:4096, vCores:1>, Diagnostics: [2018-09-21 15:20:16.634]Exception from container-launch.
+Container id: container_e28_1537440644556_0005_01_000002
+Exit code: 27
+Exception message: Launch container failed
+Shell error output: image: tf1.8.0-with-models/cpu:latest is not trusted.
+Disable mount volume for untrusted image
+image: tf1.8.0-with-models/cpu:latest is not trusted.
+Disable mount volume for untrusted image
+image: tf1.8.0-with-models/cpu:latest is not trusted.
+Disable cap-add for untrusted image
+Docker capability disabled for untrusted image
+
+Shell output: main : command provided 4
+main : run as user is hadoop
+main : requested yarn user is hadoop
+206fec298deb1287877a8198eaf79f1d07cef302bceb015d3d92964af46c0e89
+Creating script paths...
+Creating local dirs...
+Getting exit code file...
+Changing effective user to root...
+Inspecting docker container...
+Docker inspect command: /usr/bin/docker inspect --format {{.State.Pid}} container_e28_1537440644556_0005_01_000002
+pid from docker inspect: 13787
+Writing to cgroup task files...
+Failed to write pid to file /sys/fs/cgroup/cpu,cpuacct/hadoop-yarn/container_e28_1537440644556_0005_01_000002/tasks - No such process
+Wrote the exit code 27 to /home/hadoop/disk/2/yarn/local/nmPrivate/application_1537440644556_0005/container_e28_1537440644556_0005_01_000002/container_e28_1537440644556_0005_01_000002.pid.exitcode
+
+
+[2018-09-21 15:20:16.656]Diagnostic message from attempt : 
+[2018-09-21 15:20:16.657]Container exited with a non-zero exit code 27. 
+[2018-09-21 15:20:46.671]Could not find nmPrivate/application_1537440644556_0005/container_e28_1537440644556_0005_01_000002//container_e28_1537440644556_0005_01_000002.pid in any of the directories
+, ExitStatus: -1, IP: null, Host: null, ContainerSubState: DONE]
+18/09/21 15:20:47 INFO service.ServiceScheduler: All component finished, exiting Service Master... , final status=Failed
+18/09/21 15:20:47 INFO service.ServiceScheduler: Succeeded components: []
+18/09/21 15:20:47 INFO service.ServiceScheduler: Failed components: [master]
+18/09/21 15:20:52 INFO util.ExitUtil: Exiting with status -1: ExitException
+18/09/21 15:20:52 INFO service.ServiceMaster: Stopping app master
+18/09/21 15:20:52 INFO service.ServiceScheduler: Stopping service scheduler
+18/09/21 15:20:52 INFO impl.MetricsSystemImpl: Stopping ServiceAppMaster metrics system...
+18/09/21 15:20:52 INFO impl.MetricsSystemImpl: ServiceAppMaster metrics system stopped.
+18/09/21 15:20:52 INFO impl.MetricsSystemImpl: ServiceAppMaster metrics system shutdown complete.
+18/09/21 15:20:52 INFO impl.AMRMClientImpl: Waiting for application to be successfully unregistered.
+18/09/21 15:20:52 INFO service.ServiceScheduler: Service standlone-tf unregistered with RM, with attemptId = appattempt_1537440644556_0005_000001 , diagnostics =  
+18/09/21 15:20:52 INFO event.AsyncDispatcher: AsyncDispatcher is draining to stop, ignoring any new events.
+18/09/21 15:20:52 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:52 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:52 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:52 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:52 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:52 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:52 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:52 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:53 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:53 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:53 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:53 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:53 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:53 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:53 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:53 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:53 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:53 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:54 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:54 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:54 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:54 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:54 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:54 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:54 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:54 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:54 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:54 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:55 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:55 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:55 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:55 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:55 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:55 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:55 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:55 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:55 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:55 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:56 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:56 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:56 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:56 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:56 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:56 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:56 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:56 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:56 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:56 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:57 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:57 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:57 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:57 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:57 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:57 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:57 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:57 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:57 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:57 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:58 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:58 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:58 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:58 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:58 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:58 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:58 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:58 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:58 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:58 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:59 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:59 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:59 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:59 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:59 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:59 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:59 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:59 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:59 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:20:59 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:00 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:00 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:00 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:00 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:00 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:00 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:00 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:00 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:00 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:00 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:01 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:01 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:01 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:01 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:01 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:01 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:01 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:01 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:01 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:01 INFO event.AsyncDispatcher: Waiting for AsyncDispatcher to drain. Thread state is :WAITING
+18/09/21 15:21:02 INFO service.AbstractService: Service Dispatcher failed in state STOPPED
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at org.apache.hadoop.yarn.event.AsyncDispatcher.serviceStop(AsyncDispatcher.java:164)
+	at org.apache.hadoop.service.AbstractService.stop(AbstractService.java:220)
+	at org.apache.hadoop.service.ServiceOperations.stop(ServiceOperations.java:54)
+	at org.apache.hadoop.service.ServiceOperations.stopQuietly(ServiceOperations.java:102)
+	at org.apache.hadoop.service.CompositeService.stop(CompositeService.java:158)
+	at org.apache.hadoop.service.CompositeService.serviceStop(CompositeService.java:132)
+	at org.apache.hadoop.yarn.service.ServiceScheduler.serviceStop(ServiceScheduler.java:319)
+	at org.apache.hadoop.service.AbstractService.stop(AbstractService.java:220)
+	at org.apache.hadoop.service.ServiceOperations.stop(ServiceOperations.java:54)
+	at org.apache.hadoop.service.ServiceOperations.stopQuietly(ServiceOperations.java:102)
+	at org.apache.hadoop.service.CompositeService.stop(CompositeService.java:158)
+	at org.apache.hadoop.service.CompositeService.serviceStop(CompositeService.java:132)
+	at org.apache.hadoop.yarn.service.ServiceMaster.serviceStop(ServiceMaster.java:274)
+	at org.apache.hadoop.service.AbstractService.stop(AbstractService.java:220)
+	at org.apache.hadoop.service.ServiceOperations.stop(ServiceOperations.java:54)
+	at org.apache.hadoop.service.ServiceOperations.stopQuietly(ServiceOperations.java:102)
+	at org.apache.hadoop.service.ServiceOperations.stopQuietly(ServiceOperations.java:67)
+	at org.apache.hadoop.service.CompositeService$CompositeServiceShutdownHook.run(CompositeService.java:184)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+18/09/21 15:21:02 WARN util.ShutdownHookManager: ShutdownHook 'CompositeServiceShutdownHook' timeout, java.util.concurrent.TimeoutException
+java.util.concurrent.TimeoutException
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at org.apache.hadoop.util.ShutdownHookManager$1.run(ShutdownHookManager.java:68)
+18/09/21 15:21:02 WARN service.CompositeService: When stopping the service Dispatcher
+org.apache.hadoop.service.ServiceStateException: java.lang.InterruptedException
+	at org.apache.hadoop.service.ServiceStateException.convert(ServiceStateException.java:105)
+	at org.apache.hadoop.service.AbstractService.stop(AbstractService.java:224)
+	at org.apache.hadoop.service.ServiceOperations.stop(ServiceOperations.java:54)
+	at org.apache.hadoop.service.ServiceOperations.stopQuietly(ServiceOperations.java:102)
+	at org.apache.hadoop.service.CompositeService.stop(CompositeService.java:158)
+	at org.apache.hadoop.service.CompositeService.serviceStop(CompositeService.java:132)
+	at org.apache.hadoop.yarn.service.ServiceScheduler.serviceStop(ServiceScheduler.java:319)
+	at org.apache.hadoop.service.AbstractService.stop(AbstractService.java:220)
+	at org.apache.hadoop.service.ServiceOperations.stop(ServiceOperations.java:54)
+	at org.apache.hadoop.service.ServiceOperations.stopQuietly(ServiceOperations.java:102)
+	at org.apache.hadoop.service.CompositeService.stop(CompositeService.java:158)
+	at org.apache.hadoop.service.CompositeService.serviceStop(CompositeService.java:132)
+	at org.apache.hadoop.yarn.service.ServiceMaster.serviceStop(ServiceMaster.java:274)
+	at org.apache.hadoop.service.AbstractService.stop(AbstractService.java:220)
+	at org.apache.hadoop.service.ServiceOperations.stop(ServiceOperations.java:54)
+	at org.apache.hadoop.service.ServiceOperations.stopQuietly(ServiceOperations.java:102)
+	at org.apache.hadoop.service.ServiceOperations.stopQuietly(ServiceOperations.java:67)
+	at org.apache.hadoop.service.CompositeService$CompositeServiceShutdownHook.run(CompositeService.java:184)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at org.apache.hadoop.yarn.event.AsyncDispatcher.serviceStop(AsyncDispatcher.java:164)
+	at org.apache.hadoop.service.AbstractService.stop(AbstractService.java:220)
+	... 21 more
+18/09/21 15:21:02 INFO imps.CuratorFrameworkImpl: backgroundOperationsLoop exiting
+18/09/21 15:21:02 INFO zookeeper.ZooKeeper: Session: 0x165f62561540021 closed
+18/09/21 15:21:02 INFO zookeeper.ClientCnxn: EventThread shut down for session: 0x165f62561540021
+18/09/21 15:21:12 WARN util.ShutdownHookManager: ShutdownHook 'ClientFinalizer' timeout, java.util.concurrent.TimeoutException
+java.util.concurrent.TimeoutException
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at org.apache.hadoop.util.ShutdownHookManager$1.run(ShutdownHookManager.java:68)
+18/09/21 15:21:22 WARN util.ShutdownHookManager: ShutdownHook '' timeout, java.util.concurrent.TimeoutException
+java.util.concurrent.TimeoutException
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at org.apache.hadoop.util.ShutdownHookManager$1.run(ShutdownHookManager.java:68)
+18/09/21 15:21:32 ERROR util.ShutdownHookManager: ShutdownHookManger shutdown forcefully.
+
+End of LogType:serviceam-err.txt
+**********************************************************************************
+
+
+End of LogType:serviceam-out.txt
+**********************************************************************************
