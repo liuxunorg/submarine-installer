@@ -30,6 +30,7 @@ function uninstall_cuda()
 	sudo ${uninstall_pl}
 }
 
+# Some preparatory work for nvidia driver installation
 function prepare_installation()
 {
   yum -y update
@@ -41,7 +42,8 @@ function prepare_installation()
   echo " ===== Please manually execute the following command ====="
   echo "
         # 1. Disable nouveau
-        Add the content 'rd.driver.blacklist=nouveau nouveau.modeset=0' to the 'GRUB_CMDLINE_LINUX' configuration item in the /etc/default/grub file.
+        # Add the content 'rd.driver.blacklist=nouveau nouveau.modeset=0' 
+        # to the 'GRUB_CMDLINE_LINUX' configuration item in the /etc/default/grub file.
         shell:> vi /etc/default/grub
         vi:> GRUB_CMDLINE_LINUX=\"rd.driver.blacklist=nouveau nouveau.modeset=0 ...\"
 
@@ -69,11 +71,11 @@ function install_nvidia()
   yum install nvidia-detect
 
   echo "execution nvidia-detect to check the graphics card ..."
-  local nvidiaVersion=`get_nvidiaVersion`
+  local nvidiaVersion=`get_nvidia_version`
   
   # download NVIDIA driver
   if [[ "$nvidiaVersion" = "" ]]; then
-    echo "No graphics card device detected"
+    echo "ERROR: No graphics card device detected"
     exit_install
   else
     local nvidia_run_file="NVIDIA-Linux-x86_64-${nvidiaVersion}.run"
@@ -92,7 +94,12 @@ function install_nvidia()
   local disable_nouveau_info=`lsmod | grep nouveau`
   if [[ "$nvidiaVersion" = "" ]]; then
     echo "===== Start installing the NVIDIA driver ====="
-    echo "Please select 'Y' during the installation process."
+    echo "
+          Some options during the installation
+          Install NVIDIA's 32-bit compatibility libraries (Yes)
+          centos Install NVIDIA's 32-bit compatibility libraries (Yes) 
+          Would you like to run the nvidia-xconfig utility to automatically update your X configuration file... (NO)
+          "
     sleep 2
     sh ${nvidia_run_file}
   else
@@ -109,9 +116,6 @@ function install_nvidia()
         |===============================+======================+======================|
         |   0  GeForce GTX 108...  Off  | 00000000:04:00.0 Off |                  N/A |
         | 23%   28C    P8    15W / 250W |     10MiB / 11178MiB |      0%      Default |
-        +-------------------------------+----------------------+----------------------+
-        |   1  GeForce GTX 108...  Off  | 00000000:82:00.0 Off |                  N/A |
-        | 23%   26C    P8    16W / 250W |     10MiB / 11178MiB |      0%      Default |
         +-------------------------------+----------------------+----------------------+
         +-----------------------------------------------------------------------------+
         | Processes:                                                       GPU Memory |

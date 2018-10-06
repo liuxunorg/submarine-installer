@@ -1,7 +1,7 @@
 {
-    "insecure-registries": ["10.120.196.232:5000"],
-    "cluster-store":"etcd://10.196.69.173:2379,10.196.69.174:2379,10.196.69.175:2379",
+    "insecure-registries": ["DOCKER_REGISTRY_REPLACE"],
+    "cluster-store":"CLUSTER_STORE_REPLACE",
     "cluster-advertise":"10.196.69.173:2375",
-    "dns": ["10.196.69.173", "172.17.0.9"],
-    "hosts": ["tcp://10.196.69.173:2375","unix:///var/run/docker.sock"]
+    "dns": ["DNS_HOST_REPLACE", "172.17.0.9"],
+    "hosts": ["tcp://LOCAL_HOST_IP_REPLACE:2375","unix:///var/run/docker.sock"]
 }

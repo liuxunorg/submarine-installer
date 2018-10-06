@@ -9,15 +9,15 @@ function install_etcd()
   mkdir -p /var/lib/etcd
   chmod -R a+rw /var/lib/etcd
 
-  cp ${PACKAGE_DIR}/etcd/* ${INSTALL_TEMP_DIR}/
+  cp -R ${PACKAGE_DIR}/etcd ${INSTALL_TEMP_DIR}/
 
   # config etcd.service
 
   # 1. 根据本地IP在$ETCD_HOSTS中的位置生成name,替换 ETCD_NODE_NAME_REPLACE
-  listIndex ${LOCAL_HOST_IP}
+  listIndex ${LOCAL_HOST_IP} ${#ETCD_HOSTS[@]}
   indexEtcdList=`echo $?`   # get return result
   echo ${indexEtcdList}
-  etcdNodeName='etcdnode'+indexEtcdList
+  etcdNodeName='etcdnode'+${indexEtcdList}
   echo ${etcdNodeName}
   sed -i "s/ETCD_NODE_NAME_REPLACE/${etcdNodeName}/g" $INSTALL_TEMP_DIR/etcd/etcd.service >>$LOG
   
