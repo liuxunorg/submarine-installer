@@ -9,7 +9,7 @@ function get_nvidia_version()
 
 function install_cuda()
 {
-
+  echo ""
 }
 
 function uninstall_cuda()
@@ -80,7 +80,7 @@ function install_nvidia()
     exit_install
   else
     local nvidia_run_file="NVIDIA-Linux-x86_64-${nvidiaVersion}.run"
-    if [[ -f ${INSTALL_TEMP_DIR}/${nvidia_run_file}]]; then
+    if [[ -f ${INSTALL_TEMP_DIR}/${nvidia_run_file} ]]; then
       echo "NVIDIA driver files already exist in the ${INSTALL_TEMP_DIR}/${nvidia_run_file} directory."
       echo "===== Please make sure the ${INSTALL_TEMP_DIR}/${nvidia_run_file} file is complete and can be used normally. ====="
     else

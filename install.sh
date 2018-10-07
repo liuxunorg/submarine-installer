@@ -1,7 +1,7 @@
 # !/bin/bash
 # description: sumbarine install scripts.
 
-ROOT=$(cd "$(dirname "$0")"; pwd)/..
+ROOT=$(cd "$(dirname "$0")"; pwd)
 PACKAGE_DIR=${ROOT}/package
 SCRIPTS_DIR=${ROOT}/scripts
 INSTALL_TEMP_DIR=${ROOT}/temp
@@ -17,6 +17,7 @@ LOCAL_HOST_IP=''
 . ${ROOT}/scripts/environment.sh
 . ${ROOT}/scripts/etcd.sh
 . ${ROOT}/scripts/hadoop.sh
+. ${ROOT}/scripts/menu.sh
 . ${ROOT}/scripts/nvidia.sh
 . ${ROOT}/scripts/nvidia-docker.sh
 . ${ROOT}/scripts/submarine.sh
@@ -24,9 +25,9 @@ LOCAL_HOST_IP=''
 
 #=================================Main========================================
 echo "###############################################################"
-echo "#                   submarine 运行环境安装脚本                   #"
+echo "#                   submarine assembly                        #"
 echo "#                   Version: 1.0                              #"
-echo "#                   发布日期: 2018年9月20日                      #"
+echo "#                   Release date: September 20, 2018          #"
 echo "###############################################################"
 
 if [[ -f $INSTALL_PID_FILE ]];then
@@ -34,35 +35,19 @@ if [[ -f $INSTALL_PID_FILE ]];then
   exit
 fi
 
-if [ $# -ne 3 ];then
-  echo -ne "Usag: $0 \e[31m-f install.conf -i localhost_ip\e[0m\n"
+echo "count="$#
+
+if [ $# -ne 1 ];then
+  echo -ne "Usag: $0 \e[31m localhost_ip\e[0m\n"
   exit 0
 fi
 
-while getopts "f:i:" arg
-do 
-  case $arg in
-    f)
-    if [[ ! -f $OPTARG ]]; then
-      echo "$OPTARG不存在！"
-      exit
-    fi
-    INSTALL_CONF_FILE=$OPTARG
-    . $OPTARG
-    check_install_conf
-    ;;
-    i)
-    LOCAL_HOST_IP=$OPTARG
-    echo "local host ip:$LOCAL_HOST_IP"
-    ;;
-    ?)
-    echo -ne "Usag: $0 \e[31m-f install.conf -i localhost_ip\e[0m\n"
-    exit 1 
-    ;;
-  esac
-done
+check_install_conf
 
-check_install_user
+LOCAL_HOST_IP=$2
+echo "local host ip:${LOCAL_HOST_IP}"
+
+# check_install_user
 
 # 创建安装脚本pid文件
 if [[ ! -f $INSTALL_PID_FILE ]]; then
@@ -73,3 +58,32 @@ echo $$ > $INSTALL_PID_FILE
 # 清理安装临时目录
 rm $INSTALL_TEMP_DIR/* -rf >>$LOG 2>&1
 
+menu_index="0"
+for ((j=1;;j++))
+do
+  menu
+  case "$menu_index" in 
+    "0")
+      menu_index="$menu_choice"
+    ;;
+    "1"|"2"|"3"|"4"|"5"|"6")
+#     echo "aaaa=$menu_index-$menu_choice"
+      menu_process
+      if [[ $? = 1 ]]; then
+        echo "Press any key to return!"
+        read
+      fi
+    ;;
+    "a") 
+      exit_install
+      ;; 
+    "q") 
+      exit_install
+      ;;
+    *)
+      menu_index="0"
+      menu_choice="0"
+      menu
+    ;;
+  esac  
+done

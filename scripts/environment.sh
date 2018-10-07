@@ -1,4 +1,5 @@
 #!/bin/bash
+. ${ROOT}/scripts/utils.sh
 
 function check_operationSystem()
 {
@@ -10,12 +11,12 @@ function check_operationSystem()
   read -n2 -p "Do you want to continue installer [Y/N]?" answer
   case $answer in
   (Y | y)
-        echo "Continue the installer";;
+    echo "Continue the installer";;
   (N | n)
-        echo "Exit the installer";;
-        exit_install
+    echo "Exit the installer";;
+    # exit_install
   (*)
-        echo "error choice";;
+    echo "error choice";;
   esac
 }
 
@@ -31,12 +32,12 @@ function check_operationSystemKernel()
   (Y | y)
         echo "If the server is unable to connect to the network, execute the following command yourself:
               wget http://vault.centos.org/7.3.1611/os/x86_64/Packages/kernel-headers-3.10.0-514.el7.x86_64.rpm
-              rpm -ivh kernel-headers-3.10.0-514.el7.x86_64.rpm";;
-        echo "Now try to use the yum command for kernel upgrades ...";;
+              rpm -ivh kernel-headers-3.10.0-514.el7.x86_64.rpm"
+        echo "Now try to use the yum command for kernel upgrades ..."
         yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r)
   (N | n)
         echo "Exit the installer";;
-        exit_install
+        # exit_install
   (*)
         echo "error choice";;
   esac
@@ -67,10 +68,10 @@ function check_GPU()
     read -n2 -p "Do you want to continue install [Y/N]?" answer
     case $answer in
     (Y | y)
-          ;;
+      ;;
     (N | n)
-          echo "Exit the installer";;
-          exit_install
+      echo "Exit the installer";;
+      #exit_install
     (*)
           echo "error choice";;
     esac
