@@ -7,11 +7,11 @@ Requires=docker.service
 User=root
 PermissionsStartOnly=true
 ExecStart=/usr/bin/docker run --net=host --privileged --name=calico-node \
-  -e ETCD_ENDPOINTS=http://10.196.69.173:2379,http://10.196.69.174:2379,http://10.196.69.175:2379 \
+  -e ETCD_ENDPOINTS=ETCD_ENDPOINTS_REPLACE \
   -e CALICO_LIBNETWORK_ENABLED=true \
   -e CALICO_NETWORKING_BACKEND=bird \
   -e CALICO_DISABLE_FILE_LOGGING=true \
-  -e CALICO_IPV4POOL_CIDR=192.20.0.0/16 \
+  -e CALICO_IPV4POOL_CIDR=CALICO_IPV4POOL_CIDR_REPLACE/16 \
   -e CALICO_IPV4POOL_IPIP=always \
   -e FELIX_DEFAULTENDPOINTTOHOSTACTION=ACCEPT \
   -e FELIX_IPV6SUPPORT=false \

@@ -1,3 +1,4 @@
+#!/bin/bash
 
 
 function get_nvidia_version()

@@ -1,6 +1,4 @@
 # !/bin/bash
-# Author: Xun Liu
-# File: install.sh
 # description: sumbarine install scripts.
 
 ROOT=$(cd "$(dirname "$0")"; pwd)/..
@@ -14,8 +12,15 @@ LOCAL_HOST_IP=''
 
 # import shell script
 . ${ROOT}/install.conf
-. ${ROOT}/scripts/utils.sh
+. ${ROOT}/scripts/calico.sh
+. ${ROOT}/scripts/docker.sh
+. ${ROOT}/scripts/environment.sh
 . ${ROOT}/scripts/etcd.sh
+. ${ROOT}/scripts/hadoop.sh
+. ${ROOT}/scripts/nvidia.sh
+. ${ROOT}/scripts/nvidia-docker.sh
+. ${ROOT}/scripts/submarine.sh
+. ${ROOT}/scripts/utils.sh
 
 #=================================Main========================================
 echo "###############################################################"
@@ -68,4 +73,3 @@ echo $$ > $INSTALL_PID_FILE
 # 清理安装临时目录
 rm $INSTALL_TEMP_DIR/* -rf >>$LOG 2>&1
 
-install_etcd

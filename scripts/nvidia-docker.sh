@@ -1,3 +1,5 @@
+#!/bin/bash
+
 . ${ROOT}/scripts/nvidia.sh
 
 

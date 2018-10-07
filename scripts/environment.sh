@@ -1,6 +1,4 @@
 #!/bin/bash
-# Author: Xun Liu
-# description: Check the system environment.
 
 function check_operationSystem()
 {

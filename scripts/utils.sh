@@ -1,6 +1,4 @@
 # !/bin/bash
-# Author: Xun Liu
-# description: sumbarine install scripts.
 
 function check_install_user()
 {

@@ -1,10 +1,17 @@
+#!/bin/bash
 
-DOCKER_REPO=https://yum.dockerproject.org/repo/main/centos/7/Packages
-DOCKER_ENGINE_RPM=docker-engine-1.12.5-1.el7.centos.x86_64.rpm
-DOCKER_ENGINE_SELINUX_RPM=docker-engine-selinux-1.12.5-1.el7.centos.noarch.rpm
-NVIDIA_DOCKER_ENGINE_SELINUX_RPM=https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.1/nvidia-docker-1.0.1-1.x86_64.rpm
 
 function install_docker()
+{
+  install_docker_bin
+  install_docker_config
+
+  systemctl daemon-reload
+  systemctl enable docker.service
+  systemctl restart docker
+}
+
+function install_docker_bin()
 {
   # download docker rpm
   wget -P ${INSTALL_TEMP_DIR} ${DOCKER_REPO}/${DOCKER_ENGINE_SELINUX_RPM}
@@ -12,7 +19,10 @@ function install_docker()
 
   yum -y localinstall ${DOCKER_ENGINE_SELINUX_RPM}
   yum -y localinstall ${DOCKER_ENGINE_RPM}
+}
 
+function install_docker_config()
+{
   cp -R ${PACKAGE_DIR}/docker ${INSTALL_TEMP_DIR}/
 
   # replace cluster-store
@@ -37,7 +47,10 @@ function install_docker()
   fi
 
   cp $INSTALL_TEMP_DIR/docker/daemon.json /etc/docker/
-
-  sudo systemctl restart docker
 }
 
+function containers_exist()
+{
+  local dockerContainersInfo=`docker ps ls --filter NAME=$1`
+  echo ${dockerContainersInfo} | grep $1
+}
