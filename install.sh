@@ -9,6 +9,7 @@ DATE=`date +%Y%m%d-%H:%M:%S`
 INSTALL_PID_FILE=${ROOT}/install.pid
 LOG=${ROOT}/logs/install.log.`date +%Y%m%d%H%M%S`
 LOCAL_HOST_IP=''
+OPERATING_SYSTEM=""
 
 # import shell script
 . ${ROOT}/install.conf
@@ -24,18 +25,17 @@ LOCAL_HOST_IP=''
 . ${ROOT}/scripts/utils.sh
 
 #=================================Main========================================
-echo "###############################################################"
-echo "#                   submarine assembly                        #"
-echo "#                   Version: 1.0                              #"
-echo "#                   Release date: September 20, 2018          #"
-echo "###############################################################"
+mkdir $ROOT/logs/ -p
+mkdir $INSTALL_TEMP_DIR -p
+rm $INSTALL_TEMP_DIR/* -rf
+
+source /etc/os-release
+OPERATING_SYSTEM=$ID
 
 if [[ -f $INSTALL_PID_FILE ]];then
   echo "无法执行安装程序，$INSTALL_PID_FILE已经存在，安装脚本已经在运行!" | tee -a $LOG
   exit
 fi
-
-echo "count="$#
 
 if [ $# -ne 1 ];then
   echo -ne "Usag: $0 \e[31m localhost_ip\e[0m\n"
@@ -44,16 +44,16 @@ fi
 
 check_install_conf
 
-LOCAL_HOST_IP=$2
+LOCAL_HOST_IP=$1
 echo "local host ip:${LOCAL_HOST_IP}"
 
 # check_install_user
 
 # 创建安装脚本pid文件
-if [[ ! -f $INSTALL_PID_FILE ]]; then
-  touch $INSTALL_PID_FILE
-fi
-echo $$ > $INSTALL_PID_FILE
+#if [[ ! -f $INSTALL_PID_FILE ]]; then
+#  touch $INSTALL_PID_FILE
+#fi
+#echo $$ > $INSTALL_PID_FILE
 
 # 清理安装临时目录
 rm $INSTALL_TEMP_DIR/* -rf >>$LOG 2>&1
@@ -66,11 +66,11 @@ do
     "0")
       menu_index="$menu_choice"
     ;;
-    "1"|"2"|"3"|"4"|"5"|"6")
+    "1"|"2"|"3"|"4")
 #     echo "aaaa=$menu_index-$menu_choice"
       menu_process
       if [[ $? = 1 ]]; then
-        echo "Press any key to return!"
+        echo "Press any key to return menu!"
         read
       fi
     ;;

@@ -1,12 +1,14 @@
 #!/bin/bash 
 
+. ${ROOT}/scripts/utils.sh
+. ${ROOT}/scripts/environment.sh
+
 main_menu()
 {
 cat<<MENULIST
 ====================================================================================
-
-submarine assembly
-
+                          submarine assembly
+           support centos-release-7-3.1611.el7.centos.x86_64 or higher
 ====================================================================================
 [menu]
 ------------------------------------------------------------------------------------
@@ -33,7 +35,7 @@ cat<<MENULIST
 submarine assembly
 
 ====================================================================================
-[menu] > [check the system environment]
+[menu] > [check system environment]
 ------------------------------------------------------------------------------------
 MENULIST
 echo -e "  \e[32m1.check operation system\e[0m"
@@ -41,7 +43,6 @@ echo -e "  \e[32m2.check operation system kernel\e[0m"
 echo -e "  \e[32m3.check GCC version\e[0m"
 echo -e "  \e[32m4.check GPU\e[0m"
 echo -e "  \e[32m5.check user&group\e[0m"
-echo -e "  \e[32m6.check all\e[0m"
 
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
@@ -49,7 +50,7 @@ cat<<MENULIST
 ==================================================================================== 
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m6\e[0m,\e[32mb\e[0m(back)]:" 
+echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m5\e[0m,\e[32mb\e[0m(back)]:" 
 }
 
 install_menu()
@@ -69,8 +70,7 @@ echo -e "  \e[32m3.instll docker\e[0m"
 echo -e "  \e[32m4.instll nvidia driver\e[0m"
 echo -e "  \e[32m5.instll nvidia docker\e[0m"
 echo -e "  \e[32m6.instll yarn container-executor\e[0m"
-echo -e "  \e[32m7.instll submarine autostart script\e[0m"
-echo -e "  \e[32m8.instll all\e[0m"
+echo -e "  \e[32m7.instll submarine autorun script\e[0m"
 
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
@@ -98,8 +98,7 @@ echo -e "  \e[32m3.uninstll docker\e[0m"
 echo -e "  \e[32m4.uninstll nvidia driver\e[0m"
 echo -e "  \e[32m5.uninstll nvidia docker\e[0m"
 echo -e "  \e[32m6.uninstll yarn container-executor\e[0m"
-echo -e "  \e[32m7.uninstll submarine autostart script\e[0m"
-echo -e "  \e[32m8.uninstll all\e[0m"
+echo -e "  \e[32m7.uninstll submarine autorun script\e[0m"
 
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
@@ -126,8 +125,7 @@ echo -e "  \e[32m2.start calico network\e[0m"
 echo -e "  \e[32m3.start docker\e[0m"
 echo -e "  \e[32m4.start nvidia driver\e[0m"
 echo -e "  \e[32m5.start nvidia docker\e[0m"
-echo -e "  \e[32m6.start submarine autostart script\e[0m"
-echo -e "  \e[32m7.start all\e[0m"
+echo -e "  \e[32m6.start submarine autorun script\e[0m"
 
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
@@ -154,7 +152,7 @@ echo -e "  \e[32m2.stop calico network\e[0m"
 echo -e "  \e[32m3.stop docker\e[0m"
 echo -e "  \e[32m4.stop nvidia driver\e[0m"
 echo -e "  \e[32m5.stop nvidia docker\e[0m"
-echo -e "  \e[32m6.stop submarine autostart script\e[0m"
+echo -e "  \e[32m6.stop submarine autorun script\e[0m"
 echo -e "  \e[32m7.stop all\e[0m"
 
 echo -e ""
@@ -213,53 +211,25 @@ menu_process()
     ;;
 # check system environment
     "1-1")
-      echo -n "Do you want to check operation system?[y|n]" 
-      read myselect 
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]] 
-      then
-        echo "check_operationSystem"
-      fi
+      myselect="y"
+      check_operationSystem
     ;; 
     "1-2")
-      echo -n "Do you want to check operation system kernel?[y|n]" 
-      read myselect 
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]] 
-      then
-        echo "check_operationSystemKernel"
-      fi
+      myselect="y"
+      check_operationSystemKernel
     ;; 
     "1-3")
-      echo -n "Do you want to check GCC version?[y|n]" 
-      read myselect 
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]] 
-      then
-        echo "check_gccVersion"
-      fi
+      myselect="y"
+      check_gccVersion
     ;; 
     "1-4")
-      echo -n "Do you want to check GPU?[y|n]" 
-      read myselect 
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]] 
-      then
-        echo "check_GPU"
-      fi
+      myselect="y"
+      check_GPU
     ;; 
     "1-5")
-      echo -n "Do you want to check user&group?[y|n]" 
-      read myselect 
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]] 
-      then
-        echo "check_userGroup"
-      fi
+      myselect="y"
+      check_userGroup
     ;; 
-    "1-6")
-      echo -n "Do you want to check all?[y|n]" 
-      read myselect 
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]] 
-      then
-        echo "check_userGroup"
-      fi
-    ;;
 # install component
     "2-1")
       echo -n "Do you want to install etcd?[y|n]"
@@ -325,14 +295,6 @@ menu_process()
         echo ""
       fi
     ;;
-    "2-a")
-      echo -n "Do you want to install all?[y|n]"
-      read myselect
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
-      then
-        echo ""
-      fi
-    ;;
 # uninstall component
     "3-1")
       echo -n "Do you want to uninstall etcd?[y|n]"
@@ -390,14 +352,6 @@ menu_process()
         echo ""
       fi
     ;;
-    "3-a")
-      echo -n "Do you want to uninstall all?[y|n]"
-      read myselect
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
-      then
-        echo ""
-      fi
-    ;;
 # startup component
     "4-1")
       echo -n "Do you want to startup etcd?[y|n]"
@@ -447,14 +401,6 @@ menu_process()
         echo ""
       fi
     ;;
-    "4-a")
-      echo -n "Do you want to startup all?[y|n]"
-      read myselect
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
-      then
-        echo ""
-      fi
-    ;;
 # stop component
     "4-1")
       echo -n "Do you want to stop etcd?[y|n]"
@@ -501,14 +447,6 @@ menu_process()
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then  
-        echo ""
-      fi
-    ;;
-    "4-a")
-      echo -n "Do you want to stop all?[y|n]"
-      read myselect
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
-      then
         echo ""
       fi
     ;;
