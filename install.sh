@@ -5,9 +5,11 @@ ROOT=$(cd "$(dirname "$0")"; pwd)
 PACKAGE_DIR=${ROOT}/package
 SCRIPTS_DIR=${ROOT}/scripts
 INSTALL_TEMP_DIR=${ROOT}/temp
+DOWNLOAD_DIR=${ROOT}/downloads
 DATE=`date +%Y%m%d-%H:%M:%S`
 INSTALL_PID_FILE=${ROOT}/install.pid
 LOG=${ROOT}/logs/install.log.`date +%Y%m%d%H%M%S`
+LOCAL_HOST_IP_LIST=()
 LOCAL_HOST_IP=''
 OPERATING_SYSTEM=""
 
@@ -27,7 +29,6 @@ OPERATING_SYSTEM=""
 #=================================Main========================================
 mkdir $ROOT/logs/ -p
 mkdir $INSTALL_TEMP_DIR -p
-rm $INSTALL_TEMP_DIR/* -rf
 
 source /etc/os-release
 OPERATING_SYSTEM=$ID
@@ -37,15 +38,31 @@ if [[ -f $INSTALL_PID_FILE ]];then
   exit
 fi
 
-if [ $# -ne 1 ];then
-  echo -ne "Usag: $0 \e[31m localhost_ip\e[0m\n"
-  exit 0
-fi
-
 check_install_conf
 
-LOCAL_HOST_IP=$1
-echo "local host ip:${LOCAL_HOST_IP}"
+get_ip_list
+ipCount=${#LOCAL_HOST_IP_LIST[@]}
+if [[ $ipCount -eq 1 ]]; then
+  LOCAL_HOST_IP = ${LOCAL_HOST_IP_LIST[0]}
+  echo -n -e "Please confirm if the IP address of this machine is \e[31m${LOCAL_HOST_IP}\e[0m?[y|n]"
+else
+  echo -e "This machine has multiple IPs\e[31m[${LOCAL_HOST_IP_LIST[@]}]\e[0m."
+  echo -n -e "please enter a valid IP address: "
+
+  read ipInput
+  if ! valid_ip $ipInput; then
+    echo -e "you input \e[31m$ipInput\e[0m address format is incorrect! " | tee -a $LOG
+    exit_install
+  else
+    LOCAL_HOST_IP=$ipInput
+  fi
+fi
+
+echo -n -e "Please confirm whether the IP address of this machine is \e[31m${LOCAL_HOST_IP}\e[0m?[y|n]"
+read myselect
+if [[ "$myselect" != "y" && "$myselect" != "Y" ]]; then
+  exit_install
+fi
 
 # check_install_user
 
@@ -57,6 +74,10 @@ echo "local host ip:${LOCAL_HOST_IP}"
 
 # 清理安装临时目录
 rm $INSTALL_TEMP_DIR/* -rf >>$LOG 2>&1
+
+if [[ ! -d ${INSTALL_BIN_PATH} ]]; then
+  mkdir -p ${INSTALL_BIN_PATH}
+fi
 
 menu_index="0"
 for ((j=1;;j++))

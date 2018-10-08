@@ -236,7 +236,7 @@ menu_process()
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        install_etcd
       fi
     ;;
     "2-2")

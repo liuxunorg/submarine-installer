@@ -10,7 +10,7 @@ function check_install_user()
 
 function exit_install()
 {
-  echo "\n退出安装!" | tee -a $LOG
+  echo "Exit the installation!" | tee -a $LOG
   rm $INSTALL_PID_FILE
   exit $1
 }
@@ -56,24 +56,34 @@ function check_install_conf()
   echo "$BASH_SOURCE:$LINENO 检查配置文件配置是否正确 [ Done ]" | tee -a $LOG
 }
 
-# listIndex 'abc' array
-function listIndex() 
-{
-  int index=0
-	for item in $2
-  do
-    if [ "$item" = "$1" ];then
-      return $index
+function indexByEtcdHosts() {
+  index=0
+  while [ "$index" -lt "${#ETCD_HOSTS[@]}" ]; do
+    if [ "${ETCD_HOSTS[$index]}" = "$1" ]; then
+      echo $index
+      return
     fi
-    index=$(($index+1))
+    let "index++"
   done
-
-  return -1
+  echo ""
 }
 
-function exit_install()
+getLocalIP() {
+  local _ip _myip _line _nl=$'\n'
+  while IFS=$': \t' read -a _line ;do
+      [ -z "${_line%inet}" ] &&
+         _ip=${_line[${#_line[1]}>4?1:2]} &&
+         [ "${_ip#127.0.0.1}" ] && _myip=$_ip
+    done< <(LANG=C /sbin/ifconfig)
+  printf ${1+-v} $1 "%s${_nl:0:$[${#1}>0?0:1]}" $_myip
+}
+
+get_ip_list()
 {
-  echo "\n退出安装!" | tee -a $LOG
-  rm $INSTALL_PID_FILE
-  exit $1
+  array=$(ifconfig | grep inet | grep -v inet6 | grep -v 127 | sed 's/^[ \t]*//g' | cut -d ' ' -f2)
+
+  for ip in ${array[@]}
+  do
+    LOCAL_HOST_IP_LIST+=(${ip})
+  done
 }
