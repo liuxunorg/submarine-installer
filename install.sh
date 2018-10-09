@@ -12,11 +12,13 @@ LOG=${ROOT}/logs/install.log.`date +%Y%m%d%H%M%S`
 LOCAL_HOST_IP_LIST=()
 LOCAL_HOST_IP=''
 OPERATING_SYSTEM=""
+DOWNLOAD_HTTP=""
 
 # import shell script
 . ${ROOT}/install.conf
 . ${ROOT}/scripts/calico.sh
 . ${ROOT}/scripts/docker.sh
+. ${ROOT}/scripts/download-server.sh
 . ${ROOT}/scripts/environment.sh
 . ${ROOT}/scripts/etcd.sh
 . ${ROOT}/scripts/hadoop.sh
@@ -38,8 +40,6 @@ if [[ -f $INSTALL_PID_FILE ]];then
   echo "无法执行安装程序，$INSTALL_PID_FILE已经存在，安装脚本已经在运行!" | tee -a $LOG
   exit
 fi
-
-check_install_conf
 
 get_ip_list
 ipCount=${#LOCAL_HOST_IP_LIST[@]}
@@ -65,6 +65,12 @@ if [[ "$myselect" != "y" && "$myselect" != "Y" ]]; then
   exit_install
 fi
 
+check_install_conf
+
+if [[ -n "$DOWNLOAD_HTTP_IP" && -n "$DOWNLOAD_HTTP_PORT" && "$DOWNLOAD_HTTP_IP" != "$LOCAL_HOST_IP" ]]; then
+  DOWNLOAD_HTTP="http://${DOWNLOAD_HTTP_IP}:${DOWNLOAD_HTTP_PORT}"
+fi
+
 # check_install_user
 
 # 创建安装脚本pid文件
@@ -75,10 +81,6 @@ fi
 
 # 清理安装临时目录
 rm $INSTALL_TEMP_DIR/* -rf >>$LOG 2>&1
-
-if [[ ! -d ${INSTALL_BIN_PATH} ]]; then
-  mkdir -p ${INSTALL_BIN_PATH}
-fi
 
 menu_index="0"
 for ((j=1;;j++))

@@ -1,21 +1,33 @@
 #!/bin/bash
 
+function download_etcd_bin()
+{
+  # my download http server
+  if [[ -n "$DOWNLOAD_HTTP" ]]; then
+    MY_ETCD_DOWNLOAD_URL="${DOWNLOAD_HTTP}/downloads/etcd/${ETCD_TAR_GZ}"
+  else
+    MY_ETCD_DOWNLOAD_URL=${ETCD_DOWNLOAD_URL}
+  fi
+
+  if [[ -f "${DOWNLOAD_DIR}/etcd/${ETCD_TAR_GZ}" ]]; then
+    echo "${DOWNLOAD_DIR}/etcd/${ETCD_TAR_GZ} is exist."
+  else
+    echo "download ${MY_ETCD_DOWNLOAD_URL} ..."
+    wget -P ${DOWNLOAD_DIR}/etcd ${MY_ETCD_DOWNLOAD_URL}
+  fi
+}
+
 function install_etcd_bin()
 {
-  if [[ -f ${DOWNLOAD_DIR}/${ETCD_TAR_GZ} ]]; then
-    echo "${DOWNLOAD_DIR}/${ETCD_TAR_GZ} is exist."
-  else
-    echo "download ${DOWNLOAD_DIR}/${ETCD_TAR_GZ} ..."
-    wget -P ${DOWNLOAD_DIR} ${ETCD_DOWNLOAD_URL}
-  fi
+  download_etcd_bin
 
   # install etcd bin
   mkdir -p ${INSTALL_TEMP_DIR}
   rm -rf ${INSTALL_TEMP_DIR}/etcd-*-linux-amd6
-  tar zxvf ${DOWNLOAD_DIR}/${ETCD_TAR_GZ} -C ${INSTALL_TEMP_DIR}
+  tar zxvf ${DOWNLOAD_DIR}/etcd/${ETCD_TAR_GZ} -C ${INSTALL_TEMP_DIR}
 
-  cp ${INSTALL_TEMP_DIR}/etcd-*-linux-amd64/etcd ${INSTALL_BIN_PATH}
-  cp ${INSTALL_TEMP_DIR}/etcd-*-linux-amd64/etcdctl ${INSTALL_BIN_PATH}
+  cp ${INSTALL_TEMP_DIR}/etcd-*-linux-amd64/etcd /usr/bin
+  cp ${INSTALL_TEMP_DIR}/etcd-*-linux-amd64/etcdctl /usr/bin
 
   mkdir -p /var/lib/etcd
   chmod -R a+rw /var/lib/etcd
@@ -46,12 +58,12 @@ function install_etcd_config()
   do
     # char '/' need to escape '\/'
     initialCluster="${initialCluster}etcdnode${index}=http:\/\/${item}:2380"
-    if [[ ${index} -lt ${etcdHostsSize} ]]; then
+    if [[ ${index} -lt ${etcdHostsSize}-1 ]]; then
       initialCluster=${initialCluster}","
     fi
     index=$(($index+1))
   done
-  echo "initialCluster=${initialCluster}"
+  #echo "initialCluster=${initialCluster}"
   sed -i "s/INITIAL_CLUSTER_REPLACE/${initialCluster}/g" $INSTALL_TEMP_DIR/etcd/etcd.service >>$LOG
 
   cp $INSTALL_TEMP_DIR/etcd/etcd.service /etc/systemd/system/ >>$LOG
@@ -75,8 +87,10 @@ function install_etcd()
 
 function uninstall_etcd()
 {
+  echo "stop etcd.service"
   systemctl stop etcd.service
 
+  echo "rm etcd ..."
   rm /usr/bin/etcd
   rm /usr/bin/etcdctl
   rm -rf /var/lib/etcd

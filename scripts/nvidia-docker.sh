@@ -2,6 +2,10 @@
 
 . ${ROOT}/scripts/nvidia.sh
 
+function download_nvidia_docker_bin()
+{
+  echo "TODO download_nvidia_docker_bin()"
+}
 
 function install_nvidia_docker()
 {

@@ -7,11 +7,24 @@ function install_yarn()
   install_yarn_config
 }
 
+function download_yarn_container_executor()
+{
+  # container-executor
+  cp ${YARN_CONTAINER_EXECUTOR_PATH} /etc/yarn/sbin/Linux-amd64-64
+
+  if [[ -f ${DOWNLOAD_DIR}/container-executor ]]; then
+    echo "${DOWNLOAD_DIR}/container-executor is exist."
+  else
+    echo "copy ${YARN_CONTAINER_EXECUTOR_PATH} ..."
+    cp ${YARN_CONTAINER_EXECUTOR_PATH} ${DOWNLOAD_DIR}/
+  fi
+}
+
 function install_yarn_container_executor()
 {
   mkdir -p /etc/yarn/sbin/Linux-amd64-64
   
-  cp ${YARN_CONTAINER_EXECUTOR} /etc/yarn/sbin/Linux-amd64-64
+  cp ${YARN_CONTAINER_EXECUTOR_PATH} /etc/yarn/sbin/Linux-amd64-64
   sudo chmod 6755 /etc/yarn/sbin/Linux-amd64-64
   sudo chown :yarn /etc/yarn/sbin/Linux-amd64-64/container-executor 
   sudo chmod 6050 /etc/yarn/sbin/Linux-amd64-64/container-executor

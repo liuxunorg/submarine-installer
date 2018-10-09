@@ -9,7 +9,7 @@ RestartSec=5s
 LimitNOFILE=40000
 TimeoutStartSec=0
 
-ExecStart=/usr/bin/etcd \   
+ExecStart=/usr/bin/etcd \
    --name=ETCD_NODE_NAME_REPLACE \
    --data-dir=/var/lib/etcd \
    --listen-client-urls=http://LOCAL_HOST_REPLACE:2379,http://127.0.0.1:2379 \

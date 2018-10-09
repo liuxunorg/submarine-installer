@@ -2,6 +2,7 @@
 
 . ${ROOT}/scripts/utils.sh
 . ${ROOT}/scripts/environment.sh
+. ${ROOT}/scripts/download-server.sh
 
 main_menu()
 {
@@ -16,8 +17,9 @@ MENULIST
 echo -e "  \e[32m1.prepare system environment [..]\e[0m"
 echo -e "  \e[32m2.install component [..]\e[0m"
 echo -e "  \e[32m3.uninstall component [..]\e[0m"
-echo -e "  \e[32m4.startup component [..]\e[0m"
+echo -e "  \e[32m4.start component [..]\e[0m"
 echo -e "  \e[32m5.stop component [..]\e[0m"
+echo -e "  \e[32m6.start download server [..]\e[0m"
 echo -e ""
 echo -e "  \e[32mq.quit\e[0m"
 cat<<MENULIST
@@ -183,6 +185,9 @@ menu()
     ;;
     "5")
       stop_menu
+    ;;
+    "6")
+      start_download_server
     ;;
     "q")
     	exit 1

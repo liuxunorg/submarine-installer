@@ -8,7 +8,7 @@ function get_nvidia_version()
   echo $nvidia_detect_info | sed "s/^.*This device requires the current \([0-9.]*\).*/\1/"
 }
 
-function install_nvidia()
+function download_nvidia_driver()
 {
   echo "execution nvidia-detect to check the graphics card ..."
   local nvidiaVersion=`get_nvidia_version`
@@ -16,7 +16,7 @@ function install_nvidia()
   
   # download NVIDIA driver
   if [[ "$nvidiaVersion" = "" ]]; then
-    echo "ERROR: No graphics card device detected"
+    echo -e "\033[31mERROR: No graphics card device detected.\033[0m"
     exit_install
   else
     local nvidia_run_file="NVIDIA-Linux-x86_64-${nvidiaVersion}.run"
@@ -30,6 +30,11 @@ function install_nvidia()
       wget -P ${DOWNLOAD_DIR} ${downloadUrl}
     fi
   fi
+}
+
+function install_nvidia()
+{
+  download_nvidia_driver
 
   # Confirm that the system disables nouveau
   local disable_nouveau_info=`lsmod | grep nouveau`

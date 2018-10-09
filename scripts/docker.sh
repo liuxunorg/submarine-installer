@@ -3,19 +3,28 @@
 
 function download_docker_rpm()
 {
+  # submarin http server
+  if [[ -n "$DOWNLOAD_HTTP" ]]; then
+    MY_DOCKER_ENGINE_SELINUX_RPM="${DOWNLOAD_HTTP}/downloads/docker/${DOCKER_ENGINE_SELINUX_RPM}"
+    MY_DOCKER_ENGINE_RPM="${DOWNLOAD_HTTP}/downloads/docker/${DOCKER_ENGINE_RPM}"
+  else
+    MY_DOCKER_ENGINE_SELINUX_RPM=${DOCKER_REPO}/${DOCKER_ENGINE_SELINUX_RPM}
+    MY_DOCKER_ENGINE_RPM=${DOCKER_REPO}/${DOCKER_ENGINE_RPM}
+  fi
+
   # download docker rpm
   if [[ -f ${DOWNLOAD_DIR}/${DOCKER_ENGINE_SELINUX_RPM} ]]; then
     echo "${DOWNLOAD_DIR}/${DOCKER_ENGINE_SELINUX_RPM} is exist."
   else
-    echo "download ${DOCKER_REPO}/${DOCKER_ENGINE_SELINUX_RPM} ..."
-    wget -P ${DOWNLOAD_DIR} ${DOCKER_REPO}/${DOCKER_ENGINE_SELINUX_RPM}
+    echo "download ${MY_DOCKER_ENGINE_SELINUX_RPM} ..."
+    wget -P ${DOWNLOAD_DIR}/docker/ ${MY_DOCKER_ENGINE_SELINUX_RPM}
   fi
 
   if [[ -f ${DOWNLOAD_DIR}/${DOCKER_ENGINE_RPM} ]]; then
     echo "${DOWNLOAD_DIR}/${DOCKER_ENGINE_RPM} is exist."
   else
-    echo "download ${DOCKER_REPO}/${DOCKER_ENGINE_RPM} ..."
-    wget -P ${DOWNLOAD_DIR} ${DOCKER_REPO}/${DOCKER_ENGINE_RPM}
+    echo "download ${MY_DOCKER_ENGINE_RPM} ..."
+    wget -P ${DOWNLOAD_DIR}/docker/ ${MY_DOCKER_ENGINE_RPM}
   fi
 }
 
@@ -23,16 +32,16 @@ function install_docker_bin()
 {
   download_docker_rpm
 
-  yum -y localinstall ${DOWNLOAD_DIR}/${DOCKER_ENGINE_SELINUX_RPM}
-  yum -y localinstall ${DOWNLOAD_DIR}/${DOCKER_ENGINE_RPM}
+  yum -y localinstall ${DOWNLOAD_DIR}/docker/${DOCKER_ENGINE_SELINUX_RPM}
+  yum -y localinstall ${DOWNLOAD_DIR}/docker/${DOCKER_ENGINE_RPM}
 }
 
 function uninstall_docker_bin()
 {
   download_docker_rpm
 
-  yum -y remove ${DOWNLOAD_DIR}/${DOCKER_ENGINE_SELINUX_RPM}
-  yum -y remove ${DOWNLOAD_DIR}/${DOCKER_ENGINE_RPM}
+  yum -y remove ${DOWNLOAD_DIR}/docker/${DOCKER_ENGINE_SELINUX_RPM}
+  yum -y remove ${DOWNLOAD_DIR}/docker/${DOCKER_ENGINE_RPM}
 }
 
 function install_docker_config()
@@ -49,7 +58,7 @@ function install_docker_config()
   for item in ${ETCD_HOSTS[@]}
   do
     clusterStore="${clusterStore}${item}:2379"
-    if [[ ${index} -lt ${etcdHostsSize} ]]; then
+    if [[ ${index} -lt ${etcdHostsSize}-1 ]]; then
       clusterStore=${clusterStore}","
     fi
     index=$(($index+1))
@@ -63,7 +72,6 @@ function install_docker_config()
   sed -i "s/LOCAL_DNS_HOST_REPLACE/${LOCAL_DNS_HOST}/g" $INSTALL_TEMP_DIR/docker/daemon.json >>$LOG
 
   if [ ! -d "/etc/docker" ]; then
-    echo "/etc/docker folder path is not exist!"
     mkdir /etc/docker
   fi
 
@@ -82,6 +90,10 @@ function install_docker()
 
 function uninstall_docker()
 {
+  echo "stop docker service"
+  systemctl stop docker
+
+  echo "remove docker"
   uninstall_docker_bin
 
   rm /etc/docker/daemon.json >>$LOG
@@ -105,6 +117,6 @@ function stop_docker()
 
 function containers_exist()
 {
-  local dockerContainersInfo=`docker ps ls --filter NAME=$1`
+  local dockerContainersInfo=`docker ps --filter NAME=$1`
   echo ${dockerContainersInfo} | grep $1
 }
