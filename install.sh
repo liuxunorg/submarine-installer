@@ -29,6 +29,7 @@ OPERATING_SYSTEM=""
 #=================================Main========================================
 mkdir $ROOT/logs/ -p
 mkdir $INSTALL_TEMP_DIR -p
+mkdir $DOWNLOAD_DIR -p
 
 source /etc/os-release
 OPERATING_SYSTEM=$ID

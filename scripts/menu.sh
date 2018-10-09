@@ -13,7 +13,7 @@ cat<<MENULIST
 [menu]
 ------------------------------------------------------------------------------------
 MENULIST
-echo -e "  \e[32m1.check system environment [..]\e[0m"
+echo -e "  \e[32m1.prepare system environment [..]\e[0m"
 echo -e "  \e[32m2.install component [..]\e[0m"
 echo -e "  \e[32m3.uninstall component [..]\e[0m"
 echo -e "  \e[32m4.startup component [..]\e[0m"
@@ -35,14 +35,15 @@ cat<<MENULIST
 submarine assembly
 
 ====================================================================================
-[menu] > [check system environment]
+[menu] > [prepare system environment]
 ------------------------------------------------------------------------------------
 MENULIST
-echo -e "  \e[32m1.check operation system\e[0m"
-echo -e "  \e[32m2.check operation system kernel\e[0m"
-echo -e "  \e[32m3.check GCC version\e[0m"
+echo -e "  \e[32m1.prepare operation system\e[0m"
+echo -e "  \e[32m2.prepare operation system kernel\e[0m"
+echo -e "  \e[32m3.prepare GCC version\e[0m"
 echo -e "  \e[32m4.check GPU\e[0m"
-echo -e "  \e[32m5.check user&group\e[0m"
+echo -e "  \e[32m5.prepare user&group\e[0m"
+echo -e "  \e[32m6.prepare nvidia environment\e[0m"
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
 cat<<MENULIST
@@ -227,6 +228,10 @@ menu_process()
     "1-5")
       myselect="y"
       check_userGroup
+    ;; 
+    "1-6")
+      myselect="y"
+      prepare_nvidia_environment
     ;; 
 # install component
     "2-1")

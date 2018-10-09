@@ -92,6 +92,8 @@ function check_GPU()
 
   if [[ "$gpuInfo" = "" ]]; then
     echo -e "\033[31mWARN: The system did not detect the GPU graphics card.\033[0m"
+  else
+    echo -e "\033[32mWARN: The system detect the GPU graphics card.\033[0m"
   fi
 }
 
@@ -101,18 +103,18 @@ function check_userGroup()
 
   echo -e "Hadoop runs the required user [hdfs, mapred, yarn] and groups [hdfs, mapred, yarn, hadoop] installed by ambari."
   echo -e "If you are not using ambari for hadoop installation, 
-then you can add the user and group by root by executing the following statement.
-root:> \033[34madduser hdfs\033[0m
-root:> \033[34madduser mapred\033[0m
-root:> \033[34madduser yarn\033[0m
-root:> \033[34maddgroup hadoop\033[0m
-root:> \033[34musermod -aG hdfs,hadoop hdfs\033[0m
-root:> \033[34musermod -aG mapred,hadoop mapred\033[0m
-root:> \033[34musermod -aG yarn,hadoop yarn\033[0m
-root:> \033[34musermod -aG hdfs,hadoop hadoop\033[0m
-root:> \033[34mgroupadd docker\033[0m
-root:> \033[34musermod -aG docker yarn\033[0m
-root:> \033[34musermod -aG docker hadoop\033[0m\n"
+then you can add the user and group by root by executing the following command:
+\033[34madduser hdfs
+adduser mapred
+adduser yarn
+addgroup hadoop
+usermod -aG hdfs,hadoop hdfs
+usermod -aG mapred,hadoop mapred
+usermod -aG yarn,hadoop yarn
+usermod -aG hdfs,hadoop hadoop
+groupadd docker
+usermod -aG docker yarn
+usermod -aG docker hadoop\033[0m\n"
 
   echo -e "check docker user group ..."
   # check user group
@@ -120,7 +122,7 @@ root:> \033[34musermod -aG docker hadoop\033[0m\n"
   egrep "^${DOCKER_USER_GROUP}" /etc/group >& /dev/null
   if [[ $? -ne 0 ]]; then
     echo -e "user group ${DOCKER_USER_GROUP} does not exist, Please execute the following command:"
-    echo -e "root:> \033[34mgroupadd $DOCKER_USER_GROUP\033[0m"
+    echo -e "\033[34mgroupadd $DOCKER_USER_GROUP\033[0m"
   fi
 
   # check user
@@ -130,13 +132,45 @@ root:> \033[34musermod -aG docker hadoop\033[0m\n"
     egrep "^${user}" /etc/passwd >& /dev/null
     if [[ $? -ne 0 ]]; then
       echo -e "User ${user} does not exist, Please execute the following command:"
-      echo -e "root:> \033[34madduser ${user}\033[0m"
-      echo -e "root:> \033[34musermod -aG ${DOCKER_USER_GROUP} ${user}\033[0m"
+      echo -e "\033[34madduser ${user}\033[0m"
+      echo -e "\033[34musermod -aG ${DOCKER_USER_GROUP} ${user}\033[0m"
     fi
 
     echo -e "Please execute the following command:"
-    echo -e "root:> \033[34musermod -aG ${DOCKER_USER_GROUP} ${user}\033[0m"
+    echo -e "\033[34musermod -aG ${DOCKER_USER_GROUP} ${user}\033[0m"
   done
 }
 
+# Some preparatory work for nvidia driver installation
+function prepare_nvidia_environment()
+{
+  echo "prepare nvidia environment ..."
+
+  yum -y update
+  yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r)
+
+  yum -y install epel-release
+  yum -y install dkms
+
+  echo " ===== Please manually execute the following command ====="
+  echo -e "\033[34m
+# 1. Disable nouveau
+# Add the content 'rd.driver.blacklist=nouveau nouveau.modeset=0' 
+# to the 'GRUB_CMDLINE_LINUX' configuration item in the /etc/default/grub file.
+shell:> vi /etc/default/grub
+vi:> GRUB_CMDLINE_LINUX=\"rd.driver.blacklist=nouveau nouveau.modeset=0 ...\"
+
+# 2. Generate configuration
+shell:> grub2-mkconfig -o /boot/grub2/grub.cfg
+
+# 3. Open (new) /etc/modprobe.d/blacklist.conf, add content 'blacklist nouveau'
+shell:> vi /etc/modprobe.d/blacklist.conf
+vi:> blacklist nouveau
+
+# 4. Update configuration and reboot
+mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img
+dracut /boot/initramfs-$(uname -r).img $(uname -r)
+reboot
+\033[0m"
+}
 
