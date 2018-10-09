@@ -10,3 +10,8 @@ function install_submarine()
     echo "/etc/rc.d/init.d/submarine.sh">> /etc/rc.d/rc.local
   fi
 }
+
+function uninstall_submarine()
+{
+  rm /etc/rc.d/init.d/submarine.sh
+}

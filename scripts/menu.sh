@@ -43,7 +43,6 @@ echo -e "  \e[32m2.check operation system kernel\e[0m"
 echo -e "  \e[32m3.check GCC version\e[0m"
 echo -e "  \e[32m4.check GPU\e[0m"
 echo -e "  \e[32m5.check user&group\e[0m"
-
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
 cat<<MENULIST
@@ -65,20 +64,19 @@ submarine assembly
 ------------------------------------------------------------------------------------
 MENULIST
 echo -e "  \e[32m1.instll etcd\e[0m"
-echo -e "  \e[32m2.instll calico network\e[0m"
-echo -e "  \e[32m3.instll docker\e[0m"
+echo -e "  \e[32m2.instll docker\e[0m"
+echo -e "  \e[32m3.instll calico network\e[0m"
 echo -e "  \e[32m4.instll nvidia driver\e[0m"
 echo -e "  \e[32m5.instll nvidia docker\e[0m"
 echo -e "  \e[32m6.instll yarn container-executor\e[0m"
 echo -e "  \e[32m7.instll submarine autorun script\e[0m"
-
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
 cat<<MENULIST
 ==================================================================================== 
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m6\e[0m,\e[32mb\e[0m(back)]:" 
+echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m7\e[0m,\e[32mb\e[0m(back)]:" 
 }
 
 uninstall_menu()
@@ -93,20 +91,19 @@ submarine assembly
 ------------------------------------------------------------------------------------
 MENULIST
 echo -e "  \e[32m1.uninstll etcd\e[0m"
-echo -e "  \e[32m2.uninstll calico network\e[0m"
-echo -e "  \e[32m3.uninstll docker\e[0m"
+echo -e "  \e[32m2.uninstll docker\e[0m"
+echo -e "  \e[32m3.uninstll calico network\e[0m"
 echo -e "  \e[32m4.uninstll nvidia driver\e[0m"
 echo -e "  \e[32m5.uninstll nvidia docker\e[0m"
 echo -e "  \e[32m6.uninstll yarn container-executor\e[0m"
 echo -e "  \e[32m7.uninstll submarine autorun script\e[0m"
-
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
 cat<<MENULIST
 ==================================================================================== 
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m6\e[0m,\e[32mb\e[0m(back)]:" 
+echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m7\e[0m,\e[32mb\e[0m(back)]:" 
 }
 
 start_menu()
@@ -121,12 +118,11 @@ submarine assembly
 ------------------------------------------------------------------------------------
 MENULIST
 echo -e "  \e[32m1.start etcd\e[0m"
-echo -e "  \e[32m2.start calico network\e[0m"
-echo -e "  \e[32m3.start docker\e[0m"
+echo -e "  \e[32m2.start docker\e[0m"
+echo -e "  \e[32m3.start calico network\e[0m"
 echo -e "  \e[32m4.start nvidia driver\e[0m"
 echo -e "  \e[32m5.start nvidia docker\e[0m"
 echo -e "  \e[32m6.start submarine autorun script\e[0m"
-
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
 cat<<MENULIST
@@ -148,13 +144,12 @@ submarine assembly
 ------------------------------------------------------------------------------------
 MENULIST
 echo -e "  \e[32m1.stop etcd\e[0m"
-echo -e "  \e[32m2.stop calico network\e[0m"
-echo -e "  \e[32m3.stop docker\e[0m"
+echo -e "  \e[32m2.stop docker\e[0m"
+echo -e "  \e[32m3.stop calico network\e[0m"
 echo -e "  \e[32m4.stop nvidia driver\e[0m"
 echo -e "  \e[32m5.stop nvidia docker\e[0m"
 echo -e "  \e[32m6.stop submarine autorun script\e[0m"
 echo -e "  \e[32m7.stop all\e[0m"
-
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
 cat<<MENULIST
@@ -168,7 +163,7 @@ menu_index="0"
 menu() 
 { 
   clear 
-#  echo "menu_index-menu_choice=$menu_index-$menu_choice"
+  echo "menu_index-menu_choice=$menu_index-$menu_choice"
   case $menu_index in
     "0")
       main_menu
@@ -183,7 +178,10 @@ menu()
       uninstall_menu
     ;;
     "4")
-      startup_menu
+      start_menu
+    ;;
+    "5")
+      stop_menu
     ;;
     "q")
     	exit 1
@@ -203,7 +201,7 @@ menu_process()
 {
   process=0
   unset myselect
-#  echo "aaaa=$menu_index-$menu_choice"
+  echo "aaaa=$menu_index-$menu_choice"
   case "$menu_index-$menu_choice" in 
     "1-b"|"2-b"|"3-b"|"4-b"|"5-b"|"6-b")
       menu_index="0"
@@ -240,11 +238,11 @@ menu_process()
       fi
     ;;
     "2-2")
-      echo -n "Do you want to install expect?[y|n]"
+      echo -n "Do you want to install docker?[y|n]"
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        install_docker
       fi
     ;;
     "2-3")
@@ -252,47 +250,39 @@ menu_process()
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        install_calico
       fi
     ;;
     "2-4")
-      echo -n "Do you want to install docker?[y|n]"
-      read myselect
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
-      then
-        echo ""
-      fi
-    ;;
-    "2-5")
       echo -n "Do you want to install nvidia driver?[y|n]"
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        install_nvidia
       fi
     ;;
-    "2-6")
+    "2-5")
       echo -n "Do you want to install nvidia docker?[y|n]"
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        install_nvidia_docker
       fi
     ;;
-    "2-7")
+    "2-6")
       echo -n "Do you want to install yarn container-executor?[y|n]"
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        install_yarn_container_executor
       fi
     ;;
-    "2-8")
+    "2-7")
       echo -n "Do you want to install submarine auto start script?[y|n]"
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        install_submarine
       fi
     ;;
 # uninstall component
@@ -301,23 +291,23 @@ menu_process()
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        uninstall_etcd
       fi
     ;;
     "3-2")
-      echo -n "Do you want to uninstall calico network?[y|n]"
-      read myselect
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
-      then
-        echo ""
-      fi
-    ;;
-	 "3-3")
       echo -n "Do you want to uninstall docker?[y|n]"
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        uninstall_docker
+      fi
+    ;;
+	 "3-3")
+      echo -n "Do you want to uninstall calico network?[y|n]"
+      read myselect
+      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
+      then
+        uninstall_calico
       fi
     ;;
     "3-4")
@@ -325,7 +315,7 @@ menu_process()
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        uninstall_nvidia
       fi
     ;;
     "3-5")
@@ -333,7 +323,7 @@ menu_process()
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        uninstall_nvidia_docker
       fi
     ;;
     "3-6")
@@ -341,7 +331,7 @@ menu_process()
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        uninstall_yarn_container_executor
       fi
     ;;
     "3-7")
@@ -349,7 +339,7 @@ menu_process()
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        uninstall_submarine
       fi
     ;;
 # startup component
@@ -358,23 +348,23 @@ menu_process()
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        start_etcd
       fi
     ;;
     "4-2")
-      echo -n "Do you want to startup calico network?[y|n]"
-      read myselect
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
-      then
-        echo ""
-      fi
-    ;;
-    "4-3")
       echo -n "Do you want to startup docker?[y|n]"
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        start_docker
+      fi
+    ;;
+    "4-3")
+      echo -n "Do you want to startup calico network?[y|n]"
+      read myselect
+      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
+      then
+        start_calico
       fi
     ;;
     "4-4")
@@ -402,31 +392,31 @@ menu_process()
       fi
     ;;
 # stop component
-    "4-1")
+    "5-1")
       echo -n "Do you want to stop etcd?[y|n]"
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        stop_etcd
       fi
     ;;
-    "4-2")
-      echo -n "Do you want to stop calico network?[y|n]"
-      read myselect
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
-      then
-        echo ""
-      fi
-    ;;
-    "4-3")
+    "5-2")
       echo -n "Do you want to stop docker?[y|n]"
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        echo ""
+        stop_docker
       fi
     ;;
-    "4-4")
+    "5-3")
+      echo -n "Do you want to stop calico network?[y|n]"
+      read myselect
+      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
+      then
+        stop_calico
+      fi
+    ;;
+    "5-4")
       echo -n "Do you want to stop nvidia driver?[y|n]"
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
@@ -434,7 +424,7 @@ menu_process()
         echo ""
       fi
     ;;
-    "4-5")
+    "5-5")
       echo -n "Do you want to stop nvidia docker?[y|n]"
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
@@ -442,7 +432,7 @@ menu_process()
         echo ""
       fi
     ;;
-    "4-6")
+    "5-6")
       echo -n "Do you want to stop submarine autostart script?[y|n]"
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]

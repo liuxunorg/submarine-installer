@@ -87,7 +87,7 @@ do
     "0")
       menu_index="$menu_choice"
     ;;
-    "1"|"2"|"3"|"4")
+    "1"|"2"|"3"|"4"|"5")
 #     echo "aaaa=$menu_index-$menu_choice"
       menu_process
       if [[ $? = 1 ]]; then

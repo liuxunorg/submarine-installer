@@ -81,6 +81,8 @@ function uninstall_etcd()
   rm /usr/bin/etcdctl
   rm -rf /var/lib/etcd
   rm /etc/systemd/system/etcd.service
+
+  systemctl daemon-reload
 }
 
 function start_etcd()

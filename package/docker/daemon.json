@@ -1,7 +1,7 @@
 {
     "insecure-registries": ["DOCKER_REGISTRY_REPLACE"],
     "cluster-store":"CLUSTER_STORE_REPLACE",
-    "cluster-advertise":"10.196.69.173:2375",
-    "dns": ["DNS_HOST_REPLACE", "172.17.0.9"],
+    "cluster-advertise":"LOCAL_HOST_IP_REPLACE:2375",
+    "dns": ["YARN_DNS_HOST_REPLACE", "LOCAL_DNS_HOST_REPLACE"],
     "hosts": ["tcp://LOCAL_HOST_IP_REPLACE:2375","unix:///var/run/docker.sock"]
 }
