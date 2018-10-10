@@ -13,15 +13,15 @@ function download_docker_rpm()
   fi
 
   # download docker rpm
-  if [[ -f ${DOWNLOAD_DIR}/${DOCKER_ENGINE_SELINUX_RPM} ]]; then
-    echo "${DOWNLOAD_DIR}/${DOCKER_ENGINE_SELINUX_RPM} is exist."
+  if [[ -f ${DOWNLOAD_DIR}/docker/${DOCKER_ENGINE_SELINUX_RPM} ]]; then
+    echo "${DOWNLOAD_DIR}/docker/${DOCKER_ENGINE_SELINUX_RPM} is exist."
   else
     echo "download ${MY_DOCKER_ENGINE_SELINUX_RPM} ..."
     wget -P ${DOWNLOAD_DIR}/docker/ ${MY_DOCKER_ENGINE_SELINUX_RPM}
   fi
 
-  if [[ -f ${DOWNLOAD_DIR}/${DOCKER_ENGINE_RPM} ]]; then
-    echo "${DOWNLOAD_DIR}/${DOCKER_ENGINE_RPM} is exist."
+  if [[ -f ${DOWNLOAD_DIR}/docker/${DOCKER_ENGINE_RPM} ]]; then
+    echo "${DOWNLOAD_DIR}/docker/${DOCKER_ENGINE_RPM} is exist."
   else
     echo "download ${MY_DOCKER_ENGINE_RPM} ..."
     wget -P ${DOWNLOAD_DIR}/docker/ ${MY_DOCKER_ENGINE_RPM}

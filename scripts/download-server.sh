@@ -14,8 +14,8 @@ function start_download_server()
   then
     download_etcd_bin
     download_calico_bin
-#    download_docker_rpm
-#    download_nvidia_driver
+    download_docker_rpm
+    download_nvidia_driver
 #    download_nvidia_docker_bin
 #    download_yarn_container_executor
 

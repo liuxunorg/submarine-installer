@@ -152,8 +152,7 @@ function prepare_nvidia_environment()
   yum -y install epel-release
   yum -y install dkms
 
-  echo " ===== Please manually execute the following command ====="
-  echo -e "\033[34m
+  echo -e "\033[34m ===== Please manually execute the following command =====
 # 1. Disable nouveau
 # Add the content 'rd.driver.blacklist=nouveau nouveau.modeset=0' 
 # to the 'GRUB_CMDLINE_LINUX' configuration item in the /etc/default/grub file.
