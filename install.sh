@@ -1,4 +1,19 @@
-# !/bin/bash
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#!/bin/bash
 # description: sumbarine install scripts.
 
 ROOT=$(cd "$(dirname "$0")"; pwd)
@@ -7,10 +22,9 @@ SCRIPTS_DIR=${ROOT}/scripts
 INSTALL_TEMP_DIR=${ROOT}/temp
 DOWNLOAD_DIR=${ROOT}/downloads
 DATE=`date +%Y%m%d-%H:%M:%S`
-INSTALL_PID_FILE=${ROOT}/install.pid
 LOG=${ROOT}/logs/install.log.`date +%Y%m%d%H%M%S`
 LOCAL_HOST_IP_LIST=()
-LOCAL_HOST_IP=''
+LOCAL_HOST_IP=""
 OPERATING_SYSTEM=""
 DOWNLOAD_HTTP=""
 
@@ -28,18 +42,13 @@ DOWNLOAD_HTTP=""
 . ${ROOT}/scripts/submarine.sh
 . ${ROOT}/scripts/utils.sh
 
-#=================================Main========================================
+#================================= Main ========================================
 mkdir $ROOT/logs/ -p
 mkdir $INSTALL_TEMP_DIR -p
 mkdir $DOWNLOAD_DIR -p
 
 source /etc/os-release
 OPERATING_SYSTEM=$ID
-
-if [[ -f $INSTALL_PID_FILE ]];then
-  echo "无法执行安装程序，$INSTALL_PID_FILE已经存在，安装脚本已经在运行!" | tee -a $LOG
-  exit
-fi
 
 get_ip_list
 ipCount=${#LOCAL_HOST_IP_LIST[@]}
@@ -71,13 +80,7 @@ if [[ -n "$DOWNLOAD_HTTP_IP" && -n "$DOWNLOAD_HTTP_PORT" && "$DOWNLOAD_HTTP_IP" 
   DOWNLOAD_HTTP="http://${DOWNLOAD_HTTP_IP}:${DOWNLOAD_HTTP_PORT}"
 fi
 
-# check_install_user
-
-# 创建安装脚本pid文件
-#if [[ ! -f $INSTALL_PID_FILE ]]; then
-#  touch $INSTALL_PID_FILE
-#fi
-#echo $$ > $INSTALL_PID_FILE
+check_install_user
 
 # 清理安装临时目录
 rm $INSTALL_TEMP_DIR/* -rf >>$LOG 2>&1

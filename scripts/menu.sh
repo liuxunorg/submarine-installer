@@ -1,8 +1,19 @@
-#!/bin/bash 
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-. ${ROOT}/scripts/utils.sh
-. ${ROOT}/scripts/environment.sh
-. ${ROOT}/scripts/download-server.sh
+#!/bin/bash
 
 main_menu()
 {
@@ -166,7 +177,7 @@ menu_index="0"
 menu() 
 { 
   clear 
-  echo "menu_index-menu_choice=$menu_index-$menu_choice"
+  # echo "menu_index-menu_choice=$menu_index-$menu_choice"
   case $menu_index in
     "0")
       main_menu
@@ -193,7 +204,7 @@ menu()
     	exit 1
     ;;
     *)
-      echo "error "
+      echo "error input!"
       menu_index="0"
       menu_choice="0"
       main_menu
@@ -207,7 +218,7 @@ menu_process()
 {
   process=0
   unset myselect
-  echo "aaaa=$menu_index-$menu_choice"
+  # echo "debug=$menu_index-$menu_choice"
   case "$menu_index-$menu_choice" in 
     "1-b"|"2-b"|"3-b"|"4-b"|"5-b"|"6-b")
       menu_index="0"
@@ -284,7 +295,7 @@ menu_process()
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        install_yarn_container_executor
+        install_yarn
       fi
     ;;
     "2-7")
@@ -341,7 +352,7 @@ menu_process()
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
-        uninstall_yarn_container_executor
+        uninstall_yarn
       fi
     ;;
     "3-7")

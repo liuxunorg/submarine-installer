@@ -1,3 +1,18 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 #!/bin/bash
 
 function download_etcd_bin()
@@ -39,17 +54,17 @@ function install_etcd_config()
   rm -rf ${INSTALL_TEMP_DIR}/etcd
   cp -R ${PACKAGE_DIR}/etcd ${INSTALL_TEMP_DIR}/
 
-  # 1. 根据本地IP在$ETCD_HOSTS中的位置生成name,替换 ETCD_NODE_NAME_REPLACE
+  # 1. Replace name with ETCD_NODE_NAME_REPLACE based on the location of the local IP in $ETCD_HOSTS
   indexEtcdList=$(indexByEtcdHosts ${LOCAL_HOST_IP})
   echo ${indexEtcdList}
   etcdNodeName="etcdnode${indexEtcdList}"
   echo ${etcdNodeName}
   sed -i "s/ETCD_NODE_NAME_REPLACE/${etcdNodeName}/g" $INSTALL_TEMP_DIR/etcd/etcd.service >>$LOG
   
-  # 2. 替换本地IP地址
+  # 2. Replace local IP address
   sed -i "s/LOCAL_HOST_REPLACE/${LOCAL_HOST_IP}/g" $INSTALL_TEMP_DIR/etcd/etcd.service >>$LOG
 
-  # 3. 替换 initial-cluster 参数
+  # 3. Replace the initial-cluster parameter
   # --initial-cluster=etcdnode1=http://10.196.69.173:2380,etcdnode2=http://10.196.69.174:2380,etcdnode3=http://10.196.69.175:2380 \
   initialCluster=''
   index=0

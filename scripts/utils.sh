@@ -1,9 +1,24 @@
-# !/bin/bash
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#!/bin/bash
 
 function check_install_user()
 {
   if [[ $(id -u) -ne 0 ]];then
-    echo "必须使用 ROOT 用户运行此脚本!"
+    echo "This script must be run with a ROOT user!"
     exit # don't call exit_install()
   fi
 }
@@ -11,11 +26,10 @@ function check_install_user()
 function exit_install()
 {
   echo "Exit the installation!" | tee -a $LOG
-  rm $INSTALL_PID_FILE
   exit $1
 }
 
-# 检查IP地址格式是否正确
+# Check if the IP address format is correct.
 function valid_ip()
 {
   local ip=$1
@@ -35,25 +49,25 @@ function valid_ip()
   return $stat
 }
 
-# 检查配置文件配置是否正确
+# Check if the configuration file configuration is correct
 function check_install_conf()
 {
-  echo "$BASH_SOURCE:$LINENO 检查配置文件配置是否正确 ..." | tee -a $LOG
+  echo "Check if the configuration file configuration is correct ..." | tee -a $LOG
 
   # check etcd conf
   hostCount=${#ETCD_HOSTS[@]}
   if [[ $hostCount -lt 3 && hostCount -ne 0 ]]; then # <>2
-    echo "$BASH_SOURCE:$LINENO ETCD_HOSTS 节点数=[$hostCount],必须配置大于等于3台服务器! " | tee -a $LOG
+    echo "Number of nodes = [$hostCount], must be configured to be greater than or equal to 3 servers! " | tee -a $LOG
     exit_install
   fi
   for ip in ${ETCD_HOSTS[@]}
   do
     if ! valid_ip $ip; then
-      echo "$BASH_SOURCE:$LINENO ETCD_HOSTS=[$ip],IP地址格式不正确! " | tee -a $LOG
+      echo "]ETCD_HOSTS=[$ip], IP address format is incorrect! " | tee -a $LOG
       exit_install
     fi
   done
-  echo "$BASH_SOURCE:$LINENO 检查配置文件配置是否正确 [ Done ]" | tee -a $LOG
+  echo "Check if the configuration file configuration is correct [ Done ]" | tee -a $LOG
 }
 
 function indexByEtcdHosts() {
@@ -68,7 +82,8 @@ function indexByEtcdHosts() {
   echo ""
 }
 
-getLocalIP() {
+function getLocalIP() 
+{
   local _ip _myip _line _nl=$'\n'
   while IFS=$': \t' read -a _line ;do
       [ -z "${_line%inet}" ] &&
@@ -78,7 +93,7 @@ getLocalIP() {
   printf ${1+-v} $1 "%s${_nl:0:$[${#1}>0?0:1]}" $_myip
 }
 
-get_ip_list()
+function get_ip_list()
 {
   array=$(ifconfig | grep inet | grep -v inet6 | grep -v 127 | sed 's/^[ \t]*//g' | cut -d ' ' -f2)
 
