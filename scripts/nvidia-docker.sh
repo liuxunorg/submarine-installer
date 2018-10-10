@@ -4,26 +4,37 @@
 
 function download_nvidia_docker_bin()
 {
-  echo "TODO download_nvidia_docker_bin()"
+  # download http server
+  if [[ -n "$DOWNLOAD_HTTP" ]]; then
+    MY_NVIDIA_DOCKER_RPM_URL="${DOWNLOAD_HTTP}/downloads/nvidia-docker/${NVIDIA_DOCKER_RPM}"
+  else
+    MY_NVIDIA_DOCKER_RPM_URL=${NVIDIA_DOCKER_RPM_URL}
+  fi
+
+  if [[ -f "${DOWNLOAD_DIR}/nvidia-docker/${NVIDIA_DOCKER_RPM}" ]]; then
+    echo "${DOWNLOAD_DIR}/nvidia-docker/${NVIDIA_DOCKER_RPM} is exist."
+  else
+    echo "download ${MY_NVIDIA_DOCKER_RPM_URL} ..."
+    wget -P ${DOWNLOAD_DIR}/nvidia-docker/ ${MY_NVIDIA_DOCKER_RPM_URL}
+  fi
 }
 
 function install_nvidia_docker()
 {
-  # download nvidia-docker
-  wget -P ${INSTALL_TEMP_DIR} ${NVIDIA_DOCKER_ENGINE_SELINUX_RPM}
+  download_nvidia_docker_bin
   
-  sudo rpm -i ${INSTALL_TEMP_DIR}/nvidia-docker*.rpm
+  sudo rpm -i ${DOWNLOAD_DIR}/nvidia-docker/${NVIDIA_DOCKER_RPM}
 
-  echo "===== Start nvidia-docker ====="
+  echo -e "\033[32m===== Start nvidia-docker =====\033[0m"
   sudo systemctl start nvidia-docker
 
-  echo "===== Check nvidia-docker status ====="
+  echo -e "\033[32m===== Check nvidia-docker status =====\033[0m"
   systemctl status nvidia-docker
 
-  echo "===== Check nvidia-docker log ====="
+  echo -e "\033[32m===== Check nvidia-docker log =====\033[0m"
   journalctl -u nvidia-docker
 
-  echo "===== Test nvidia-docker-plugin ====="
+  echo -e "\033[32m===== Test nvidia-docker-plugin =====\033[0m"
   curl http://localhost:3476/v1.0/docker/cli
 
   # create nvidia driver library path
@@ -33,10 +44,9 @@ function install_nvidia_docker()
   fi
 
   local nvidiaVersion=`get_nvidia_version`
+  echo -e "\033[31m nvidia detect version is ${nvidiaVersion}\033[0m"
 
   mkdir /var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}
-  # 390.8 is nvidia driver version
-
   mkdir /var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}/bin
   mkdir /var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}/lib64
 
@@ -44,35 +54,18 @@ function install_nvidia_docker()
   cp /usr/lib64/libcuda* /var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}/lib64
   cp /usr/lib64/libnvidia* /var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}/lib64
 
-  echo " ===== After the installation is complete, execute NVIDIA-SMI, you should see the list of graphics cards ===== "
-  echo "+-----------------------------------------------------------------------------+
-        | NVIDIA-SMI 390.87                 Driver Version: 390.87                    |
-        |-------------------------------+----------------------+----------------------+
-        | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-        | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-        |===============================+======================+======================|
-        |   0  GeForce GTX 108...  Off  | 00000000:04:00.0 Off |                  N/A |
-        | 23%   28C    P8    15W / 250W |     10MiB / 11178MiB |      0%      Default |
-        +-------------------------------+----------------------+----------------------+
-        +-----------------------------------------------------------------------------+
-        | Processes:                                                       GPU Memory |
-        |  GPU       PID   Type   Process name                             Usage      |
-        |=============================================================================|
-        |  No running processes found                                                 |
-        +-----------------------------------------------------------------------------+
-  "
-  echo "===== If you don't see the list of graphics cards above, the NVIDIA driver installation failed. ====="
-  nvidia-docker pull nvidia/cuda:9.0-devel
-  nvidia-docker run --rm nvidia/cuda:9.0-devel nvidia-smi
+  echo -e "\033[32m===== Please manually execute the following command =====\033[0m"
+  echo -e "\033[32mshell:> nvidia-docker run --rm ${DOCKER_REGISTRY}/nvidia/cuda:9.0-devel nvidia-smi
+# If you don't see the list of graphics cards above, the NVIDIA driver installation failed. =====
+\033[0m"
 
-  echo "===== Please manually execute the following command ====="
-  echo "
-        # Test with tf.test.is_gpu_available()
-        shell:> nvidia-docker run -it tensorflow/tensorflow:1.9.0-gpu bash
-        # In docker container
-        container:> python
-        python:> import tensorflow as tf
-        python:> tf.test.is_gpu_available()
-        python:> exit()
-        "
+  echo -e "\033[32m===== Please manually execute the following command =====\033[0m"
+  echo -e "\033[32m# Test with tf.test.is_gpu_available()
+shell:> nvidia-docker run -it ${DOCKER_REGISTRY}/tensorflow/tensorflow:1.9.0-gpu bash
+# In docker container
+container:> python
+python:> import tensorflow as tf
+python:> tf.test.is_gpu_available()
+python:> exit()
+\033[0m"
 }

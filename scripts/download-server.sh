@@ -16,7 +16,7 @@ function start_download_server()
     download_calico_bin
     download_docker_rpm
     download_nvidia_driver
-#    download_nvidia_docker_bin
+    download_nvidia_docker_bin
 #    download_yarn_container_executor
 
     python -m SimpleHTTPServer ${DOWNLOAD_HTTP_PORT}
