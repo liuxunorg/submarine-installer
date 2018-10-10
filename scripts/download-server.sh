@@ -17,7 +17,7 @@ function start_download_server()
     download_docker_rpm
     download_nvidia_driver
     download_nvidia_docker_bin
-#    download_yarn_container_executor
+    download_yarn_container_executor
 
     python -m SimpleHTTPServer ${DOWNLOAD_HTTP_PORT}
   fi
