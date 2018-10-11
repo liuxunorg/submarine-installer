@@ -1,18 +1,18 @@
-## hdp-submarine-assembly
+## hdp submarine assembly
 
 ### 项目介绍
 
-介绍 hdp-submarine-assembly 项目之前，首先要说明一下 Hadoop {Submarine}  这个项目，Hadoop {Submarine}  是 hadoop 3.2 版本中最新发布的机器学习框架子项目，他让 hadoop 支持 Tensorflow、MXNet、Caffe、Spark 等多种深度学习框架，提供了机器学习算法开发、分布式模型训练、模型管理和模型发布等全功能的系统框架，结合 hadoop 与身俱来的数据存储和数据处理能力，让数据科学家们能够更好的挖掘和发挥出数据的价值。
+介绍 **hdp-submarine-assembly** 项目之前，首先要说明一下 **Hadoop {Submarine}**  这个项目，**Hadoop {Submarine}**  是 hadoop 3.2 版本中最新发布的机器学习框架子项目，他让 hadoop 支持 `Tensorflow`、`MXNet`、`Caffe`、`Spark` 等多种深度学习框架，提供了机器学习算法开发、分布式模型训练、模型管理和模型发布等全功能的系统框架，结合 hadoop 与身俱来的数据存储和数据处理能力，让数据科学家们能够更好的挖掘和发挥出数据的价值。
 
-hadoop 在 2.9 版本中就已经让 YARN 支持了 Docker 容器的资源调度模式，Hadoop {Submarine} 在此基础之上通过 YARN 把分布式深度学习框架以 Docker 容器的方式进行调度和运行起来。
+hadoop 在 2.9 版本中就已经让 YARN 支持了 Docker 容器的资源调度模式，**Hadoop {Submarine}** 在此基础之上通过 YARN 把分布式深度学习框架以 Docker 容器的方式进行调度和运行起来。
 
-由于分布式深度学习框架需要运行在多个 Docker 的容器之中，并且需要能够让运行在容器之中的各个服务相互协调，完成分布式机器学习的模型训练和模型发布等服务，这其中就会牵涉到 DNS、Docker 、 GPU、Network、显卡、操作系统内核修改等多个系统工程问题，正确的部署好 Hadoop {Submarine}  的运行环境是一件很困难和耗时的事情。
+由于分布式深度学习框架需要运行在多个 Docker 的容器之中，并且需要能够让运行在容器之中的各个服务相互协调，完成分布式机器学习的模型训练和模型发布等服务，这其中就会牵涉到 `DNS`、`Docker` 、 `GPU`、`Network`、`显卡`、`操作系统内核` 修改等多个系统工程问题，正确的部署好 **Hadoop {Submarine}**  的运行环境是一件很困难和耗时的事情。
 
-为了降低 hadoop 2.9 以上版本的 docker 等组件的部署难度，所以我们专门开发了这个用来部署 `Hadoop {Submarine} ` 运行时环境的 `hdp-submarine-assembly` 项目，提供一键安装脚本，也可以分步执行安装、卸载、启动和停止各个组件，同时讲解每一步主要参数配置和注意事项。我们同时还向 hadoop 社区提交了部署 `Hadoop {Submarine} ` 运行时环境的 [中文手册](https://github.com/apache/hadoop/blob/trunk/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-applications/hadoop-yarn-submarine/src/site/markdown/InstallationGuideChineseVersion.md) 和 [英文手册](https://github.com/apache/hadoop/blob/trunk/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-applications/hadoop-yarn-submarine/src/site/markdown/InstallationGuide.md) ，帮助用户更容易的部署，发现问题也可以及时解决。
+为了降低 hadoop 2.9 以上版本的 docker 等组件的部署难度，所以我们专门开发了这个用来部署 `Hadoop {Submarine} ` 运行时环境的 `hdp-submarine-assembly` 项目，提供一键安装脚本，也可以分步执行安装、卸载、启动和停止各个组件，同时讲解每一步主要参数配置和注意事项。我们同时还向 hadoop 社区提交了部署 `Hadoop {Submarine} ` 运行时环境的 [中文手册](InstallationGuideChineseVersion.md) 和 [英文手册](InstallationGuide.md) ，帮助用户更容易的部署，发现问题也可以及时解决。
 
 ### 先决条件
 
-**hdp-submarine-assembly** 目前只支持 centos-release-7-3.1611.el7.centos.x86_64 以上版本的操作系统中进行使用。
+**hdp-submarine-assembly** 目前只支持 `centos-release-7-3.1611.el7.centos.x86_64` 以上版本的操作系统中进行使用。
 
 ### 配置说明
 
@@ -20,7 +20,7 @@ hadoop 在 2.9 版本中就已经让 YARN 支持了 Docker 容器的资源调度
 
 + **DNS 配置项**
 
-  LOCAL_DNS_HOST：服务器端本地 DNS IP 地址配置，可以从 /etc/resolv.conf 中查看
+  LOCAL_DNS_HOST：服务器端本地 DNS IP 地址配置，可以从 `/etc/resolv.conf` 中查看
 
   YARN_DNS_HOST：yarn dns server 启动的 IP 地址
 
@@ -55,15 +55,15 @@ hadoop 在 2.9 版本中就已经让 YARN 支持了 Docker 容器的资源调度
 
 + **YARN_HIERARCHY 配置项**
 
-  请保持和你所使用的 YARN 集群的 yarn-site.xml 配置文件中的 'yarn.nodemanager.linux-container-executor.cgroups.hierarchy' 相同的配置，yarn-site.xml 中如果未配置该项，那么默认为 '/hadoop-yarn'。
+  请保持和你所使用的 YARN 集群的 `yarn-site.xml` 配置文件中的 `yarn.nodemanager.linux-container-executor.cgroups.hierarchy` 相同的配置，`yarn-site.xml` 中如果未配置该项，那么默认为 `/hadoop-yarn`。
 
 + **YARN_NODEMANAGER_LOCAL_DIRS 配置项**
 
-  请保持和你所使用的 YARN 集群的 yarn-site.xml 配置文件中的 'yarn.nodemanager.local-dirs' 相同的配置。
+  请保持和你所使用的 YARN 集群的 `yarn-site.xml` 配置文件中的 `yarn.nodemanager.local-dirs` 相同的配置。
 
 + **YARN_NODEMANAGER_LOG_DIRS 配置项**
 
-  请保持和你所使用的 YARN 集群的 yarn-site.xml 配置文件中的 'yarn.nodemanager.log-dirs' 相同的配置。
+  请保持和你所使用的 YARN 集群的 `yarn-site.xml` 配置文件中的 `yarn.nodemanager.log-dirs` 相同的配置。
 
 ### 使用说明
 

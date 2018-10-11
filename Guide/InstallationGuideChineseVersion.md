@@ -1,8 +1,22 @@
-## Submarine 安装说明
+<!---
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
 
-### Prerequisites
+   http://www.apache.org/licenses/LICENSE-2.0
 
-#### 操作系统
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+# Submarine 安装说明
+
+## Prerequisites
+
+### 操作系统
 
 我们使用的操作系统版本是 centos-release-7-3.1611.el7.centos.x86_64, 内核版本是 3.10.0-514.el7.x86_64 ，应该是最低版本了。
 
@@ -11,14 +25,14 @@
 | Operating System | centos-release-7-3.1611.el7.centos.x86_64 |
 | Kernal | 3.10.0-514.el7.x86_64 |
 
-#### User & Group
+### User & Group
 
 如果操作系统中没有这些用户组和用户，必须添加。一部分用户是 hadoop 运行需要，一部分用户是 docker 运行需要。
 
 ```
 adduser hdfs
-adduser mapred 
-adduser yarn 
+adduser mapred
+adduser yarn
 addgroup hadoop
 usermod -aG hdfs,hadoop hdfs
 usermod -aG mapred,hadoop mapred
@@ -29,7 +43,7 @@ usermod -aG docker yarn
 usermod -aG docker hadoop
 ```
 
-#### GCC 版本
+### GCC 版本
 
 ```bash
 gcc --version
@@ -38,7 +52,7 @@ gcc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-11)
 yum install gcc make g++
 ```
 
-#### kernel header & devel
+### Kernel header & devel
 
 ```bash
 # 方法一：
@@ -48,7 +62,7 @@ wget http://vault.centos.org/7.3.1611/os/x86_64/Packages/kernel-headers-3.10.0-5
 rpm -ivh kernel-headers-3.10.0-514.el7.x86_64.rpm
 ```
 
-#### 检查 GPU 版本
+### 检查 GPU 版本
 
 ```
 lspci | grep -i nvidia
@@ -60,7 +74,7 @@ lspci | grep -i nvidia
 
 
 
-#### 安装 nvidia 驱动
+### 安装 nvidia 驱动
 
 安装nvidia driver/cuda要确保已安装的nvidia driver/cuda已被清理
 
@@ -93,7 +107,7 @@ An Intel display controller was also detected
 
 ```
 # 若系统很久没更新，这句可能耗时较长
-yum -y update 
+yum -y update
 yum -y install kernel-devel
 
 yum -y install epel-release
@@ -114,15 +128,15 @@ reboot
 ```
 lsmod | grep nouveau  # 应该返回空
 
-# 开始安装 
-sh NVIDIA-Linux-x86_64-390.87.run 
+# 开始安装
+sh NVIDIA-Linux-x86_64-390.87.run
 ```
 
 安装过程中，会遇到一些选项：
 
 ```
 Install NVIDIA's 32-bit compatibility libraries (Yes)
-centos Install NVIDIA's 32-bit compatibility libraries (Yes) 
+centos Install NVIDIA's 32-bit compatibility libraries (Yes)
 Would you like to run the nvidia-xconfig utility to automatically update your X configuration file... (NO)
 ```
 
@@ -138,7 +152,7 @@ https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html
 
 
 
-#### 安装 Docker
+### 安装 Docker
 
 ```
 yum -y update
@@ -159,7 +173,7 @@ chown hadoop:netease /usr/bin/docker
 
 Reference：https://docs.docker.com/cs-engine/1.12/
 
-#### 配置 Docker
+### 配置 Docker
 
 在 `/etc/docker/` 目录下，创建`daemon.json`文件, 添加以下配置，变量如image_registry_ip, etcd_host_ip, localhost_ip, yarn_dns_registry_host_ip, dns_host_ip需要根据具体环境，进行修改
 
@@ -181,7 +195,7 @@ sudo systemctl restart docker
 
 
 
-#### docker EE version
+### Docker EE version
 
 ```bash
 $ docker version
@@ -203,7 +217,7 @@ Server:
  OS/Arch:      linux/amd64
 ```
 
-#### 安装nvidia-docker
+### 安装 nvidia-docker
 
 Hadoop-3.2 的 submarine 使用的是 1.0 版本的 nvidia-docker
 
@@ -264,7 +278,7 @@ https://github.com/NVIDIA/nvidia-docker/tree/1.0
 
 
 
-#### Tensorflow Image
+### Tensorflow Image
 
 CUDNN 和 CUDA 其实不需要在物理机上安装，因为 Sumbmarine 中提供了已经包含了CUDNN 和 CUDA 的镜像文件，基础的Dockfile可参见WriteDockerfile.md
 
@@ -341,7 +355,7 @@ ENV PATH $PATH:$JAVA_HOME/bin
 ```
 
 
-#### 测试 TF 环境
+### 测试 TF 环境
 
 创建好 docker 镜像后，需要先手动检查 TensorFlow 是否可以正常使用，避免通过 YARN 调度后出现问题，可以执行以下命令
 
@@ -365,10 +379,10 @@ $ python >> tf.__version__
 2. libcuda.so.1,libcuda.so是否在LD_LIBRARY_PATH指定的路径中
 
    ```
-   ls -l /usr/local/nvidia/lib64 | grep libcuda.so 
+   ls -l /usr/local/nvidia/lib64 | grep libcuda.so
    ```
 
-#### install Etcd
+### 安装 Etcd
 
 运行 Submarine/install.sh 脚本，就可以在指定服务器中安装 Etcd 组件和服务自启动脚本。
 
@@ -395,7 +409,7 @@ b3d05464c356441a: name=etcdnode1 peerURLs=http://${etcd_host_ip3}:2380 clientURL
 其中，${etcd_host_ip*} 是etcd服务器的ip
 
 
-#### install Calico
+### 安装 Calico
 
 运行 Submarine/install.sh 脚本，就可以在指定服务器中安装 Calico 组件和服务自启动脚本。
 
@@ -404,7 +418,7 @@ systemctl start calico-node.service
 systemctl status calico-node.service
 ```
 
-##### 检查 Calico 网络
+#### 检查 Calico 网络
 
 ```shell
 # 执行如下命令，注意：不会显示本服务器的状态，只显示其他的服务器状态
@@ -434,9 +448,9 @@ docker exec workload-A ping workload-B
 ```
 
 
-### 安装 hadoop
+## 安装 Hadoop
 
-#### 编译 Hadoop
+### 编译 Hadoop
 
 ```
 mvn package -Pdist -DskipTests -Dtar
@@ -444,17 +458,16 @@ mvn package -Pdist -DskipTests -Dtar
 
 
 
-#### 启动 YARN服务
+### 启动 YARN服务
 
 ```
 YARN_LOGFILE=resourcemanager.log ./sbin/yarn-daemon.sh start resourcemanager
 YARN_LOGFILE=nodemanager.log ./sbin/yarn-daemon.sh start nodemanager
-# 参考：http://hadoop.apache.org/docs/r3.1.0/hadoop-yarn/hadoop-yarn-site/TimelineServer.html
 YARN_LOGFILE=timeline.log ./sbin/yarn-daemon.sh start timelineserver
 YARN_LOGFILE=mr-historyserver.log ./sbin/mr-jobhistory-daemon.sh start historyserver
 ```
 
-#### 启动 registery dns 服务
+### 启动 registery dns 服务
 
 ```
 sudo YARN_LOGFILE=registrydns.log ./yarn-daemon.sh start registrydns
@@ -462,7 +475,7 @@ sudo YARN_LOGFILE=registrydns.log ./yarn-daemon.sh start registrydns
 
 
 
-#### 测试 wordcount
+### 测试 wordcount
 
 通过测试最简单的 wordcount ，检查 YARN 是否正确安装
 
@@ -472,11 +485,11 @@ sudo YARN_LOGFILE=registrydns.log ./yarn-daemon.sh start registrydns
 
 
 
-### 使用CUP的Tensorflow任务
+## 使用CUP的Tensorflow任务
 
-#### 单机模式
+### 单机模式
 
-##### 清理重名程序
+#### 清理重名程序
 
 ```bash
 # 每次提交前需要执行：
@@ -487,7 +500,7 @@ sudo YARN_LOGFILE=registrydns.log ./yarn-daemon.sh start registrydns
 ```
 其中，变量${dfs_name_service}请根据环境，用你的hdfs name service名称替换
 
-##### 执行单机模式的tensorflow任务
+#### 执行单机模式的tensorflow任务
 
 ```bash
 ./bin/yarn jar /home/hadoop/hadoop-current/share/hadoop/yarn/hadoop-yarn-submarine-3.2.0-SNAPSHOT.jar job run \
@@ -501,9 +514,9 @@ sudo YARN_LOGFILE=registrydns.log ./yarn-daemon.sh start registrydns
 ```
 
 
-#### 分布式模式
+### 分布式模式
 
-##### 清理重名程序
+#### 清理重名程序
 
 ```bash
 # 每次提交前需要执行：
@@ -513,7 +526,7 @@ sudo YARN_LOGFILE=registrydns.log ./yarn-daemon.sh start registrydns
 # 确保之前的任务已经结束
 ```
 
-##### 提交分布式模式 tensorflow 任务
+#### 提交分布式模式 tensorflow 任务
 
 ```bash
 ./bin/yarn jar /home/hadoop/hadoop-current/share/hadoop/yarn/hadoop-yarn-submarine-3.2.0-SNAPSHOT.jar job run \
@@ -532,9 +545,9 @@ sudo YARN_LOGFILE=registrydns.log ./yarn-daemon.sh start registrydns
 ```
 
 
-### 使用GPU的Tensorflow任务
+## 使用GPU的Tensorflow任务
 
-#### Resourcemanager, Nodemanager 中添加GPU支持
+### Resourcemanager, Nodemanager 中添加GPU支持
 
 在 yarn 配置文件夹(conf或etc/hadoop)中创建 resource-types.xml，添加：
 
@@ -547,7 +560,7 @@ sudo YARN_LOGFILE=registrydns.log ./yarn-daemon.sh start registrydns
    </configuration>
    ```
 
-#### Resourcemanager 的 GPU 配置
+### Resourcemanager 的 GPU 配置
 
 resourcemanager 使用的 scheduler 必须是 capacity scheduler，在 capacity-scheduler.xml 中修改属性：
 
@@ -560,7 +573,7 @@ resourcemanager 使用的 scheduler 必须是 capacity scheduler，在 capacity-
    </configuration>
    ```
 
-#### Nodemanager 的 GPU 配置
+### Nodemanager 的 GPU 配置
 
 在 nodemanager 的 yarn-site.xml 中添加配置：
 
@@ -595,7 +608,7 @@ resourcemanager 使用的 scheduler 必须是 capacity scheduler，在 capacity-
    yarn-hierarchy=/hadoop-yarn
    ```
 
-#### 提交验证
+### 提交验证
 
 Distributed-shell + GPU + cgroup
 
@@ -615,14 +628,11 @@ Distributed-shell + GPU + cgroup
  --worker_launch_cmd "python /test/cifar10_estimator/cifar10_main.py --data-dir=hdfs://${dfs_name_service}/tmp/cifar-10-data --job-dir=hdfs://${dfs_name_service}/tmp/cifar-10-jobdir --train-steps=500 --eval-batch-size=16 --train-batch-size=16 --sync --num-gpus=1"
 ```
 
-Reference：
-https://hadoop.apache.org/docs/r3.1.0/hadoop-yarn/hadoop-yarn-site/UsingGpus.html
 
 
+## 问题
 
-### 问题
-
-#### 问题一: 操作系统重启导致 nodemanager 启动失败
+### 问题一: 操作系统重启导致 nodemanager 启动失败
 
 ```
 2018-09-20 18:54:39,785 ERROR org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor: Failed to bootstrap configured resource subsystems!
@@ -655,7 +665,7 @@ chmod g+rwx -R /sys/fs/cgroup/devices
 ```
 
 
-#### 问题二：container-executor 权限问题
+### 问题二：container-executor 权限问题
 
 ```
 2018-09-21 09:36:26,102 WARN org.apache.hadoop.yarn.server.nodemanager.containermanager.linux.privileged.PrivilegedOperationExecutor: IOException executing command:
@@ -668,13 +678,13 @@ java.io.IOException: Cannot run program "/etc/yarn/sbin/Linux-amd64-64/container
 
 `/etc/yarn/sbin/Linux-amd64-64/container-executor` 该文件的权限应为6050
 
-#### 问题三：查看系统服务启动日志
+### 问题三：查看系统服务启动日志
 
 ```
 journalctl -u docker
 ```
 
-#### 问题四：docker 无法删除容器的问题 `device or resource busy` 
+### 问题四：Docker 无法删除容器的问题 `device or resource busy`
 
 ```bash
 $ docker rm 0bfafa146431
@@ -718,13 +728,13 @@ done
 ```bash
 $ chmod +x find-busy-mnt.sh
 ./find-busy-mnt.sh 0bfafa146431771f6024dcb9775ef47f170edb2f152f71916ba44209ca6120a
-# PID	NAME		MNTNS
-# 5007	ntpd		mnt:[4026533598]
+# PID   NAME            MNTNS
+# 5007  ntpd            mnt:[4026533598]
 $ kill -9 5007
 ```
 
 
-#### 问题五：命令sudo nvidia-docker run 报错
+### 问题五：命令sudo nvidia-docker run 报错
 
 ```
 docker: Error response from daemon: create nvidia_driver_361.42: VolumeDriver.Create: internal error, check logs for details.
@@ -742,6 +752,6 @@ systemctl stop nvidia-docker
 systemctl start nvidia-docker
 ```
 
-#### 问题六：YARN 启动容器失败
+### 问题六：YARN 启动容器失败
 
 如果你创建的容器数（PS+Work>GPU显卡总数），可能会出现容器创建失败，那是因为在一台服务器上同时创建了超过本机显卡总数的容器。
