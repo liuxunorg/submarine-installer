@@ -41,8 +41,8 @@ function install_etcd_bin()
   rm -rf ${INSTALL_TEMP_DIR}/etcd-*-linux-amd6
   tar zxvf ${DOWNLOAD_DIR}/etcd/${ETCD_TAR_GZ} -C ${INSTALL_TEMP_DIR}
 
-  cp ${INSTALL_TEMP_DIR}/etcd-*-linux-amd64/etcd /usr/bin
-  cp ${INSTALL_TEMP_DIR}/etcd-*-linux-amd64/etcdctl /usr/bin
+  cp -f ${INSTALL_TEMP_DIR}/etcd-*-linux-amd64/etcd /usr/bin
+  cp -f ${INSTALL_TEMP_DIR}/etcd-*-linux-amd64/etcdctl /usr/bin
 
   mkdir -p /var/lib/etcd
   chmod -R a+rw /var/lib/etcd
@@ -52,7 +52,7 @@ function install_etcd_config()
 {
   # config etcd.service
   rm -rf ${INSTALL_TEMP_DIR}/etcd
-  cp -R ${PACKAGE_DIR}/etcd ${INSTALL_TEMP_DIR}/
+  cp -rf ${PACKAGE_DIR}/etcd ${INSTALL_TEMP_DIR}/
 
   # 1. Replace name with ETCD_NODE_NAME_REPLACE based on the location of the local IP in $ETCD_HOSTS
   indexEtcdList=$(indexByEtcdHosts ${LOCAL_HOST_IP})

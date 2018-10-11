@@ -93,7 +93,7 @@ Run the `hdp-submarine-assembly/install.sh` command to start. The deployment pro
 
 The deployment process is as follows:
 
-1. Refer to the configuration instructions to configure the install.conf file based on your server usage.
+1. Refer to the configuration instructions to configure the `install.conf` file based on your server usage.
 
 2. Copy the entire **hdp-submarine-assembly** folder to all server nodes
 
@@ -103,7 +103,7 @@ The deployment process is as follows:
 
    + Select the `[start download server]` menu item in the installation interface, and wait for the download of each dependency package to start the HTTP service.
 
-4. In other servers that need to be deployed
+4. **In other servers that need to be deployed**
 
    Run the `hdp-submarine-assembly/install.sh` command to display the following menu in the main menu **[Main menu]**:
 
@@ -116,29 +116,89 @@ The deployment process is as follows:
 
 5. **prepare system environment**
 
-   + prepare operation system
+   - **prepare operation system**
 
-   + prepare operation system kernel
+     Check the operating system and version of the deployment server;
 
-   + prepare GCC version
+   - **prepare operation system kernel**
 
-   + check GPU
+     Display the prompt information of the operation command of the operating system kernel update, and automatically update the kernel version according to your choice;
 
-   + prepare user&group
+   - **prepare GCC version**
 
-   + prepare nvidia environment
+     Display the prompt information of the operation command of the current GCC version kernel update in the operating system and whether to automatically update the GCC version according to your choice;
 
-6. install component
+   - **check GPU**
 
-   + instll etcd
-   + instll docker
-   + instll calico network
-   + instll nvidia driver
-   + instll nvidia docker
-   + instll yarn container-executor
-   + instll submarine autorun script
+     Check if the server can detect the GPU graphics card;
+
+   - **prepare user&group**
+
+     Display the prompts for adding user and user group operation commands for hadoop and docker. You need to check whether there are any required users and user groups in the server according to the prompt information.
+
+   - **prepare nvidia environment**
+
+     Automatically update the operating system kernel and header files, and automatically install `epel-release` and `dkms`;
+
+     Display the prompt information for modifying the operation command of the system kernel parameter configuration, you need to open another terminal according to the command sequence;
+
+6. **install component**
+
+   - **instll etcd**
+
+     Download the bin file for etcd and install it in the `/usr/bin` directory;
+
+     Generate the `etcd.service` file according to the **ETCD_HOSTS** configuration item and install it into the `/etc/systemd/system/` directory.
+
+   - **instll docker**
+
+     Download docker's RPM package for local installation;
+
+     Generate the `daemon.json` configuration file and install it into the `/etc/docker/` directory.
+
+     Generate the `docker.service` configuration file and install it into the `/etc/systemd/system/` directory.
+
+   - **instll calico network**
+
+     Download the `calico`, `calicoctl`, and `calico-ipam` files and install them in the `/usr/bin` directory.
+
+     Generate the `calicoctl.cfg` configuration file and install it into the `/etc/calico/` directory.
+
+     Generate the `calico-node.service` configuration file and install it into the `/etc/systemd/system/` directory.
+
+     After the installation is complete, the calico network will be automatically created in the container according to the **CALICO_NETWORK_NAME** configuration item, and two Docker containers will be created automatically to check whether the two containers can even ping each other.
+
+   - **instll nvidia driver**
+
+     Download the `nvidia-detect` file to detect the graphics card version in the server;Download the `nvidia-detect` file to detect the graphics card version in the server;
+
+     Download the Nvidia graphics driver installation package according to the graphics card version number;
+
+     Check if the Nouveau is disabled in this server. If the installation is not stopped, you need to execute the **[prepare nvidia environment]** submenu item in the **[prepare system environment]** menu and follow the prompts.
+
+     If Nouveau has been disabled in this server, it will be installed locally;
+
+   - **instll nvidia docker**
+
+     Download the nvidia-docker RPM installation package and install it;
+
+     Display the command prompt information to detect whether nvidia-docker is available. You need to open another terminal to execute according to the command sequence.
+
+   - **instll yarn container-executor**
+
+     Copy the `container-executor` file to the `/etc/yarn/sbin/Linux-amd64-64/` directory according to the **YARN_CONTAINER_EXECUTOR_PATH** configuration item;
+
+     Generate the `container-executor.cfg` file according to the configuration and copy it to the `/etc/yarn/sbin/etc/hadoop/` directory.
+
+   - **instll submarine autorun script**
+
+     Copy the submarine.sh file to the `/etc/rc.d/init.d/` directory;
+
+     Add `/etc/rc.d/init.d/submarine.sh` to the `/etc/rc.d/rc.local` system self-starting file;
 
 7. uninstall component
+
+   Delete the BIN file and configuration file of the specified component, not in the retelling
 
    - uninstll etcd
    - uninstll docker
@@ -150,11 +210,15 @@ The deployment process is as follows:
 
 8. start component
 
+   Restart the specified component, not repeat
+
    - start etcd
    - start docker
    - start calico network
 
 9. stop component
+
+   Stop specifying component, not repeating
 
    - stop etcd
    - stop docker
@@ -162,3 +226,9 @@ The deployment process is as follows:
 
 10. start download server
 
+   This operation can only be performed on the server where the **DOWNLOAD_SERVER_IP** configuration item is located;
+
+### Other
+
+1. [Chinese version of the document](README.md)
+2. [YARN-8870](https://issues.apache.org/jira/browse/YARN-8870)

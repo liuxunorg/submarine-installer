@@ -30,7 +30,7 @@ hadoop 在 2.9 版本中就已经让 YARN 支持了 Docker 容器的资源调度
 
   你需要选择至少三台以上的服务器作为 ETCD 的运行服务器，这样可以让 `Hadoop {Submarine} ` 有较好的容错性和稳定性。
 
-  在 ETCD_HOSTS 配置项中输入作为 ETCD 服务器的IP数组，参数配置一般是这样：
+  在 **ETCD_HOSTS** 配置项中输入作为 ETCD 服务器的IP数组，参数配置一般是这样：
 
   ETCD_HOSTS=(hostIP1 hostIP2 hostIP3)，注意多个 hostIP 之间请使用空格进行隔开。
 
@@ -114,29 +114,89 @@ hadoop 在 2.9 版本中就已经让 YARN 支持了 Docker 容器的资源调度
 
 5. **prepare system environment**
 
-   + prepare operation system
+   + **prepare operation system**
 
-   + prepare operation system kernel
+     检查部署服务器的操作系统和版本；
 
-   + prepare GCC version
+   + **prepare operation system kernel**
 
-   + check GPU
+     显示操作系统内核更新的操作命令的提示信息，根据你的选择是否自动更新内核版本；
 
-   + prepare user&group
+   + **prepare GCC version**
 
-   + prepare nvidia environment
+     显示操作系统中现在的 GCC 版本内核更新的操作命令的提示信息和根据你的选择是否自动更新 GCC 版本；
+
+   + **check GPU**
+
+     检查服务器是否能够检测到 GPU 显卡；
+
+   + **prepare user&group**
+
+     显示添加 hadoop 和 docker 的用户和用户组操作命令的提示信息，需要你自己根据提示信息检查服务器中是否存在所需要的用户和用户组；
+
+   + **prepare nvidia environment**
+
+     自动进行操作系统内核和头文件的更新，自动安装 `epel-release` 和 `dkms` ；
+
+     显示修改系统内核参数配置的操作命令的提示信息，需要你另外打开一个终端根据命令顺序执行；
 
 6. install component
 
-   + instll etcd
-   + instll docker
-   + instll calico network
-   + instll nvidia driver
-   + instll nvidia docker
-   + instll yarn container-executor
-   + instll submarine autorun script
+   + **instll etcd**
+
+     下载 etcd 的 bin 文件，并安装到 `/usr/bin` 目录中；
+
+     根据  **ETCD_HOSTS** 配置项生成 `etcd.service` 文件， 安装到 `/etc/systemd/system/` 目录中；
+
+   + **instll docker**
+
+     下载 docker 的 RPM 包进行本地安装；
+
+     生成 `daemon.json` 配置文件，安装到 `/etc/docker/` 目录中；
+
+     生成 `docker.service` 配置文件，安装到 `/etc/systemd/system/` 目录中；
+
+   + **instll calico network**
+
+     下载 `calico` 、`calicoctl` 和 `calico-ipam` 文件，安装到 `/usr/bin` 目录中；
+
+     生成 `calicoctl.cfg` 配置文件，安装到 `/etc/calico/` 目录中；
+
+     生成 `calico-node.service` 配置文件，安装到 `/etc/systemd/system/` 目录中；
+
+     安装完毕后，会在容器中会根据 **CALICO_NETWORK_NAME** 配置项自动创建 calico network，并自动创建 2 个 Docker 容器，检查 2 个容器是否能偶互相 PING 通；
+
+   + **instll nvidia driver**
+
+     下载 `nvidia-detect` 文件，在服务器中检测显卡版本；
+
+     根据显卡版本号下载 Nvidia 显卡驱动安装包；
+
+     检测本服务器中是否 `disabled Nouveau` ，如果没有停止安装，那么你需要执行 **[prepare system environment]** 菜单中的 **[prepare nvidia environment]** 子菜单项，按照提示进行操作；
+
+     如果本服务器中已经 `disabled Nouveau` ，那么就会进行本地安装；
+
+   + **instll nvidia docker**
+
+     下载 `nvidia-docker` 的 RPM 安装包并进行安装；
+
+     显示检测 `nvidia-docker` 是否可用的命令提示信息，需要你另外打开一个终端根据命令顺序执行；
+
+   + **instll yarn container-executor**
+
+     根据 **YARN_CONTAINER_EXECUTOR_PATH 配置项**，将 `container-executor` 文件复制到 `/etc/yarn/sbin/Linux-amd64-64/` 目录中；
+
+     根据配置生成 `container-executor.cfg` 文件，复制到 `/etc/yarn/sbin/etc/hadoop/` 目录中；
+
+   + **instll submarine autorun script**
+
+     复制 `submarine.sh` 文件到 `/etc/rc.d/init.d/` 目录中；
+
+     将 `/etc/rc.d/init.d/submarine.sh` 添加到 `/etc/rc.d/rc.local` 系统自启动文件中；
 
 7. uninstall component
+
+   删除指定组件的 BIN 文件和配置文件，不在复述
 
    - uninstll etcd
    - uninstll docker
@@ -148,11 +208,15 @@ hadoop 在 2.9 版本中就已经让 YARN 支持了 Docker 容器的资源调度
 
 8. start component
 
+   重启指定组件，不在复述
+
    - start etcd
    - start docker
    - start calico network
 
 9. stop component
+
+   停止指定组件，不在复述
 
    - stop etcd
    - stop docker
@@ -160,3 +224,9 @@ hadoop 在 2.9 版本中就已经让 YARN 支持了 Docker 容器的资源调度
 
 10. start download server
 
+   只能在 **DOWNLOAD_SERVER_IP 配置项** 所在的服务器中才能执行本操作；
+
+### 其他
+
+1. [英文版本](README-EN.md)
+2. [YARN-8870](https://issues.apache.org/jira/browse/YARN-8870)

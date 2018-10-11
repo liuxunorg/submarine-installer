@@ -61,7 +61,7 @@ function uninstall_docker_bin()
 function install_docker_config()
 {
   rm -rf ${INSTALL_TEMP_DIR}/docker
-  cp -R ${PACKAGE_DIR}/docker ${INSTALL_TEMP_DIR}/
+  cp -rf ${PACKAGE_DIR}/docker ${INSTALL_TEMP_DIR}/
 
   # replace cluster-store
   # "cluster-store":"etcd://10.196.69.173:2379,10.196.69.174:2379,10.196.69.175:2379"

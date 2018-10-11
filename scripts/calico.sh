@@ -56,9 +56,9 @@ function install_calico_bin()
 {
   download_calico_bin
 
-  cp ${DOWNLOAD_DIR}/calico/calico /usr/bin/calico
-  cp ${DOWNLOAD_DIR}/calico/calicoctl /usr/bin/calicoctl
-  cp ${DOWNLOAD_DIR}/calico/calico-ipam /usr/bin/calico-ipam
+  cp -f ${DOWNLOAD_DIR}/calico/calico /usr/bin/calico
+  cp -f ${DOWNLOAD_DIR}/calico/calicoctl /usr/bin/calicoctl
+  cp -f ${DOWNLOAD_DIR}/calico/calico-ipam /usr/bin/calico-ipam
 
   chmod +x /usr/bin/calico
   chmod +x /usr/bin/calicoctl
@@ -70,7 +70,7 @@ function install_calico_config()
 {
   mkdir -p /etc/calico
 
-  cp -R ${PACKAGE_DIR}/calico ${INSTALL_TEMP_DIR}/
+  cp -rf ${PACKAGE_DIR}/calico ${INSTALL_TEMP_DIR}/
 
   # 1. replace etcdEndpoints
   # etcdEndpoints: https://10.196.69.173:2379,https://10.196.69.174:2379,https://10.196.69.175:2379
@@ -94,7 +94,7 @@ function install_calico_config()
     rm -rf /etc/calico/*
   fi
 
-  cp $INSTALL_TEMP_DIR/calico/calicoctl.cfg /etc/calico/calicoctl.cfg
+  cp -f $INSTALL_TEMP_DIR/calico/calicoctl.cfg /etc/calico/calicoctl.cfg
 
   sed -i "s/ETCD_ENDPOINTS_REPLACE/${etcdEndpoints}/g" $INSTALL_TEMP_DIR/calico/calico-node.service >>$LOG
   sed -i "s/CALICO_IPV4POOL_CIDR_REPLACE/${CALICO_IPV4POOL_CIDR}/g" $INSTALL_TEMP_DIR/calico/calico-node.service >>$LOG

@@ -66,7 +66,7 @@ function install_yarn_container_executor()
     rm /etc/yarn/sbin/Linux-amd64-64/container-executor
   fi
 
-  cp ${DOWNLOAD_DIR}/hadoop/container-executor /etc/yarn/sbin/Linux-amd64-64
+  cp -f ${DOWNLOAD_DIR}/hadoop/container-executor /etc/yarn/sbin/Linux-amd64-64
 
   sudo chmod 6755 /etc/yarn/sbin/Linux-amd64-64
   sudo chown :yarn /etc/yarn/sbin/Linux-amd64-64/container-executor 
@@ -95,5 +95,5 @@ function install_yarn_config()
     mkdir -p /etc/yarn/sbin/etc/hadoop
   fi
 
-  cp $INSTALL_TEMP_DIR/hadoop/container-executor.cfg /etc/yarn/sbin/etc/hadoop/
+  cp -f $INSTALL_TEMP_DIR/hadoop/container-executor.cfg /etc/yarn/sbin/etc/hadoop/
 }
