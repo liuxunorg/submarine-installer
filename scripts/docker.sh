@@ -131,6 +131,6 @@ function stop_docker()
 
 function containers_exist()
 {
-  local dockerContainersInfo=`docker ps --filter NAME=$1`
+  local dockerContainersInfo=`docker ps -a --filter NAME=$1`
   echo ${dockerContainersInfo} | grep $1
 }
