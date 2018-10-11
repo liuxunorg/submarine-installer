@@ -82,3 +82,9 @@ python:> tf.test.is_gpu_available()
 python:> exit()
 \033[0m"
 }
+
+function uninstall_nvidia_docker()
+{
+  echo "This method is not implemented."
+}
+

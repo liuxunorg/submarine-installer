@@ -34,6 +34,6 @@ function start_download_server()
     download_nvidia_docker_bin
     download_yarn_container_executor
 
-    python -m SimpleHTTPServer ${DOWNLOAD_HTTP_PORT}
+    python -m SimpleHTTPServer ${DOWNLOAD_SERVER_PORT}
   fi
 }

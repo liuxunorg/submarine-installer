@@ -56,9 +56,9 @@ function install_etcd_config()
 
   # 1. Replace name with ETCD_NODE_NAME_REPLACE based on the location of the local IP in $ETCD_HOSTS
   indexEtcdList=$(indexByEtcdHosts ${LOCAL_HOST_IP})
-  echo ${indexEtcdList}
+  # echo ${indexEtcdList}
   etcdNodeName="etcdnode${indexEtcdList}"
-  echo ${etcdNodeName}
+  # echo ${etcdNodeName}
   sed -i "s/ETCD_NODE_NAME_REPLACE/${etcdNodeName}/g" $INSTALL_TEMP_DIR/etcd/etcd.service >>$LOG
   
   # 2. Replace local IP address
@@ -118,24 +118,10 @@ function start_etcd()
 {
   systemctl restart etcd.service
 
-  echo " ===== Check the status of the etcd service, You should see the following output ====="
-  echo -e "
-$ etcdctl cluster-health
-\033[34mmember 3adf2673436aa824 is healthy: got healthy result from http://etcd_host_ip1:2379
-member 85ffe9aafb7745cc is healthy: got healthy result from http://etcd_host_ip2:2379
-member b3d05464c356441a is healthy: got healthy result from http://etcd_host_ip3:2379\033[0m
-cluster is healthy"
-
-  sleep 1
+  echo " ===== Check the status of the etcd service ====="
+  echo " exec etcdctl cluster-health"
   etcdctl cluster-health
-
-  echo -e "
-$ etcdctl member list
-\033[34m3adf2673436aa824: name=etcdnode3 peerURLs=http://etcd_host_ip1:2380 clientURLs=http://etcd_host_ip1:2379 isLeader=false
-85ffe9aafb7745cc: name=etcdnode2 peerURLs=http://etcd_host_ip2:2380 clientURLs=http://etcd_host_ip2:2379 isLeader=false
-b3d05464c356441a: name=etcdnode1 peerURLs=http://etcd_host_ip3:2380 clientURLs=http://etcd_host_ip3:2379 isLeader=true\033[0m"
-
-  sleep 1
+  echo " exec etcdctl cluster-health"
   etcdctl member list
 }
 
