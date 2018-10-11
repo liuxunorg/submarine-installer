@@ -8,11 +8,15 @@ hadoop 在 2.9 版本中就已经让 YARN 支持了 Docker 容器的资源调度
 
 由于分布式深度学习框架需要运行在多个 Docker 的容器之中，并且需要能够让运行在容器之中的各个服务相互协调，完成分布式机器学习的模型训练和模型发布等服务，这其中就会牵涉到 DNS、Docker 、 GPU、Network、显卡、操作系统内核修改等多个系统工程问题，正确的部署好 Hadoop {Submarine}  的运行环境是一件很困难和耗时的事情。
 
-为了降低部署 hadoop 2.9 以上版本的 docker 集群的难度，所以我们专门开发了这个用来部署 `Hadoop {Submarine} ` 运行时环境的 `hdp-submarine-assembly` 项目，提供一键安装脚本，也可以分步执行安装、卸载、启动和停止各个组件，同时讲解每一步主要参数配置和注意事项。我们同时还向 hadoop 社区提交了部署 `Hadoop {Submarine} ` 运行时环境的 [中文手册](InstallationGuideChineseVersion.md) 和 [英文手册](InstallationGuide.md) ，帮助用户更容易的部署，发现问题也可以及时解决。
+为了降低 hadoop 2.9 以上版本的 docker 等组件的部署难度，所以我们专门开发了这个用来部署 `Hadoop {Submarine} ` 运行时环境的 `hdp-submarine-assembly` 项目，提供一键安装脚本，也可以分步执行安装、卸载、启动和停止各个组件，同时讲解每一步主要参数配置和注意事项。我们同时还向 hadoop 社区提交了部署 `Hadoop {Submarine} ` 运行时环境的 [中文手册](InstallationGuideChineseVersion.md) 和 [英文手册](InstallationGuide.md) ，帮助用户更容易的部署，发现问题也可以及时解决。
+
+### 先决条件
+
+**hdp-submarine-assembly** 目前只支持 centos-release-7-3.1611.el7.centos.x86_64 以上版本的操作系统中进行使用。
 
 ### 配置说明
 
-使用 hdp-submarine-assembly 进行部署之前，你可以参考 [install.conf](install.conf) 文件中已有的配置参数和格式，根据你的使用情况进行如下的参数配置：
+使用 **hdp-submarine-assembly** 进行部署之前，你可以参考 [install.conf](install.conf) 文件中已有的配置参数和格式，根据你的使用情况进行如下的参数配置：
 
 + **DNS 配置项**
 
@@ -67,13 +71,25 @@ hadoop 在 2.9 版本中就已经让 YARN 支持了 Docker 容器的资源调度
 
 **hdp-submarine-assembly**  的部署过程，完全是通过在菜单中进行选择的操作方式进行的，避免了误操作的同时，你还可以通过各个菜单项目对任意一个组件进行分步执行安装、卸载、启动和停止各个组件，具有很好的灵活性，在部分组件出现问题后，也可以通过 **hdp-submarine-assembly**  对系统进行诊断和修复。
 
+**hdp-submarine-assembly**  部署过程中屏幕中会显示日志信息，日志信息一共有三种字体颜色：
+
++ 红色字体颜色：说明组件安装出现了错误，部署已经终止。
+
++ 绿色文字颜色：说明组件安装正常，部署正常运行。
+
++ 蓝色文字颜色：需要你按照提示信息在另外一个 SHELL 终端中进行手工输入命令，一般是修改操作系统内核配置操作，按照提示信息依次操作就可以了。
+
+**启动 hdp-submarine-assembly**
+
+运行 `hdp-submarine-assembly/install.sh` 命令启动，部署程序首先会检测服务器中的网卡 IP 地址，如果服务器有多个网卡或配置了多个 IP ，会以列表的形式显示，选择你实际使用的 IP 地址。
+
 **hdp-submarine-assembly**  菜单说明：
 
-
+![hdp-submarine-assembly](assets/hdp-submarine-assembly.gif)
 
 ### 部署说明
 
-一般的部署流程如下所示：
+部署流程如下所示：
 
 1. 参照配置说明，根据你的服务器使用情况配置好 install.conf 文件
 
@@ -83,7 +99,10 @@ hadoop 在 2.9 版本中就已经让 YARN 支持了 Docker 容器的资源调度
 
    + 运行 `hdp-submarine-assembly/install.sh` 命令
 
-   + 在安装界面中选择 `[start download server]` 菜单项
+   + 在安装界面中选择 `[start download server]` 菜单项，等待下载完各个依赖包后，启动 HTTP 服务
 
-
+4. 在其他需要进行部署的服务器中
+   + 运行 `hdp-submarine-assembly/install.sh` 命令
+   + 
+5. 
 

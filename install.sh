@@ -55,9 +55,8 @@ get_ip_list
 ipCount=${#LOCAL_HOST_IP_LIST[@]}
 if [[ $ipCount -eq 1 ]]; then
   LOCAL_HOST_IP = ${LOCAL_HOST_IP_LIST[0]}
-  echo -n -e "Please confirm if the IP address of this machine is \e[31m${LOCAL_HOST_IP}\e[0m?[y|n]"
 else
-  echo -e "This machine has multiple IPs\e[31m[${LOCAL_HOST_IP_LIST[@]}]\e[0m."
+  echo -e "Detect the network card IP in the server, \e[31m[${LOCAL_HOST_IP_LIST[@]}]\e[0m"
   echo -n -e "please enter a valid IP address: "
 
   read ipInput

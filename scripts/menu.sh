@@ -147,7 +147,8 @@ stop_menu()
 cat<<MENULIST
 ====================================================================================
                          HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
-HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
+                         
+HOST:${LOCAL_HOST_IP}    DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${DOWNLOAD_SERVER_PORT}
 ====================================================================================
 [menu] > [stop component]
 ------------------------------------------------------------------------------------
