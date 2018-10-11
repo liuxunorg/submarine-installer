@@ -20,7 +20,8 @@ main_menu()
 cat<<MENULIST
 ====================================================================================
                          HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
-HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
+
+HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${DOWNLOAD_SERVER_PORT}
 ====================================================================================
 [Main menu]
 ------------------------------------------------------------------------------------
@@ -45,7 +46,8 @@ check_menu()
 cat<<MENULIST
 ====================================================================================
                          HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
-HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
+
+HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${DOWNLOAD_SERVER_PORT}
 ====================================================================================
 [Main menu] > [prepare system environment]
 ------------------------------------------------------------------------------------
@@ -70,7 +72,8 @@ install_menu()
 cat<<MENULIST
 ====================================================================================
                          HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
-HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
+
+HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${DOWNLOAD_SERVER_PORT}
 ====================================================================================
 [Main menu] > [install component]
 ------------------------------------------------------------------------------------
@@ -96,7 +99,8 @@ uninstall_menu()
 cat<<MENULIST
 ====================================================================================
                          HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
-HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
+
+HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${DOWNLOAD_SERVER_PORT}
 ====================================================================================
 [Main menu] > [uninstll component]
 ------------------------------------------------------------------------------------
@@ -122,7 +126,8 @@ start_menu()
 cat<<MENULIST
 ====================================================================================
                          HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
-HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
+
+HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${DOWNLOAD_SERVER_PORT}
 ====================================================================================
 [Main menu] > [stop component]
 ------------------------------------------------------------------------------------

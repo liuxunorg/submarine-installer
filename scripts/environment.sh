@@ -104,9 +104,9 @@ function check_GPU()
   gpuInfo=`lspci | grep -i nvidia`
 
   if [[ "$gpuInfo" = "" ]]; then
-    echo -e "\033[31mWARN: The system did not detect the GPU graphics card.\033[0m"
+    echo -e "\033[31mERROR: The system did not detect the GPU graphics card.\033[0m"
   else
-    echo -e "\033[32mWARN: The system detect the GPU graphics card.\033[0m"
+    echo -e "\033[32mINFO: The system detect the GPU graphics card.\033[0m"
   fi
 }
 
@@ -169,20 +169,20 @@ function prepare_nvidia_environment()
 # 1. Disable nouveau
 # Add the content 'rd.driver.blacklist=nouveau nouveau.modeset=0' 
 # to the 'GRUB_CMDLINE_LINUX' configuration item in the /etc/default/grub file.
-shell:> vi /etc/default/grub
+root:> vi /etc/default/grub
 vi:> GRUB_CMDLINE_LINUX=\"rd.driver.blacklist=nouveau nouveau.modeset=0 ...\"
 
 # 2. Generate configuration
-shell:> grub2-mkconfig -o /boot/grub2/grub.cfg
+root:> grub2-mkconfig -o /boot/grub2/grub.cfg
 
 # 3. Open (new) /etc/modprobe.d/blacklist.conf, add content 'blacklist nouveau'
-shell:> vi /etc/modprobe.d/blacklist.conf
+root:> vi /etc/modprobe.d/blacklist.conf
 vi:> blacklist nouveau
 
 # 4. Update configuration and reboot
-mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img
-dracut /boot/initramfs-$(uname -r).img $(uname -r)
-reboot
+root:> mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img
+root:> dracut /boot/initramfs-$(uname -r).img $(uname -r)
+root:> reboot
 \033[0m"
 }
 
