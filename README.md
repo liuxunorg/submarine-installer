@@ -8,7 +8,7 @@ hadoop 在 2.9 版本中就已经让 YARN 支持了 Docker 容器的资源调度
 
 由于分布式深度学习框架需要运行在多个 Docker 的容器之中，并且需要能够让运行在容器之中的各个服务相互协调，完成分布式机器学习的模型训练和模型发布等服务，这其中就会牵涉到 DNS、Docker 、 GPU、Network、显卡、操作系统内核修改等多个系统工程问题，正确的部署好 Hadoop {Submarine}  的运行环境是一件很困难和耗时的事情。
 
-为了降低 hadoop 2.9 以上版本的 docker 等组件的部署难度，所以我们专门开发了这个用来部署 `Hadoop {Submarine} ` 运行时环境的 `hdp-submarine-assembly` 项目，提供一键安装脚本，也可以分步执行安装、卸载、启动和停止各个组件，同时讲解每一步主要参数配置和注意事项。我们同时还向 hadoop 社区提交了部署 `Hadoop {Submarine} ` 运行时环境的 [中文手册](InstallationGuideChineseVersion.md) 和 [英文手册](InstallationGuide.md) ，帮助用户更容易的部署，发现问题也可以及时解决。
+为了降低 hadoop 2.9 以上版本的 docker 等组件的部署难度，所以我们专门开发了这个用来部署 `Hadoop {Submarine} ` 运行时环境的 `hdp-submarine-assembly` 项目，提供一键安装脚本，也可以分步执行安装、卸载、启动和停止各个组件，同时讲解每一步主要参数配置和注意事项。我们同时还向 hadoop 社区提交了部署 `Hadoop {Submarine} ` 运行时环境的 [中文手册](https://github.com/apache/hadoop/blob/trunk/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-applications/hadoop-yarn-submarine/src/site/markdown/InstallationGuideChineseVersion.md) 和 [英文手册](https://github.com/apache/hadoop/blob/trunk/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-applications/hadoop-yarn-submarine/src/site/markdown/InstallationGuide.md) ，帮助用户更容易的部署，发现问题也可以及时解决。
 
 ### 先决条件
 
@@ -102,7 +102,61 @@ hadoop 在 2.9 版本中就已经让 YARN 支持了 Docker 容器的资源调度
    + 在安装界面中选择 `[start download server]` 菜单项，等待下载完各个依赖包后，启动 HTTP 服务
 
 4. 在其他需要进行部署的服务器中
-   + 运行 `hdp-submarine-assembly/install.sh` 命令
-   + 
-5. 
+
+   运行 `hdp-submarine-assembly/install.sh` 命令，显示的主菜单 **[Main menu]** 中有以下菜单：
+
+   + prepare system environment
+   + install component
+   + uninstall component
+   + start component
+   + stop component
+   + start download server
+
+5. **prepare system environment**
+
+   + prepare operation system
+
+   + prepare operation system kernel
+
+   + prepare GCC version
+
+   + check GPU
+
+   + prepare user&group
+
+   + prepare nvidia environment
+
+6. install component
+
+   + instll etcd
+   + instll docker
+   + instll calico network
+   + instll nvidia driver
+   + instll nvidia docker
+   + instll yarn container-executor
+   + instll submarine autorun script
+
+7. uninstall component
+
+   - uninstll etcd
+   - uninstll docker
+   - uninstll calico network
+   - uninstll nvidia driver
+   - uninstll nvidia docker
+   - uninstll yarn container-executor
+   - uninstll submarine autorun script
+
+8. start component
+
+   - start etcd
+   - start docker
+   - start calico network
+
+9. stop component
+
+   - stop etcd
+   - stop docker
+   - stop calico network
+
+10. start download server
 

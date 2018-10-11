@@ -22,7 +22,7 @@ cat<<MENULIST
                          HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
 HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
 ====================================================================================
-[menu]
+[Main menu]
 ------------------------------------------------------------------------------------
 MENULIST
 echo -e "  \e[32m1.prepare system environment [..]\e[0m"
@@ -47,7 +47,7 @@ cat<<MENULIST
                          HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
 HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
 ====================================================================================
-[menu] > [prepare system environment]
+[Main menu] > [prepare system environment]
 ------------------------------------------------------------------------------------
 MENULIST
 echo -e "  \e[32m1.prepare operation system\e[0m"
@@ -72,7 +72,7 @@ cat<<MENULIST
                          HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
 HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
 ====================================================================================
-[menu] > [install component]
+[Main menu] > [install component]
 ------------------------------------------------------------------------------------
 MENULIST
 echo -e "  \e[32m1.instll etcd\e[0m"
@@ -98,7 +98,7 @@ cat<<MENULIST
                          HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
 HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
 ====================================================================================
-[menu] > [uninstll component]
+[Main menu] > [uninstll component]
 ------------------------------------------------------------------------------------
 MENULIST
 echo -e "  \e[32m1.uninstll etcd\e[0m"
@@ -124,22 +124,19 @@ cat<<MENULIST
                          HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
 HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
 ====================================================================================
-[menu] > [stop component]
+[Main menu] > [stop component]
 ------------------------------------------------------------------------------------
 MENULIST
 echo -e "  \e[32m1.start etcd\e[0m"
 echo -e "  \e[32m2.start docker\e[0m"
 echo -e "  \e[32m3.start calico network\e[0m"
-echo -e "  \e[32m4.start nvidia driver\e[0m"
-echo -e "  \e[32m5.start nvidia docker\e[0m"
-echo -e "  \e[32m6.start submarine autorun script\e[0m"
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
 cat<<MENULIST
 ==================================================================================== 
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m6\e[0m,\e[32mb\e[0m(back)]:" 
+echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m3\e[0m,\e[32mb\e[0m(back)]:" 
 }
 
 stop_menu()
@@ -147,26 +144,22 @@ stop_menu()
 cat<<MENULIST
 ====================================================================================
                          HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
-                         
+
 HOST:${LOCAL_HOST_IP}    DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${DOWNLOAD_SERVER_PORT}
 ====================================================================================
-[menu] > [stop component]
+[Main menu] > [stop component]
 ------------------------------------------------------------------------------------
 MENULIST
 echo -e "  \e[32m1.stop etcd\e[0m"
 echo -e "  \e[32m2.stop docker\e[0m"
 echo -e "  \e[32m3.stop calico network\e[0m"
-echo -e "  \e[32m4.stop nvidia driver\e[0m"
-echo -e "  \e[32m5.stop nvidia docker\e[0m"
-echo -e "  \e[32m6.stop submarine autorun script\e[0m"
-echo -e "  \e[32m7.stop all\e[0m"
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
 cat<<MENULIST
 ==================================================================================== 
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m6\e[0m,\e[32mb\e[0m(back)]:" 
+echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m3\e[0m,\e[32mb\e[0m(back)]:" 
 }
 
 menu_index="0"
@@ -384,30 +377,6 @@ menu_process()
         start_calico
       fi
     ;;
-    "4-4")
-      echo -n "Do you want to startup nvidia driver?[y|n]"
-      read myselect
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
-      then
-        echo ""
-      fi
-    ;;
-    "4-5")
-      echo -n "Do you want to startup nvidia docker?[y|n]"
-      read myselect
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
-      then
-        echo ""
-      fi
-    ;;
-    "4-6")
-      echo -n "Do you want to startup submarine autostart script?[y|n]"
-      read myselect
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
-      then  
-        echo ""
-      fi
-    ;;
 # stop component
     "5-1")
       echo -n "Do you want to stop etcd?[y|n]"
@@ -431,30 +400,6 @@ menu_process()
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         stop_calico
-      fi
-    ;;
-    "5-4")
-      echo -n "Do you want to stop nvidia driver?[y|n]"
-      read myselect
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
-      then
-        echo ""
-      fi
-    ;;
-    "5-5")
-      echo -n "Do you want to stop nvidia docker?[y|n]"
-      read myselect
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
-      then
-        echo ""
-      fi
-    ;;
-    "5-6")
-      echo -n "Do you want to stop submarine autostart script?[y|n]"
-      read myselect
-      if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
-      then  
-        echo ""
       fi
     ;;
   esac
