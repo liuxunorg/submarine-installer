@@ -19,8 +19,8 @@ main_menu()
 {
 cat<<MENULIST
 ====================================================================================
-                          submarine assembly
-           support centos-release-7-3.1611.el7.centos.x86_64 or higher
+                         HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
+HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
 ====================================================================================
 [menu]
 ------------------------------------------------------------------------------------
@@ -44,9 +44,8 @@ check_menu()
 {
 cat<<MENULIST
 ====================================================================================
-
-submarine assembly
-
+                         HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
+HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
 ====================================================================================
 [menu] > [prepare system environment]
 ------------------------------------------------------------------------------------
@@ -70,9 +69,8 @@ install_menu()
 {
 cat<<MENULIST
 ====================================================================================
-
-submarine assembly
-
+                         HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
+HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
 ====================================================================================
 [menu] > [install component]
 ------------------------------------------------------------------------------------
@@ -97,9 +95,8 @@ uninstall_menu()
 {
 cat<<MENULIST
 ====================================================================================
-
-submarine assembly
-
+                         HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
+HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
 ====================================================================================
 [menu] > [uninstll component]
 ------------------------------------------------------------------------------------
@@ -124,9 +121,8 @@ start_menu()
 {
 cat<<MENULIST
 ====================================================================================
-
-submarine assembly
-
+                         HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
+HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
 ====================================================================================
 [menu] > [stop component]
 ------------------------------------------------------------------------------------
@@ -150,9 +146,8 @@ stop_menu()
 {
 cat<<MENULIST
 ====================================================================================
-
-submarine assembly
-
+                         HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
+HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:${DOWNLOAD_HTTP}
 ====================================================================================
 [menu] > [stop component]
 ------------------------------------------------------------------------------------

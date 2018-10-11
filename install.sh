@@ -17,6 +17,7 @@
 # description: sumbarine install scripts.
 
 ROOT=$(cd "$(dirname "$0")"; pwd)
+HDP_SUBMARINE_ASSEMBLY_VERSION="0.7"
 PACKAGE_DIR=${ROOT}/package
 SCRIPTS_DIR=${ROOT}/scripts
 INSTALL_TEMP_DIR=${ROOT}/temp
@@ -76,8 +77,8 @@ fi
 
 check_install_conf
 
-if [[ -n "$DOWNLOAD_HTTP_IP" && -n "$DOWNLOAD_HTTP_PORT" && "$DOWNLOAD_HTTP_IP" != "$LOCAL_HOST_IP" ]]; then
-  DOWNLOAD_HTTP="http://${DOWNLOAD_HTTP_IP}:${DOWNLOAD_HTTP_PORT}"
+if [[ -n "$DOWNLOAD_SERVER_IP" && -n "$DOWNLOAD_SERVER_PORT" && "$DOWNLOAD_SERVER_IP" != "$LOCAL_HOST_IP" ]]; then
+  DOWNLOAD_HTTP="http://${DOWNLOAD_SERVER_IP}:${DOWNLOAD_SERVER_PORT}"
 fi
 
 check_install_user

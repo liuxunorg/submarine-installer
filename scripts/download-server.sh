@@ -17,8 +17,8 @@
 
 function start_download_server()
 {
-  if [[ "$DOWNLOAD_HTTP_IP" != "$LOCAL_HOST_IP" ]]; then
-    echo -e "\033[31mERROR: Only $DOWNLOAD_HTTP_IP can start the download service.\033[0m"
+  if [[ "$DOWNLOAD_SERVER_IP" != "$LOCAL_HOST_IP" ]]; then
+    echo -e "\033[31mERROR: Only $DOWNLOAD_SERVER_IP can start the download service.\033[0m"
     return 1
   fi
 
