@@ -1,11 +1,13 @@
-# Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements.  See the NOTICE file distributed with
-# this work for additional information regarding copyright ownership.
-# The ASF licenses this file to You under the Apache License, Version 2.0
-# (the "License"); you may not use this file except in compliance with
-# the License.  You may obtain a copy of the License at
+#!/usr/bin/env bash
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
 #
-#    http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,8 +15,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#!/bin/bash
-
+## @description  download docker rmp
+## @audience     public
+## @stability    stable
 function download_docker_rpm()
 {
   # download http server
@@ -42,6 +45,9 @@ function download_docker_rpm()
   fi
 }
 
+## @description  install docker bin
+## @audience     public
+## @stability    stable
 function install_docker_bin()
 {
   download_docker_rpm
@@ -50,6 +56,9 @@ function install_docker_bin()
   yum -y localinstall ${DOWNLOAD_DIR}/docker/${DOCKER_ENGINE_RPM}
 }
 
+## @description  uninstall docker bin
+## @audience     public
+## @stability    stable
 function uninstall_docker_bin()
 {
   download_docker_rpm
@@ -58,6 +67,9 @@ function uninstall_docker_bin()
   yum -y remove ${DOWNLOAD_DIR}/docker/${DOCKER_ENGINE_RPM}
 }
 
+## @description  install docker config
+## @audience     public
+## @stability    stable
 function install_docker_config()
 {
   rm -rf ${INSTALL_TEMP_DIR}/docker
@@ -93,6 +105,9 @@ function install_docker_config()
   cp $INSTALL_TEMP_DIR/docker/docker.service /etc/systemd/system/ >>$LOG
 }
 
+## @description  install docker
+## @audience     public
+## @stability    stable
 function install_docker()
 {
   install_docker_bin
@@ -102,6 +117,9 @@ function install_docker()
   systemctl enable docker.service
 }
 
+## @description  unstall docker
+## @audience     public
+## @stability    stable
 function uninstall_docker()
 {
   echo "stop docker service"
@@ -116,6 +134,9 @@ function uninstall_docker()
   systemctl daemon-reload
 }
 
+## @description  start docker
+## @audience     public
+## @stability    stable
 function start_docker()
 {
   systemctl restart docker
@@ -123,12 +144,18 @@ function start_docker()
   docker info
 }
 
+## @description  stop docker
+## @audience     public
+## @stability    stable
 function stop_docker()
 {
   systemctl stop docker
   systemctl status docker
 }
 
+## @description  check if the containers exist
+## @audience     public
+## @stability    stable
 function containers_exist()
 {
   local dockerContainersInfo=`docker ps -a --filter NAME=$1`

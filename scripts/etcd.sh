@@ -1,11 +1,13 @@
-# Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements.  See the NOTICE file distributed with
-# this work for additional information regarding copyright ownership.
-# The ASF licenses this file to You under the Apache License, Version 2.0
-# (the "License"); you may not use this file except in compliance with
-# the License.  You may obtain a copy of the License at
+#!/usr/bin/env bash
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
 #
-#    http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,8 +15,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#!/bin/bash
-
+## @description  download etcd bin
+## @audience     public
+## @stability    stable
 function download_etcd_bin()
 {
   # my download http server
@@ -32,6 +35,9 @@ function download_etcd_bin()
   fi
 }
 
+## @description  install etcd bin
+## @audience     public
+## @stability    stable
 function install_etcd_bin()
 {
   download_etcd_bin
@@ -48,6 +54,9 @@ function install_etcd_bin()
   chmod -R a+rw /var/lib/etcd
 }
 
+## @description  install etcd config
+## @audience     public
+## @stability    stable
 function install_etcd_config()
 {
   # config etcd.service
@@ -60,7 +69,7 @@ function install_etcd_config()
   etcdNodeName="etcdnode${indexEtcdList}"
   # echo ${etcdNodeName}
   sed -i "s/ETCD_NODE_NAME_REPLACE/${etcdNodeName}/g" $INSTALL_TEMP_DIR/etcd/etcd.service >>$LOG
-  
+
   # 2. Replace local IP address
   sed -i "s/LOCAL_HOST_REPLACE/${LOCAL_HOST_IP}/g" $INSTALL_TEMP_DIR/etcd/etcd.service >>$LOG
 
@@ -84,6 +93,9 @@ function install_etcd_config()
   cp $INSTALL_TEMP_DIR/etcd/etcd.service /etc/systemd/system/ >>$LOG
 }
 
+## @description  install etcd
+## @audience     public
+## @stability    stable
 function install_etcd()
 {
   index=$(indexByEtcdHosts ${LOCAL_HOST_IP})
@@ -91,7 +103,7 @@ function install_etcd()
     echo -e "STOP: This host\033[31m[${LOCAL_HOST_IP}]\033[0m is not in the ETCD server list\033[31m[${ETCD_HOSTS[@]}]\033[0m"
     return 1
   fi
-  
+
   install_etcd_bin
 
   install_etcd_config
@@ -100,6 +112,9 @@ function install_etcd()
   systemctl enable etcd.service
 }
 
+## @description  uninstall etcd
+## @audience     public
+## @stability    stable
 function uninstall_etcd()
 {
   echo "stop etcd.service"
@@ -114,6 +129,9 @@ function uninstall_etcd()
   systemctl daemon-reload
 }
 
+## @description  start etcd
+## @audience     public
+## @stability    stable
 function start_etcd()
 {
   systemctl restart etcd.service
@@ -125,6 +143,9 @@ function start_etcd()
   etcdctl member list
 }
 
+## @description  stop etcd
+## @audience     public
+## @stability    stable
 function stop_etcd()
 {
   systemctl stop etcd.service

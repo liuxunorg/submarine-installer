@@ -1,11 +1,13 @@
-# Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements.  See the NOTICE file distributed with
-# this work for additional information regarding copyright ownership.
-# The ASF licenses this file to You under the Apache License, Version 2.0
-# (the "License"); you may not use this file except in compliance with
-# the License.  You may obtain a copy of the License at
+#!/usr/bin/env bash
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
 #
-#    http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,8 +15,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#!/bin/bash
-
+## @description  main menu
+## @audience     public
+## @stability    stable
 main_menu()
 {
 cat<<MENULIST
@@ -35,12 +38,15 @@ echo -e "  \e[32m6.start download server [..]\e[0m"
 echo -e ""
 echo -e "  \e[32mq.quit\e[0m"
 cat<<MENULIST
-==================================================================================== 
+====================================================================================
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m6\e[0m,\e[32mq\e[0m(quit)]:" 
+echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m6\e[0m,\e[32mq\e[0m(quit)]:"
 }
 
+## @description  check menu
+## @audience     public
+## @stability    stable
 check_menu()
 {
 cat<<MENULIST
@@ -61,12 +67,15 @@ echo -e "  \e[32m6.prepare nvidia environment\e[0m"
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
 cat<<MENULIST
-==================================================================================== 
+====================================================================================
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m5\e[0m,\e[32mb\e[0m(back)]:" 
+echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m5\e[0m,\e[32mb\e[0m(back)]:"
 }
 
+## @description  install menu
+## @audience     public
+## @stability    stable
 install_menu()
 {
 cat<<MENULIST
@@ -88,12 +97,15 @@ echo -e "  \e[32m7.instll submarine autorun script\e[0m"
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
 cat<<MENULIST
-==================================================================================== 
+====================================================================================
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m7\e[0m,\e[32mb\e[0m(back)]:" 
+echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m7\e[0m,\e[32mb\e[0m(back)]:"
 }
 
+## @description  unstall menu
+## @audience     public
+## @stability    stable
 uninstall_menu()
 {
 cat<<MENULIST
@@ -115,12 +127,15 @@ echo -e "  \e[32m7.uninstll submarine autorun script\e[0m"
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
 cat<<MENULIST
-==================================================================================== 
+====================================================================================
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m7\e[0m,\e[32mb\e[0m(back)]:" 
+echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m7\e[0m,\e[32mb\e[0m(back)]:"
 }
 
+## @description  start menu
+## @audience     public
+## @stability    stable
 start_menu()
 {
 cat<<MENULIST
@@ -138,12 +153,15 @@ echo -e "  \e[32m3.start calico network\e[0m"
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
 cat<<MENULIST
-==================================================================================== 
+====================================================================================
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m3\e[0m,\e[32mb\e[0m(back)]:" 
+echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m3\e[0m,\e[32mb\e[0m(back)]:"
 }
 
+## @description  stop menu
+## @audience     public
+## @stability    stable
 stop_menu()
 {
 cat<<MENULIST
@@ -161,16 +179,19 @@ echo -e "  \e[32m3.stop calico network\e[0m"
 echo -e ""
 echo -e "  \e[32mb.back main menu\e[0m"
 cat<<MENULIST
-==================================================================================== 
+====================================================================================
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m3\e[0m,\e[32mb\e[0m(back)]:" 
+echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m3\e[0m,\e[32mb\e[0m(back)]:"
 }
 
+## @description  menu operation
+## @audience     public
+## @stability    stable
 menu_index="0"
-menu() 
-{ 
-  clear 
+menu()
+{
+  clear
   # echo "menu_index-menu_choice=$menu_index-$menu_choice"
   case $menu_index in
     "0")
@@ -195,7 +216,7 @@ menu()
       start_download_server
     ;;
     "q")
-    	exit 1
+      exit 1
     ;;
     *)
       echo "error input!"
@@ -205,15 +226,18 @@ menu()
     ;;
   esac
 
-  read menu_choice 
-} 
+  read menu_choice
+}
 
+## @description  menu process
+## @audience     public
+## @stability    stable
 menu_process()
 {
   process=0
   unset myselect
   # echo "debug=$menu_index-$menu_choice"
-  case "$menu_index-$menu_choice" in 
+  case "$menu_index-$menu_choice" in
     "1-b"|"2-b"|"3-b"|"4-b"|"5-b"|"6-b")
       menu_index="0"
       menu_choice="0"
@@ -222,27 +246,27 @@ menu_process()
     "1-1")
       myselect="y"
       check_operationSystem
-    ;; 
+    ;;
     "1-2")
       myselect="y"
       check_operationSystemKernel
-    ;; 
+    ;;
     "1-3")
       myselect="y"
       check_gccVersion
-    ;; 
+    ;;
     "1-4")
       myselect="y"
       check_GPU
-    ;; 
+    ;;
     "1-5")
       myselect="y"
       check_userGroup
-    ;; 
+    ;;
     "1-6")
       myselect="y"
       prepare_nvidia_environment
-    ;; 
+    ;;
 # install component
     "2-1")
       echo -n "Do you want to install etcd?[y|n]"
@@ -317,7 +341,7 @@ menu_process()
         uninstall_docker
       fi
     ;;
-	 "3-3")
+   "3-3")
       echo -n "Do you want to uninstall calico network?[y|n]"
       read myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
@@ -409,7 +433,7 @@ menu_process()
     ;;
   esac
 
-  if [[ "$myselect" = "y" || "$myselect" = "Y" ]] 
+  if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
   then
     process=1
   fi

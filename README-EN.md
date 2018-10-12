@@ -1,6 +1,6 @@
-## hdp submarine assembly
+# hdp submarine assembly
 
-### Introduction
+## Introduction
 
 Before introducing the **hdp-submarine-assembly** project, let's first explain the **Hadoop {Submarine}** project. Hadoop {Submarine} is the latest machine learning framework subproject in the Hadoop 3.2 release. He allows Hadoop to support `Tensorflow`, `MXNet`,` Caffe`, `Spark`, etc. A variety of deep learning frameworks provide a full-featured system framework for machine learning algorithm development, distributed model training, model management, and model publishing, combined with hadoop's intrinsic data storage and data processing capabilities to enable data scientists to Good mining and the value of the data.
 
@@ -10,11 +10,11 @@ Since the distributed deep learning framework needs to run in multiple Docker co
 
 In order to reduce the difficulty of deploying components such as docker 2.9 or higher, we have developed this **hdp-submarine-assembly** project to deploy the **Hadoop {Submarine}** runtime environment, providing a one-click installation script or step-by-step installation. Unload, start, and stop individual components, and explain the main parameter configuration and considerations for each step. We also submitted a [Chinese manual](InstallationGuideChineseVersion.md) and an [English manual](InstallationGuide.md) for the **Hadoop {Submarine}** runtime environment to the hadoop community to help users deploy more easily and find problems in a timely manner.
 
-### prerequisites
+## prerequisites
 
 **Hdp-submarine-assembly** currently only supports operating systems based on `centos-release-7-3.1611.el7.centos.x86_64` and above.
 
-### Configuration instructions
+## Configuration instructions
 
 Before deploying with hdp-submarine-assembly, you can refer to the existing configuration parameters and format in the `install.conf` file, and configure the following parameters according to your usage:
 
@@ -67,7 +67,7 @@ Before deploying with hdp-submarine-assembly, you can refer to the existing conf
 
   Please keep the same configuration as `yarn.nodemanager.log-dirs` in the `yarn-site.xml` configuration file of the YARN cluster you are using.
 
-### Instructions for use
+## Instructions for use
 
 **Hdp-submarine-assembly** is completely written in shell script. It does not need to install any deployment tools such as ansible. It avoids different server management specifications of different company users and causes the program to be uncommon. For example, some computer rooms do not allow ROOT users to directly remotely through SHELL. Server operation, etc.
 
@@ -89,7 +89,7 @@ Run the `hdp-submarine-assembly/install.sh` command to start. The deployment pro
 
 ![hdp-submarine-assembly](assets/hdp-submarine-assembly.gif)
 
-### Deployment instructions
+## Deployment instructions
 
 The deployment process is as follows:
 
@@ -228,7 +228,3 @@ The deployment process is as follows:
 
    This operation can only be performed on the server where the **DOWNLOAD_SERVER_IP** configuration item is located;
 
-### Other
-
-1. [Chinese version of the document](README.md)
-2. [YARN-8870](https://issues.apache.org/jira/browse/YARN-8870)

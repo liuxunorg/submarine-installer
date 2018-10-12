@@ -1,11 +1,13 @@
-# Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements.  See the NOTICE file distributed with
-# this work for additional information regarding copyright ownership.
-# The ASF licenses this file to You under the Apache License, Version 2.0
-# (the "License"); you may not use this file except in compliance with
-# the License.  You may obtain a copy of the License at
+#!/usr/bin/env bash
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
 #
-#    http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,8 +15,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#!/bin/bash
-
+## @description  check install user
+## @audience     public
+## @stability    stable
 function check_install_user()
 {
   if [[ $(id -u) -ne 0 ]];then
@@ -23,13 +26,18 @@ function check_install_user()
   fi
 }
 
+## @description  exit install
+## @audience     public
+## @stability    stable
 function exit_install()
 {
   echo "Exit the installation!" | tee -a $LOG
   exit $1
 }
 
-# Check if the IP address format is correct.
+## @description  Check if the IP address format is correct
+## @audience     public
+## @stability    stable
 function valid_ip()
 {
   local ip=$1
@@ -49,7 +57,9 @@ function valid_ip()
   return $stat
 }
 
-# Check if the configuration file configuration is correct
+## @description  Check if the configuration file configuration is correct
+## @audience     public
+## @stability    stable
 function check_install_conf()
 {
   echo "Check if the configuration file configuration is correct ..." | tee -a $LOG
@@ -70,6 +80,9 @@ function check_install_conf()
   echo "Check if the configuration file configuration is correct [ Done ]" | tee -a $LOG
 }
 
+## @description  index by EtcdHosts list
+## @audience     public
+## @stability    stable
 function indexByEtcdHosts() {
   index=0
   while [ "$index" -lt "${#ETCD_HOSTS[@]}" ]; do
@@ -82,7 +95,10 @@ function indexByEtcdHosts() {
   echo ""
 }
 
-function getLocalIP() 
+## @description  get local IP
+## @audience     public
+## @stability    stable
+function getLocalIP()
 {
   local _ip _myip _line _nl=$'\n'
   while IFS=$': \t' read -a _line ;do
@@ -93,6 +109,9 @@ function getLocalIP()
   printf ${1+-v} $1 "%s${_nl:0:$[${#1}>0?0:1]}" $_myip
 }
 
+## @description  get ip list
+## @audience     public
+## @stability    stable
 function get_ip_list()
 {
   array=$(ifconfig | grep inet | grep -v inet6 | grep -v 127 | sed 's/^[ \t]*//g' | cut -d ' ' -f2)

@@ -1,11 +1,13 @@
-# Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements.  See the NOTICE file distributed with
-# this work for additional information regarding copyright ownership.
-# The ASF licenses this file to You under the Apache License, Version 2.0
-# (the "License"); you may not use this file except in compliance with
-# the License.  You may obtain a copy of the License at
+#!/usr/bin/env bash
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
 #
-#    http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,8 +15,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#!/bin/bash
-
+## @description  download calico bin
+## @audience     public
+## @stability    stable
 function download_calico_bin()
 {
   # submarin http server
@@ -52,6 +55,9 @@ function download_calico_bin()
   fi
 }
 
+## @description  install calico bin
+## @audience     public
+## @stability    stable
 function install_calico_bin()
 {
   download_calico_bin
@@ -65,7 +71,9 @@ function install_calico_bin()
   chmod +x /usr/bin/calico-ipam
 }
 
-# TODO: check https or http?
+## @description  install calico config
+## @audience     public
+## @stability    stable
 function install_calico_config()
 {
   mkdir -p /etc/calico
@@ -104,6 +112,9 @@ function install_calico_config()
   systemctl enable calico-node.service
 }
 
+## @description  modify kernel network config
+## @audience     public
+## @stability    stable
 function kernel_network_config()
 {
   if [ `grep -c "net.ipv4.conf.all.rp_filter=1" /etc/sysctl.conf` -eq '0' ]; then
@@ -117,16 +128,22 @@ function kernel_network_config()
   sysctl -p
 }
 
-function claico_network_exist()
+## @description  check if the calico-network exist
+## @audience     public
+## @stability    stable
+function calico_network_exist()
 {
   local dockerNetwokInfo=`docker network ls --filter NAME=${CALICO_NETWORK_NAME}`
   echo ${dockerNetwokInfo} | grep ${CALICO_NETWORK_NAME}
 }
 
+## @description  verification calico
+## @audience     public
+## @stability    stable
 function verification_calico()
 {
   echo " ===== Check if the network between 2 containers can be connected ====="
-  local claicoNetworkExist=`claico_network_exist`
+  local claicoNetworkExist=`calico_network_exist`
   if [[ "$claicoNetworkExist" = "" ]]; then
     echo "Create a calico network"
     docker network create --driver calico --ipam-driver calico-ipam ${CALICO_NETWORK_NAME}
@@ -158,6 +175,9 @@ function verification_calico()
   docker exec ${verifyA} ping ${verifyB} -c 5
 }
 
+## @description  install calico
+## @audience     public
+## @stability    stable
 function install_calico()
 {
   kernel_network_config
@@ -167,6 +187,9 @@ function install_calico()
   verification_calico
 }
 
+## @description  uninstall calico
+## @audience     public
+## @stability    stable
 function uninstall_calico()
 {
   echo "stop calico-node.service"
@@ -182,12 +205,18 @@ function uninstall_calico()
   systemctl daemon-reload
 }
 
+## @description  start calico
+## @audience     public
+## @stability    stable
 function start_calico()
 {
   systemctl restart calico-node.service
   systemctl status calico-node.service
 }
 
+## @description  stop calico
+## @audience     public
+## @stability    stable
 function stop_calico()
 {
   systemctl stop calico-node.service

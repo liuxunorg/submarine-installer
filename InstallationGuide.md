@@ -617,7 +617,8 @@ Distributed-shell + GPU + cgroup
  --env DOCKER_JAVA_HOME=/opt/java \
  --env DOCKER_HADOOP_HDFS_HOME=/hadoop-3.1.0 --name distributed-tf-gpu \
  --env YARN_CONTAINER_RUNTIME_DOCKER_CONTAINER_NETWORK=calico-network \
- --docker_image gpu-cuda9.0-tf1.8.0-with-models \
+ --worker_docker_image gpu-cuda9.0-tf1.8.0-with-models \
+ --ps_docker_image dockerfile-cpu-tf1.8.0-with-models \
  --input_path hdfs://${dfs_name_service}/tmp/cifar-10-data \
  --checkpoint_path hdfs://${dfs_name_service}/user/hadoop/tf-distributed-checkpoint \
  --num_ps 0 \

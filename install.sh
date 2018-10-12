@@ -1,23 +1,23 @@
-# Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements.  See the NOTICE file distributed with
-# this work for additional information regarding copyright ownership.
-# The ASF licenses this file to You under the Apache License, Version 2.0
-# (the "License"); you may not use this file except in compliance with
-# the License.  You may obtain a copy of the License at
+#!/usr/bin/env bash
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
 #
-#    http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-#!/bin/bash
 # description: sumbarine install scripts.
 
 ROOT=$(cd "$(dirname "$0")"; pwd)
-HDP_SUBMARINE_ASSEMBLY_VERSION="0.7"
+HDP_SUBMARINE_ASSEMBLY_VERSION="v0.7"
 PACKAGE_DIR=${ROOT}/package
 SCRIPTS_DIR=${ROOT}/scripts
 INSTALL_TEMP_DIR=${ROOT}/temp
@@ -89,7 +89,7 @@ menu_index="0"
 for ((j=1;;j++))
 do
   menu
-  case "$menu_index" in 
+  case "$menu_index" in
     "0")
       menu_index="$menu_choice"
     ;;
@@ -101,10 +101,10 @@ do
         read
       fi
     ;;
-    "a") 
+    "a")
       exit_install
-      ;; 
-    "q") 
+      ;;
+    "q")
       exit_install
       ;;
     *)
@@ -112,5 +112,5 @@ do
       menu_choice="0"
       menu
     ;;
-  esac  
+  esac
 done

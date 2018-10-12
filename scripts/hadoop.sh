@@ -1,11 +1,13 @@
-# Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements.  See the NOTICE file distributed with
-# this work for additional information regarding copyright ownership.
-# The ASF licenses this file to You under the Apache License, Version 2.0
-# (the "License"); you may not use this file except in compliance with
-# the License.  You may obtain a copy of the License at
+#!/usr/bin/env bash
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
 #
-#    http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,20 +15,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#!/bin/bash
-
+## @description  install yarn
+## @audience     public
+## @stability    stable
 function install_yarn()
 {
   install_yarn_container_executor
   install_yarn_config
 }
 
+## @description  uninstall yarn
+## @audience     public
+## @stability    stable
 function uninstall_yarn()
 {
   rm -rf /etc/yarn/sbin/Linux-amd64-64/*
   rm -rf /etc/yarn/sbin/etc/hadoop/*
 }
 
+## @description  download yarn container executor
+## @audience     public
+## @stability    stable
 function download_yarn_container_executor()
 {
   # my download http server
@@ -53,6 +62,9 @@ function download_yarn_container_executor()
   fi
 }
 
+## @description  install yarn container executor
+## @audience     public
+## @stability    stable
 function install_yarn_container_executor()
 {
   echo "install yarn container executor file ..."
@@ -69,10 +81,13 @@ function install_yarn_container_executor()
   cp -f ${DOWNLOAD_DIR}/hadoop/container-executor /etc/yarn/sbin/Linux-amd64-64
 
   sudo chmod 6755 /etc/yarn/sbin/Linux-amd64-64
-  sudo chown :yarn /etc/yarn/sbin/Linux-amd64-64/container-executor 
+  sudo chown :yarn /etc/yarn/sbin/Linux-amd64-64/container-executor
   sudo chmod 6050 /etc/yarn/sbin/Linux-amd64-64/container-executor
 }
 
+## @description  install yarn config
+## @audience     public
+## @stability    stable
 function install_yarn_config()
 {
   echo "install yarn config file ..."

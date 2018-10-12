@@ -1,11 +1,13 @@
-# Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements.  See the NOTICE file distributed with
-# this work for additional information regarding copyright ownership.
-# The ASF licenses this file to You under the Apache License, Version 2.0
-# (the "License"); you may not use this file except in compliance with
-# the License.  You may obtain a copy of the License at
+#!/usr/bin/env bash
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
 #
-#    http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,23 +15,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#!/bin/bash
-
+## @description  check operation System
+## @audience     public
+## @stability    stable
 function check_operationSystem()
 {
   echo -e "The submarine assembly support \033[32m[centos-release-7-3.1611.el7.centos.x86_64]\033[0m or higher operating system version."
 
-case ${OPERATING_SYSTEM} in
-centos)
-  local operationSystemVersion=`rpm --query centos-release` 
-  echo -e "The current operating system version is \e[31m[${operationSystemVersion}]\e[0m" | tee -a $LOG
-  ;;
-*)
-  echo -e "\033[31mWARN: The submarine assembly Unsupported [${OPERATING_SYSTEM}] operating system\033[0m"
-  ;;
-esac
+  case ${OPERATING_SYSTEM} in
+  centos)
+    local operationSystemVersion=`rpm --query centos-release`
+    echo -e "The current operating system version is \e[31m[${operationSystemVersion}]\e[0m" | tee -a $LOG
+    ;;
+  *)
+    echo -e "\033[31mWARN: The submarine assembly Unsupported [${OPERATING_SYSTEM}] operating system\033[0m"
+    ;;
+  esac
 }
 
+## @description  update operation System Kernel
+## @audience     public
+## @stability    stable
 function update_operationSystemKernel()
 {
   echo "If the server is unable to connect to the network, execute the following command yourself:
@@ -48,6 +54,9 @@ function update_operationSystemKernel()
   fi
 }
 
+## @description  check operation system kernel
+## @audience     public
+## @stability    stable
 function check_operationSystemKernel()
 {
 case ${OPERATING_SYSTEM} in
@@ -65,6 +74,9 @@ centos)
 esac
 }
 
+## @description  get gcc version
+## @audience     public
+## @stability    stable
 function get_gcc_version()
 {
   local gccVersion=`gcc --version`
@@ -72,6 +84,9 @@ function get_gcc_version()
   echo $version
 }
 
+## @description  install gcc
+## @audience     public
+## @stability    stable
 function install_gcc()
 {
   echo -n "Do you want to install gcc?[y|n]"
@@ -85,6 +100,9 @@ function install_gcc()
   fi
 }
 
+## @description  check gcc Version
+## @audience     public
+## @stability    stable
 function check_gccVersion()
 {
   local gccVersionInfo=`gcc --version`
@@ -99,6 +117,9 @@ function check_gccVersion()
   fi
 }
 
+## @description  check GPU
+## @audience     public
+## @stability    stable
 function check_GPU()
 {
   gpuInfo=`lspci | grep -i nvidia`
@@ -110,12 +131,15 @@ function check_GPU()
   fi
 }
 
+## @description  check user group
+## @audience     public
+## @stability    stable
 function check_userGroup()
 {
   echo -e "check hadoop user group ..."
 
   echo -e "Hadoop runs the required user [hdfs, mapred, yarn] and groups [hdfs, mapred, yarn, hadoop] installed by ambari."
-  echo -e "If you are not using ambari for hadoop installation, 
+  echo -e "If you are not using ambari for hadoop installation,
 then you can add the user and group by root by executing the following command:
 \033[34madduser hdfs
 adduser mapred
@@ -154,7 +178,9 @@ usermod -aG docker hadoop\033[0m\n"
   done
 }
 
-# Some preparatory work for nvidia driver installation
+## @description  Some preparatory work for nvidia driver installation
+## @audience     public
+## @stability    stable
 function prepare_nvidia_environment()
 {
   echo "prepare nvidia environment ..."
@@ -167,7 +193,7 @@ function prepare_nvidia_environment()
 
   echo -e "\033[34m ===== Please manually execute the following command =====
 # 1. Disable nouveau
-# Add the content 'rd.driver.blacklist=nouveau nouveau.modeset=0' 
+# Add the content 'rd.driver.blacklist=nouveau nouveau.modeset=0'
 # to the 'GRUB_CMDLINE_LINUX' configuration item in the /etc/default/grub file.
 root:> vi /etc/default/grub
 vi:> GRUB_CMDLINE_LINUX=\"rd.driver.blacklist=nouveau nouveau.modeset=0 ...\"
@@ -185,4 +211,3 @@ root:> dracut /boot/initramfs-$(uname -r).img $(uname -r)
 root:> reboot
 \033[0m"
 }
-
