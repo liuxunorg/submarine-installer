@@ -22,7 +22,7 @@ main_menu()
 {
 cat<<MENULIST
 ====================================================================================
-                         HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
+                            SUBMARINE INSTALLER ${SUBMARINE_INSTALLER_VERSION}
 
 HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${DOWNLOAD_SERVER_PORT}
 ====================================================================================
@@ -51,7 +51,7 @@ check_menu()
 {
 cat<<MENULIST
 ====================================================================================
-                         HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
+                            SUBMARINE INSTALLER ${SUBMARINE_INSTALLER_VERSION}
 
 HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${DOWNLOAD_SERVER_PORT}
 ====================================================================================
@@ -80,7 +80,7 @@ install_menu()
 {
 cat<<MENULIST
 ====================================================================================
-                         HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
+                            SUBMARINE INSTALLER ${SUBMARINE_INSTALLER_VERSION}
 
 HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${DOWNLOAD_SERVER_PORT}
 ====================================================================================
@@ -110,7 +110,7 @@ uninstall_menu()
 {
 cat<<MENULIST
 ====================================================================================
-                         HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
+                            SUBMARINE INSTALLER ${SUBMARINE_INSTALLER_VERSION}
 
 HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${DOWNLOAD_SERVER_PORT}
 ====================================================================================
@@ -140,7 +140,7 @@ start_menu()
 {
 cat<<MENULIST
 ====================================================================================
-                         HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
+                            SUBMARINE INSTALLER ${SUBMARINE_INSTALLER_VERSION}
 
 HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${DOWNLOAD_SERVER_PORT}
 ====================================================================================
@@ -166,7 +166,7 @@ stop_menu()
 {
 cat<<MENULIST
 ====================================================================================
-                         HADOOP SUBMARINE ASSEMBLY ${HDP_SUBMARINE_ASSEMBLY_VERSION}
+                            SUBMARINE INSTALLER ${SUBMARINE_INSTALLER_VERSION}
 
 HOST:${LOCAL_HOST_IP}    DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${DOWNLOAD_SERVER_PORT}
 ====================================================================================

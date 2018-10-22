@@ -106,6 +106,9 @@ function install_yarn_config()
   sed -i "s/CALICO_NETWORK_NAME_REPLACE/${CALICO_NETWORK_NAME}/g" $INSTALL_TEMP_DIR/hadoop/container-executor.cfg >>$LOG
   sed -i "s/YARN_HIERARCHY_REPLACE/${escape_yarn_hierarchy}/g" $INSTALL_TEMP_DIR/hadoop/container-executor.cfg >>$LOG
 
+  # Delete the ASF license comment in the container-executor.cfg file, otherwise it will cause a cfg format error.
+  sed -i '1,16d' $INSTALL_TEMP_DIR/hadoop/container-executor.cfg
+
   if [ ! -d "/etc/yarn/sbin/etc/hadoop" ]; then
     mkdir -p /etc/yarn/sbin/etc/hadoop
   fi

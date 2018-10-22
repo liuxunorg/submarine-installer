@@ -97,6 +97,9 @@ function install_docker_config()
   sed -i "s/YARN_DNS_HOST_REPLACE/${YARN_DNS_HOST}/g" $INSTALL_TEMP_DIR/docker/daemon.json >>$LOG
   sed -i "s/LOCAL_DNS_HOST_REPLACE/${LOCAL_DNS_HOST}/g" $INSTALL_TEMP_DIR/docker/daemon.json >>$LOG
 
+  # Delete the ASF license comment in the daemon.json file, otherwise it will cause a json format error.
+  sed -i '1,16d' $INSTALL_TEMP_DIR/docker/daemon.json
+
   if [ ! -d "/etc/docker" ]; then
     mkdir /etc/docker
   fi
