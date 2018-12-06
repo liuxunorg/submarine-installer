@@ -31,27 +31,27 @@ function download_calico_bin()
     MY_CALICO_IPAM_DOWNLOAD_URL=${CALICO_IPAM_DOWNLOAD_URL}
   fi
 
-  mkdir -p ${DOWNLOAD_DIR}/calico
+  mkdir -p "${DOWNLOAD_DIR}/calico"
 
   if [[ -f ${DOWNLOAD_DIR}/calico/calico ]]; then
     echo "${DOWNLOAD_DIR}/calico/calico is exist."
   else
     echo "download ${MY_CALICO_DOWNLOAD_URL} ..."
-    wget -P ${DOWNLOAD_DIR}/calico ${MY_CALICO_DOWNLOAD_URL}
+    wget -P "${DOWNLOAD_DIR}/calico" "${MY_CALICO_DOWNLOAD_URL}"
   fi
 
   if [[ -f ${DOWNLOAD_DIR}/calico/calicoctl ]]; then
     echo "${DOWNLOAD_DIR}/calico is exist."
   else
     echo "download ${MY_CALICOCTL_DOWNLOAD_URL} ..."
-    wget -P ${DOWNLOAD_DIR}/calico ${MY_CALICOCTL_DOWNLOAD_URL}
+    wget -P "${DOWNLOAD_DIR}/calico" "${MY_CALICOCTL_DOWNLOAD_URL}"
   fi
 
   if [[ -f ${DOWNLOAD_DIR}/calico/calico-ipam ]]; then
     echo "${DOWNLOAD_DIR}/calico/calico-ipam is exist."
   else
     echo "download ${MY_CALICO_IPAM_DOWNLOAD_URL} ..."
-    wget -P ${DOWNLOAD_DIR}/calico ${MY_CALICO_IPAM_DOWNLOAD_URL}
+    wget -P "${DOWNLOAD_DIR}/calico" "${MY_CALICO_IPAM_DOWNLOAD_URL}"
   fi
 }
 
@@ -62,9 +62,9 @@ function install_calico_bin()
 {
   download_calico_bin
 
-  cp -f ${DOWNLOAD_DIR}/calico/calico /usr/bin/calico
-  cp -f ${DOWNLOAD_DIR}/calico/calicoctl /usr/bin/calicoctl
-  cp -f ${DOWNLOAD_DIR}/calico/calico-ipam /usr/bin/calico-ipam
+  cp -f "${DOWNLOAD_DIR}/calico/calico" /usr/bin/calico
+  cp -f "${DOWNLOAD_DIR}/calico/calicoctl" /usr/bin/calicoctl
+  cp -f "${DOWNLOAD_DIR}/calico/calico-ipam" /usr/bin/calico-ipam
 
   chmod +x /usr/bin/calico
   chmod +x /usr/bin/calicoctl
@@ -78,23 +78,23 @@ function install_calico_config()
 {
   mkdir -p /etc/calico
 
-  cp -rf ${PACKAGE_DIR}/calico ${INSTALL_TEMP_DIR}/
+  cp -rf "${PACKAGE_DIR}/calico" "${INSTALL_TEMP_DIR}/"
 
   # 1. replace etcdEndpoints
   # etcdEndpoints: https://10.196.69.173:2379,https://10.196.69.174:2379,https://10.196.69.175:2379
   etcdEndpoints=''
   index=0
   etcdHostsSize=${#ETCD_HOSTS[@]}
-  for item in ${ETCD_HOSTS[@]}
+  for item in "${ETCD_HOSTS[@]}"
   do
-    index=$(($index+1))
-    etcdEndpoints="${etcdEndpoints}http:\/\/${item}:2379"
+    index=$((index+1))
+    etcdEndpoints="${etcdEndpoints}http:\\/\\/${item}:2379"
     if [[ ${index} -lt ${etcdHostsSize} ]]; then
       etcdEndpoints=${etcdEndpoints}","
     fi
   done
   # echo "etcdEndpoints=${etcdEndpoints}"
-  sed -i "s/ETCD_ENDPOINTS_REPLACE/${etcdEndpoints}/g" $INSTALL_TEMP_DIR/calico/calicoctl.cfg >>$LOG
+  sed -i "s/ETCD_ENDPOINTS_REPLACE/${etcdEndpoints}/g" "$INSTALL_TEMP_DIR/calico/calicoctl.cfg"
 
   if [[ ! -d /etc/calico ]]; then
     mkdir /etc/calico
@@ -102,11 +102,11 @@ function install_calico_config()
     rm -rf /etc/calico/*
   fi
 
-  cp -f $INSTALL_TEMP_DIR/calico/calicoctl.cfg /etc/calico/calicoctl.cfg
+  cp -f "$INSTALL_TEMP_DIR/calico/calicoctl.cfg" /etc/calico/calicoctl.cfg
 
-  sed -i "s/ETCD_ENDPOINTS_REPLACE/${etcdEndpoints}/g" $INSTALL_TEMP_DIR/calico/calico-node.service >>$LOG
-  sed -i "s/CALICO_IPV4POOL_CIDR_REPLACE/${CALICO_IPV4POOL_CIDR}/g" $INSTALL_TEMP_DIR/calico/calico-node.service >>$LOG
-  cp $INSTALL_TEMP_DIR/calico/calico-node.service /etc/systemd/system/ >>$LOG
+  sed -i "s/ETCD_ENDPOINTS_REPLACE/${etcdEndpoints}/g" "$INSTALL_TEMP_DIR/calico/calico-node.service"
+  sed -i "s/CALICO_IPV4POOL_CIDR_REPLACE/${CALICO_IPV4POOL_CIDR}/g" "$INSTALL_TEMP_DIR/calico/calico-node.service"
+  cp "$INSTALL_TEMP_DIR/calico/calico-node.service" /etc/systemd/system/
 
   systemctl daemon-reload
   systemctl enable calico-node.service
@@ -117,11 +117,11 @@ function install_calico_config()
 ## @stability    stable
 function kernel_network_config()
 {
-  if [ `grep -c "net.ipv4.conf.all.rp_filter=1" /etc/sysctl.conf` -eq '0' ]; then
+  if [ "$(grep -c "net.ipv4.conf.all.rp_filter=1" /etc/sysctl.conf)" -eq '0' ]; then
     echo "net.ipv4.conf.all.rp_filter=1" >>/etc/sysctl.conf
   fi
 
-  if [ `grep -c "net.ipv4.ip_forward=1" /etc/sysctl.conf` -eq '0' ]; then
+  if [ "$(grep -c "net.ipv4.ip_forward=1" /etc/sysctl.conf)" -eq '0' ]; then
     echo "net.ipv4.ip_forward=1" >>/etc/sysctl.conf
   fi
 
@@ -133,8 +133,9 @@ function kernel_network_config()
 ## @stability    stable
 function calico_network_exist()
 {
-  local dockerNetwokInfo=`docker network ls --filter NAME=${CALICO_NETWORK_NAME}`
-  echo ${dockerNetwokInfo} | grep ${CALICO_NETWORK_NAME}
+  local dockerNetwokInfo
+  dockerNetwokInfo=$(docker network ls --filter NAME="${CALICO_NETWORK_NAME}")
+  echo "${dockerNetwokInfo}" | grep "${CALICO_NETWORK_NAME}"
 }
 
 ## @description  verification calico
@@ -143,35 +144,38 @@ function calico_network_exist()
 function verification_calico()
 {
   echo " ===== Check if the network between 2 containers can be connected ====="
-  local claicoNetworkExist=`calico_network_exist`
+  local claicoNetworkExist
+  claicoNetworkExist=$(calico_network_exist)
   if [[ "$claicoNetworkExist" = "" ]]; then
     echo "Create a calico network"
-    docker network create --driver calico --ipam-driver calico-ipam ${CALICO_NETWORK_NAME}
+    docker network create --driver calico --ipam-driver calico-ipam "${CALICO_NETWORK_NAME}"
   else
     echo "calico network ${CALICO_NETWORK_NAME} is exist."
   fi
 
   local verifyA="verify-calico-network-A"
-  local verifyAInfo=`containers_exist ${verifyA}`
+  local verifyAInfo
+  verifyAInfo=$(containers_exist ${verifyA})
   if [[ -n "$verifyAInfo" ]]; then
     echo "Delete existing container ${verifyA}."
     docker stop ${verifyA}
     docker rm ${verifyA}
   fi
   echo "Create containers verify-calico-network-A"
-  docker run --net ${CALICO_NETWORK_NAME} --name ${verifyA} -tid busybox
+  docker run --net "${CALICO_NETWORK_NAME}" --name ${verifyA} -tid busybox
 
   local verifyB="verify-calico-network-B"
-  local verifyBInfo=`containers_exist ${verifyB}`
+  local verifyBInfo
+  verifyBInfo=$(containers_exist ${verifyB})
   if [[ -n "$verifyBInfo" ]]; then
     echo "Delete existing container ${verifyB}."
     docker stop ${verifyB}
     docker rm ${verifyB}
   fi
   echo "Create containers verify-calico-network-B"
-  docker run --net ${CALICO_NETWORK_NAME} --name ${verifyB} -tid busybox
+  docker run --net "${CALICO_NETWORK_NAME}" --name ${verifyB} -tid busybox
 
-  echo -e "\033[33m${verifyA} ping ${verifyB}\033[0m"
+  echo -e "\\033[33m${verifyA} ping ${verifyB}\\033[0m"
   docker exec ${verifyA} ping ${verifyB} -c 5
 }
 

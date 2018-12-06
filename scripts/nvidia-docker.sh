@@ -31,7 +31,7 @@ function download_nvidia_docker_bin()
     echo "${DOWNLOAD_DIR}/nvidia-docker/${NVIDIA_DOCKER_RPM} is exist."
   else
     echo "download ${MY_NVIDIA_DOCKER_RPM_URL} ..."
-    wget -P ${DOWNLOAD_DIR}/nvidia-docker/ ${MY_NVIDIA_DOCKER_RPM_URL}
+    wget -P "${DOWNLOAD_DIR}/nvidia-docker/" "${MY_NVIDIA_DOCKER_RPM_URL}"
   fi
 }
 
@@ -42,18 +42,18 @@ function install_nvidia_docker()
 {
   download_nvidia_docker_bin
 
-  sudo rpm -i ${DOWNLOAD_DIR}/nvidia-docker/${NVIDIA_DOCKER_RPM}
+  sudo rpm -i "${DOWNLOAD_DIR}/nvidia-docker/${NVIDIA_DOCKER_RPM}"
 
-  echo -e "\033[32m===== Start nvidia-docker =====\033[0m"
+  echo -e "\\033[32m===== Start nvidia-docker =====\\033[0m"
   sudo systemctl start nvidia-docker
 
-  echo -e "\033[32m===== Check nvidia-docker status =====\033[0m"
+  echo -e "\\033[32m===== Check nvidia-docker status =====\\033[0m"
   systemctl status nvidia-docker
 
-  echo -e "\033[32m===== Check nvidia-docker log =====\033[0m"
+  echo -e "\\033[32m===== Check nvidia-docker log =====\\033[0m"
   journalctl -u nvidia-docker
 
-  echo -e "\033[32m===== Test nvidia-docker-plugin =====\033[0m"
+  echo -e "\\033[32m===== Test nvidia-docker-plugin =====\\033[0m"
   curl http://localhost:3476/v1.0/docker/cli
 
   # create nvidia driver library path
@@ -62,31 +62,32 @@ function install_nvidia_docker()
     mkdir -p /var/lib/nvidia-docker/volumes/nvidia_driver
   fi
 
-  local nvidiaVersion=`get_nvidia_version`
-  echo -e "\033[31m nvidia detect version is ${nvidiaVersion}\033[0m"
+  local nvidiaVersion
+  nvidiaVersion=$(get_nvidia_version)
+  echo -e "\\033[31m nvidia detect version is ${nvidiaVersion}\\033[0m"
 
-  mkdir /var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}
-  mkdir /var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}/bin
-  mkdir /var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}/lib64
+  mkdir "/var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}"
+  mkdir "/var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}/bin"
+  mkdir "/var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}/lib64"
 
-  cp /usr/bin/nvidia* /var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}/bin
-  cp /usr/lib64/libcuda* /var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}/lib64
-  cp /usr/lib64/libnvidia* /var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}/lib64
+  cp /usr/bin/nvidia* "/var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}/bin"
+  cp /usr/lib64/libcuda* "/var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}/lib64"
+  cp /usr/lib64/libnvidia* "/var/lib/nvidia-docker/volumes/nvidia_driver/${nvidiaVersion}/lib64"
 
-  echo -e "\033[32m===== Please manually execute the following command =====\033[0m"
-  echo -e "\033[32mshell:> nvidia-docker run --rm ${DOCKER_REGISTRY}/nvidia/cuda:9.0-devel nvidia-smi
+  echo -e "\\033[32m===== Please manually execute the following command =====\\033[0m"
+  echo -e "\\033[32mshell:> nvidia-docker run --rm ${DOCKER_REGISTRY}/nvidia/cuda:9.0-devel nvidia-smi
 # If you don't see the list of graphics cards above, the NVIDIA driver installation failed. =====
-\033[0m"
+\\033[0m"
 
-  echo -e "\033[32m===== Please manually execute the following command =====\033[0m"
-  echo -e "\033[32m# Test with tf.test.is_gpu_available()
+  echo -e "\\033[32m===== Please manually execute the following command =====\\033[0m"
+  echo -e "\\033[32m# Test with tf.test.is_gpu_available()
 shell:> nvidia-docker run -it ${DOCKER_REGISTRY}/tensorflow/tensorflow:1.9.0-gpu bash
 # In docker container
 container:> python
 python:> import tensorflow as tf
 python:> tf.test.is_gpu_available()
 python:> exit()
-\033[0m"
+\\033[0m"
 }
 
 ## @description  uninstall nvidia docker

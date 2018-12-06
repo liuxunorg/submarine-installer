@@ -22,8 +22,9 @@ nvidia_run_file=""
 ## @stability    stable
 function get_nvidia_version()
 {
-  chmod +x ${DOWNLOAD_DIR}/nvidia/nvidia-detect
-  local nvidia_detect_info=`${DOWNLOAD_DIR}/nvidia/nvidia-detect -v`
+  chmod +x "${DOWNLOAD_DIR}/nvidia/nvidia-detect"
+  local nvidia_detect_info
+  nvidia_detect_info=$("${DOWNLOAD_DIR}/nvidia/nvidia-detect" -v)
   echo $nvidia_detect_info | sed "s/^.*This device requires the current \([0-9.]*\).*/\1/"
 }
 
@@ -44,16 +45,17 @@ function download_nvidia_driver()
     echo "${DOWNLOAD_DIR}/nvidia/nvidia-detect is exist."
   else
     echo "download ${MY_NVIDIA_DETECT_URL} ..."
-    wget -P ${DOWNLOAD_DIR}/nvidia/ ${MY_NVIDIA_DETECT_URL}
+    wget -P "${DOWNLOAD_DIR}/nvidia/" "${MY_NVIDIA_DETECT_URL}"
   fi
 
   echo "execution nvidia-detect to check the graphics card ..."
-  local nvidiaVersion=`get_nvidia_version`
-  echo -e "detect nvidia version is \033[31m${nvidiaVersion}\033[0m"
+  local nvidiaVersion
+  nvidiaVersion=$(get_nvidia_version)
+  echo -e "detect nvidia version is \\033[31m${nvidiaVersion}\\033[0m"
 
   # download NVIDIA driver
   if [[ "$nvidiaVersion" = "" ]]; then
-    echo -e "\033[31mERROR: No graphics card device detected.\033[0m"
+    echo -e "\\033[31mERROR: No graphics card device detected.\\033[0m"
     return 1
   else
     nvidia_run_file="NVIDIA-Linux-x86_64-${nvidiaVersion}.run"
@@ -71,7 +73,7 @@ function download_nvidia_driver()
       echo "===== Please make sure the ${DOWNLOAD_DIR}/nvidia/nvidia/${nvidia_run_file} file is complete and can be used normally. ====="
     else
       echo "Download the NVIDIA driver from the ${MY_NVIDIA_DRIVER_RUN_URL}"
-      wget -P ${DOWNLOAD_DIR}/nvidia/ ${MY_NVIDIA_DRIVER_RUN_URL}
+      wget -P "${DOWNLOAD_DIR}/nvidia/" "${MY_NVIDIA_DRIVER_RUN_URL}"
     fi
   fi
 }
@@ -84,23 +86,24 @@ function install_nvidia()
   download_nvidia_driver
 
   # Confirm that the system disables nouveau
-  local disable_nouveau_info=`lsmod | grep nouveau`
+  local disable_nouveau_info
+  disable_nouveau_info=$(lsmod | grep nouveau)
   if [[ "$disable_nouveau_info" = "" ]]; then
     echo "===== Start installing the NVIDIA driver ====="
     echo -e "Some options during the installation
 Would you like to register the kernel module sources with DKMS?
-  This will allow DKMS to automatically build a new module, if you install a different kernel later. \033[33m[Yes]\033[0m
-Install NVIDIA's 32-bit compatibility libraries \033[33m[Yes]\033[0m
-centos Install NVIDIA's 32-bit compatibility libraries \033[33m[Yes]\033[0m
-Would you like to run the nvidia-xconfig utility to automatically update your X configuration file... \033[33m[No]\033[0m"
+  This will allow DKMS to automatically build a new module, if you install a different kernel later. \\033[33m[Yes]\\033[0m
+Install NVIDIA's 32-bit compatibility libraries \\033[33m[Yes]\\033[0m
+centos Install NVIDIA's 32-bit compatibility libraries \\033[33m[Yes]\\033[0m
+Would you like to run the nvidia-xconfig utility to automatically update your X configuration file... \\033[33m[No]\\033[0m"
     sleep 2
-    sh ${DOWNLOAD_DIR}/nvidia/${nvidia_run_file}
+    sh "${DOWNLOAD_DIR}/nvidia/${nvidia_run_file}"
   else
     echo -e "ERROR: Nouveau is not disabled"
     return 1
   fi
 
-  echo -e "\033[32m===== execute nvidia-smi. You should be able to see the list of graphics cards =====\033[0m"
+  echo -e "\\033[32m===== execute nvidia-smi. You should be able to see the list of graphics cards =====\\033[0m"
   sleep 1
   nvidia-smi
 }
@@ -111,7 +114,7 @@ Would you like to run the nvidia-xconfig utility to automatically update your X 
 function uninstall_nvidia()
 {
   if [ ! -f "/usr/bin/nvidia-uninstall" ]; then
-    echo -e "\033[31mERROR: /usr/bin/nvidia-uninstall file is not exist!\033[0m"
+    echo -e "\\033[31mERROR: /usr/bin/nvidia-uninstall file is not exist!\\033[0m"
     return 1
   fi
 

@@ -29,19 +29,19 @@ HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${
 [Main menu]
 ------------------------------------------------------------------------------------
 MENULIST
-echo -e "  \e[32m1.prepare system environment [..]\e[0m"
-echo -e "  \e[32m2.install component [..]\e[0m"
-echo -e "  \e[32m3.uninstall component [..]\e[0m"
-echo -e "  \e[32m4.start component [..]\e[0m"
-echo -e "  \e[32m5.stop component [..]\e[0m"
-echo -e "  \e[32m6.start download server [..]\e[0m"
+echo -e "  \\e[32m1.prepare system environment [..]\\e[0m"
+echo -e "  \\e[32m2.install component [..]\\e[0m"
+echo -e "  \\e[32m3.uninstall component [..]\\e[0m"
+echo -e "  \\e[32m4.start component [..]\\e[0m"
+echo -e "  \\e[32m5.stop component [..]\\e[0m"
+echo -e "  \\e[32m6.start download server [..]\\e[0m"
 echo -e ""
-echo -e "  \e[32mq.quit\e[0m"
+echo -e "  \\e[32mq.quit\\e[0m"
 cat<<MENULIST
 ====================================================================================
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m6\e[0m,\e[32mq\e[0m(quit)]:"
+echo -ne "Please input your choice [\\e[32m1\\e[0m-\\e[32m6\\e[0m,\\e[32mq\\e[0m(quit)]:"
 }
 
 ## @description  check menu
@@ -58,19 +58,19 @@ HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${
 [Main menu] > [prepare system environment]
 ------------------------------------------------------------------------------------
 MENULIST
-echo -e "  \e[32m1.prepare operation system\e[0m"
-echo -e "  \e[32m2.prepare operation system kernel\e[0m"
-echo -e "  \e[32m3.prepare GCC version\e[0m"
-echo -e "  \e[32m4.check GPU\e[0m"
-echo -e "  \e[32m5.prepare user&group\e[0m"
-echo -e "  \e[32m6.prepare nvidia environment\e[0m"
+echo -e "  \\e[32m1.prepare operation system\\e[0m"
+echo -e "  \\e[32m2.prepare operation system kernel\\e[0m"
+echo -e "  \\e[32m3.prepare GCC version\\e[0m"
+echo -e "  \\e[32m4.check GPU\\e[0m"
+echo -e "  \\e[32m5.prepare user&group\\e[0m"
+echo -e "  \\e[32m6.prepare nvidia environment\\e[0m"
 echo -e ""
-echo -e "  \e[32mb.back main menu\e[0m"
+echo -e "  \\e[32mb.back main menu\\e[0m"
 cat<<MENULIST
 ====================================================================================
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m5\e[0m,\e[32mb\e[0m(back)]:"
+echo -ne "Please input your choice [\\e[32m1\\e[0m-\\e[32m5\\e[0m,\\e[32mb\\e[0m(back)]:"
 }
 
 ## @description  install menu
@@ -87,20 +87,20 @@ HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${
 [Main menu] > [install component]
 ------------------------------------------------------------------------------------
 MENULIST
-echo -e "  \e[32m1.instll etcd\e[0m"
-echo -e "  \e[32m2.instll docker\e[0m"
-echo -e "  \e[32m3.instll calico network\e[0m"
-echo -e "  \e[32m4.instll nvidia driver\e[0m"
-echo -e "  \e[32m5.instll nvidia docker\e[0m"
-echo -e "  \e[32m6.instll yarn container-executor\e[0m"
-echo -e "  \e[32m7.instll submarine autorun script\e[0m"
+echo -e "  \\e[32m1.instll etcd\\e[0m"
+echo -e "  \\e[32m2.instll docker\\e[0m"
+echo -e "  \\e[32m3.instll calico network\\e[0m"
+echo -e "  \\e[32m4.instll nvidia driver\\e[0m"
+echo -e "  \\e[32m5.instll nvidia docker\\e[0m"
+echo -e "  \\e[32m6.instll yarn container-executor\\e[0m"
+echo -e "  \\e[32m7.instll submarine autorun script\\e[0m"
 echo -e ""
-echo -e "  \e[32mb.back main menu\e[0m"
+echo -e "  \\e[32mb.back main menu\\e[0m"
 cat<<MENULIST
 ====================================================================================
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m7\e[0m,\e[32mb\e[0m(back)]:"
+echo -ne "Please input your choice [\\e[32m1\\e[0m-\\e[32m7\\e[0m,\\e[32mb\\e[0m(back)]:"
 }
 
 ## @description  unstall menu
@@ -117,20 +117,20 @@ HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${
 [Main menu] > [uninstll component]
 ------------------------------------------------------------------------------------
 MENULIST
-echo -e "  \e[32m1.uninstll etcd\e[0m"
-echo -e "  \e[32m2.uninstll docker\e[0m"
-echo -e "  \e[32m3.uninstll calico network\e[0m"
-echo -e "  \e[32m4.uninstll nvidia driver\e[0m"
-echo -e "  \e[32m5.uninstll nvidia docker\e[0m"
-echo -e "  \e[32m6.uninstll yarn container-executor\e[0m"
-echo -e "  \e[32m7.uninstll submarine autorun script\e[0m"
+echo -e "  \\e[32m1.uninstll etcd\\e[0m"
+echo -e "  \\e[32m2.uninstll docker\\e[0m"
+echo -e "  \\e[32m3.uninstll calico network\\e[0m"
+echo -e "  \\e[32m4.uninstll nvidia driver\\e[0m"
+echo -e "  \\e[32m5.uninstll nvidia docker\\e[0m"
+echo -e "  \\e[32m6.uninstll yarn container-executor\\e[0m"
+echo -e "  \\e[32m7.uninstll submarine autorun script\\e[0m"
 echo -e ""
-echo -e "  \e[32mb.back main menu\e[0m"
+echo -e "  \\e[32mb.back main menu\\e[0m"
 cat<<MENULIST
 ====================================================================================
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m7\e[0m,\e[32mb\e[0m(back)]:"
+echo -ne "Please input your choice [\\e[32m1\\e[0m-\\e[32m7\\e[0m,\\e[32mb\\e[0m(back)]:"
 }
 
 ## @description  start menu
@@ -147,16 +147,16 @@ HOST:${LOCAL_HOST_IP}            DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${
 [Main menu] > [stop component]
 ------------------------------------------------------------------------------------
 MENULIST
-echo -e "  \e[32m1.start etcd\e[0m"
-echo -e "  \e[32m2.start docker\e[0m"
-echo -e "  \e[32m3.start calico network\e[0m"
+echo -e "  \\e[32m1.start etcd\\e[0m"
+echo -e "  \\e[32m2.start docker\\e[0m"
+echo -e "  \\e[32m3.start calico network\\e[0m"
 echo -e ""
-echo -e "  \e[32mb.back main menu\e[0m"
+echo -e "  \\e[32mb.back main menu\\e[0m"
 cat<<MENULIST
 ====================================================================================
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m3\e[0m,\e[32mb\e[0m(back)]:"
+echo -ne "Please input your choice [\\e[32m1\\e[0m-\\e[32m3\\e[0m,\\e[32mb\\e[0m(back)]:"
 }
 
 ## @description  stop menu
@@ -173,16 +173,16 @@ HOST:${LOCAL_HOST_IP}    DOWNLOAD_SERVER:http://${DOWNLOAD_SERVER_IP}:${DOWNLOAD
 [Main menu] > [stop component]
 ------------------------------------------------------------------------------------
 MENULIST
-echo -e "  \e[32m1.stop etcd\e[0m"
-echo -e "  \e[32m2.stop docker\e[0m"
-echo -e "  \e[32m3.stop calico network\e[0m"
+echo -e "  \\e[32m1.stop etcd\\e[0m"
+echo -e "  \\e[32m2.stop docker\\e[0m"
+echo -e "  \\e[32m3.stop calico network\\e[0m"
 echo -e ""
-echo -e "  \e[32mb.back main menu\e[0m"
+echo -e "  \\e[32mb.back main menu\\e[0m"
 cat<<MENULIST
 ====================================================================================
 MENULIST
 
-echo -ne "Please input your choice [\e[32m1\e[0m-\e[32m3\e[0m,\e[32mb\e[0m(back)]:"
+echo -ne "Please input your choice [\\e[32m1\\e[0m-\\e[32m3\\e[0m,\\e[32mb\\e[0m(back)]:"
 }
 
 ## @description  menu operation
@@ -226,7 +226,7 @@ menu()
     ;;
   esac
 
-  read menu_choice
+  read -r menu_choice
 }
 
 ## @description  menu process
@@ -270,7 +270,7 @@ menu_process()
 # install component
     "2-1")
       echo -n "Do you want to install etcd?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         install_etcd
@@ -278,7 +278,7 @@ menu_process()
     ;;
     "2-2")
       echo -n "Do you want to install docker?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         install_docker
@@ -286,7 +286,7 @@ menu_process()
     ;;
     "2-3")
       echo -n "Do you want to install calico network?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         install_calico
@@ -294,7 +294,7 @@ menu_process()
     ;;
     "2-4")
       echo -n "Do you want to install nvidia driver?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         install_nvidia
@@ -302,7 +302,7 @@ menu_process()
     ;;
     "2-5")
       echo -n "Do you want to install nvidia docker?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         install_nvidia_docker
@@ -310,7 +310,7 @@ menu_process()
     ;;
     "2-6")
       echo -n "Do you want to install yarn container-executor?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         install_yarn
@@ -318,7 +318,7 @@ menu_process()
     ;;
     "2-7")
       echo -n "Do you want to install submarine auto start script?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         install_submarine
@@ -327,7 +327,7 @@ menu_process()
 # uninstall component
     "3-1")
       echo -n "Do you want to uninstall etcd?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         uninstall_etcd
@@ -335,7 +335,7 @@ menu_process()
     ;;
     "3-2")
       echo -n "Do you want to uninstall docker?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         uninstall_docker
@@ -343,7 +343,7 @@ menu_process()
     ;;
    "3-3")
       echo -n "Do you want to uninstall calico network?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         uninstall_calico
@@ -351,7 +351,7 @@ menu_process()
     ;;
     "3-4")
       echo -n "Do you want to uninstall nvidia driver?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         uninstall_nvidia
@@ -359,7 +359,7 @@ menu_process()
     ;;
     "3-5")
       echo -n "Do you want to uninstall nvidia docker?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         uninstall_nvidia_docker
@@ -367,7 +367,7 @@ menu_process()
     ;;
     "3-6")
       echo -n "Do you want to uninstall yarn container-executor?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         uninstall_yarn
@@ -375,7 +375,7 @@ menu_process()
     ;;
     "3-7")
       echo -n "Do you want to uninstall submarine autostart script?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         uninstall_submarine
@@ -384,7 +384,7 @@ menu_process()
 # startup component
     "4-1")
       echo -n "Do you want to startup etcd?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         start_etcd
@@ -392,7 +392,7 @@ menu_process()
     ;;
     "4-2")
       echo -n "Do you want to startup docker?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         start_docker
@@ -400,7 +400,7 @@ menu_process()
     ;;
     "4-3")
       echo -n "Do you want to startup calico network?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         start_calico
@@ -409,7 +409,7 @@ menu_process()
 # stop component
     "5-1")
       echo -n "Do you want to stop etcd?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         stop_etcd
@@ -417,7 +417,7 @@ menu_process()
     ;;
     "5-2")
       echo -n "Do you want to stop docker?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         stop_docker
@@ -425,7 +425,7 @@ menu_process()
     ;;
     "5-3")
       echo -n "Do you want to stop calico network?[y|n]"
-      read myselect
+      read -r myselect
       if [[ "$myselect" = "y" || "$myselect" = "Y" ]]
       then
         stop_calico

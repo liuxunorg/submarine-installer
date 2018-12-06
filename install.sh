@@ -82,8 +82,9 @@ fi
 
 check_install_user
 
-# 清理安装临时目录
-rm $INSTALL_TEMP_DIR/* -rf >>$LOG 2>&1
+# Clean up the installation temporary directory
+rm $INSTALL_TEMP_DIR/* -rf
+
 
 menu_index="0"
 for ((j=1;;j++))
@@ -94,7 +95,7 @@ do
       menu_index="$menu_choice"
     ;;
     "1"|"2"|"3"|"4"|"5")
-#     echo "aaaa=$menu_index-$menu_choice"
+      # echo "aaaa=$menu_index-$menu_choice"
       menu_process
       if [[ $? = 1 ]]; then
         echo "Press any key to return menu!"

@@ -31,7 +31,7 @@ function download_etcd_bin()
     echo "${DOWNLOAD_DIR}/etcd/${ETCD_TAR_GZ} is exist."
   else
     echo "download ${MY_ETCD_DOWNLOAD_URL} ..."
-    wget -P ${DOWNLOAD_DIR}/etcd ${MY_ETCD_DOWNLOAD_URL}
+    wget -P "${DOWNLOAD_DIR}/etcd" "${MY_ETCD_DOWNLOAD_URL}"
   fi
 }
 
@@ -43,12 +43,12 @@ function install_etcd_bin()
   download_etcd_bin
 
   # install etcd bin
-  mkdir -p ${INSTALL_TEMP_DIR}
-  rm -rf ${INSTALL_TEMP_DIR}/etcd-*-linux-amd6
-  tar zxvf ${DOWNLOAD_DIR}/etcd/${ETCD_TAR_GZ} -C ${INSTALL_TEMP_DIR}
+  mkdir -p "${INSTALL_TEMP_DIR}"
+  rm -rf "${INSTALL_TEMP_DIR}/etcd-*-linux-amd6"
+  tar zxvf "${DOWNLOAD_DIR}/etcd/${ETCD_TAR_GZ}" -C "${INSTALL_TEMP_DIR}"
 
-  cp -f ${INSTALL_TEMP_DIR}/etcd-*-linux-amd64/etcd /usr/bin
-  cp -f ${INSTALL_TEMP_DIR}/etcd-*-linux-amd64/etcdctl /usr/bin
+  cp -f "${INSTALL_TEMP_DIR}/etcd-*-linux-amd64/etcd" /usr/bin
+  cp -f "${INSTALL_TEMP_DIR}/etcd-*-linux-amd64/etcdctl" /usr/bin
 
   mkdir -p /var/lib/etcd
   chmod -R a+rw /var/lib/etcd
@@ -60,37 +60,37 @@ function install_etcd_bin()
 function install_etcd_config()
 {
   # config etcd.service
-  rm -rf ${INSTALL_TEMP_DIR}/etcd
-  cp -rf ${PACKAGE_DIR}/etcd ${INSTALL_TEMP_DIR}/
+  rm -rf "${INSTALL_TEMP_DIR}/etcd"
+  cp -rf "${PACKAGE_DIR}/etcd" "${INSTALL_TEMP_DIR}/"
 
   # 1. Replace name with ETCD_NODE_NAME_REPLACE based on the location of the local IP in $ETCD_HOSTS
-  indexEtcdList=$(indexByEtcdHosts ${LOCAL_HOST_IP})
+  indexEtcdList=$(indexByEtcdHosts "${LOCAL_HOST_IP}")
   # echo ${indexEtcdList}
   etcdNodeName="etcdnode${indexEtcdList}"
   # echo ${etcdNodeName}
-  sed -i "s/ETCD_NODE_NAME_REPLACE/${etcdNodeName}/g" $INSTALL_TEMP_DIR/etcd/etcd.service >>$LOG
+  sed -i "s/ETCD_NODE_NAME_REPLACE/${etcdNodeName}/g" "$INSTALL_TEMP_DIR/etcd/etcd.service"
 
   # 2. Replace local IP address
-  sed -i "s/LOCAL_HOST_REPLACE/${LOCAL_HOST_IP}/g" $INSTALL_TEMP_DIR/etcd/etcd.service >>$LOG
+  sed -i "s/LOCAL_HOST_REPLACE/${LOCAL_HOST_IP}/g" "$INSTALL_TEMP_DIR/etcd/etcd.service"
 
   # 3. Replace the initial-cluster parameter
   # --initial-cluster=etcdnode1=http://10.196.69.173:2380,etcdnode2=http://10.196.69.174:2380,etcdnode3=http://10.196.69.175:2380 \
   initialCluster=''
   index=0
   etcdHostsSize=${#ETCD_HOSTS[@]}
-  for item in ${ETCD_HOSTS[@]}
+  for item in "${ETCD_HOSTS[@]}"
   do
-    # char '/' need to escape '\/'
-    initialCluster="${initialCluster}etcdnode${index}=http:\/\/${item}:2380"
+    # char '/' need to escape '\\/'
+    initialCluster="${initialCluster}etcdnode${index}=http:\\/\\/${item}:2380"
     if [[ ${index} -lt ${etcdHostsSize}-1 ]]; then
       initialCluster=${initialCluster}","
     fi
-    index=$(($index+1))
+    index=$((index+1))
   done
   #echo "initialCluster=${initialCluster}"
-  sed -i "s/INITIAL_CLUSTER_REPLACE/${initialCluster}/g" $INSTALL_TEMP_DIR/etcd/etcd.service >>$LOG
+  sed -i "s/INITIAL_CLUSTER_REPLACE/${initialCluster}/g" "$INSTALL_TEMP_DIR/etcd/etcd.service"
 
-  cp $INSTALL_TEMP_DIR/etcd/etcd.service /etc/systemd/system/ >>$LOG
+  cp "$INSTALL_TEMP_DIR/etcd/etcd.service" /etc/systemd/system/
 }
 
 ## @description  install etcd
@@ -98,9 +98,9 @@ function install_etcd_config()
 ## @stability    stable
 function install_etcd()
 {
-  index=$(indexByEtcdHosts ${LOCAL_HOST_IP})
+  index=$(indexByEtcdHosts "${LOCAL_HOST_IP}")
   if [ -z "$index" ]; then
-    echo -e "STOP: This host\033[31m[${LOCAL_HOST_IP}]\033[0m is not in the ETCD server list\033[31m[${ETCD_HOSTS[@]}]\033[0m"
+    echo -e "STOP: This host\\033[31m[${LOCAL_HOST_IP}]\\033[0m is not in the ETCD server list\\033[31m[${ETCD_HOSTS[*]}]\\033[0m"
     return 1
   fi
 

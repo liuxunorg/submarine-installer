@@ -31,8 +31,8 @@ function check_install_user()
 ## @stability    stable
 function exit_install()
 {
-  echo "Exit the installation!" | tee -a $LOG
-  exit $1
+  echo "Exit the installation!"
+  exit
 }
 
 ## @description  Check if the IP address format is correct
@@ -62,22 +62,22 @@ function valid_ip()
 ## @stability    stable
 function check_install_conf()
 {
-  echo "Check if the configuration file configuration is correct ..." | tee -a $LOG
+  echo "Check if the configuration file configuration is correct ..."
 
   # check etcd conf
   hostCount=${#ETCD_HOSTS[@]}
   if [[ $hostCount -lt 3 && hostCount -ne 0 ]]; then # <>2
-    echo "Number of nodes = [$hostCount], must be configured to be greater than or equal to 3 servers! " | tee -a $LOG
+    echo "Number of nodes = [$hostCount], must be configured to be greater than or equal to 3 servers! "
     exit_install
   fi
-  for ip in ${ETCD_HOSTS[@]}
+  for ip in "${ETCD_HOSTS[@]}"
   do
-    if ! valid_ip $ip; then
-      echo "]ETCD_HOSTS=[$ip], IP address format is incorrect! " | tee -a $LOG
+    if ! valid_ip "$ip"; then
+      echo "]ETCD_HOSTS=[$ip], IP address format is incorrect! "
       exit_install
     fi
   done
-  echo "Check if the configuration file configuration is correct [ Done ]" | tee -a $LOG
+  echo "Check if the configuration file configuration is correct [ Done ]"
 }
 
 ## @description  index by EtcdHosts list
@@ -90,7 +90,7 @@ function indexByEtcdHosts() {
       echo $index
       return
     fi
-    let "index++"
+    (( index++ ))
   done
   echo ""
 }
@@ -101,12 +101,12 @@ function indexByEtcdHosts() {
 function getLocalIP()
 {
   local _ip _myip _line _nl=$'\n'
-  while IFS=$': \t' read -a _line ;do
+  while IFS=$': \t' read -r -a _line ;do
       [ -z "${_line%inet}" ] &&
          _ip=${_line[${#_line[1]}>4?1:2]} &&
          [ "${_ip#127.0.0.1}" ] && _myip=$_ip
     done< <(LANG=C /sbin/ifconfig)
-  printf ${1+-v} $1 "%s${_nl:0:$[${#1}>0?0:1]}" $_myip
+  printf "%s" ${1+-v} "$1" "%s${_nl:0:$((${#1}>0?0:1))}" "$_myip"
 }
 
 ## @description  get ip list
@@ -116,7 +116,7 @@ function get_ip_list()
 {
   array=$(ifconfig | grep inet | grep -v inet6 | grep -v 127 | sed 's/^[ \t]*//g' | cut -d ' ' -f2)
 
-  for ip in ${array[@]}
+  for ip in "${array[@]}"
   do
     LOCAL_HOST_IP_LIST+=(${ip})
   done
